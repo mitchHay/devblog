@@ -1,0 +1,10 @@
+@use 'functions' as *;
+
+$font-color-primary: #FFFFFF;
+$font-color-hover: #333333;
+
+$bg-color-primary: #333333;
+$bg-color-hover: #EEFC57;
+
+// Breakpoints
+$breakpoint-mobile: rem(576);

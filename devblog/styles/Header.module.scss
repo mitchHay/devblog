@@ -1,0 +1,57 @@
+@use 'functions' as *;
+@use 'variables' as *;
+
+.navigation {
+    padding: rem(32) rem(32);
+    background-color: $bg-color-primary;
+    color: $font-color-primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: padding .25s ease-in-out;
+    z-index: 999;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: rem(24);
+        list-style: none;
+
+        > .navItem {
+            white-space: nowrap;
+
+            a {
+                display: inline-block;
+                padding: rem(4) rem(8);
+                border-radius: rem(4);
+                transition: background-color .125s ease-in-out;
+
+                span {
+                    display: inline-block;
+                    transition: all .25s ease-in-out;
+                    visibility: hidden;
+                    max-width: 0px;
+                }
+
+                &:hover {
+                    background-color: $bg-color-hover;
+                    color: $font-color-hover;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        padding: rem(32) rem(64);
+
+        ul > .navItem {
+            span {
+                max-width: rem(80);
+                width: 100%;
+                visibility: visible;
+                margin-left: rem(8);
+            }
+        }
+    }
+}

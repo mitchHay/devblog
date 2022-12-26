@@ -1,0 +1,38 @@
+@use 'functions' as *;
+
+.blogMain {
+    margin: 0 auto;
+    max-width: rem(900);
+
+    .pageTitle {
+        margin: 24px 0;
+    }
+
+    .blogLink {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+
+        &:first-child {
+            margin-top: 64px;
+        }
+
+        img {
+            position: relative !important;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .blogHeadingContainer {
+            margin-bottom: 8px;
+
+            .blogCategory {
+                width: 100%;
+                display: inline-block;
+            }
+        }
+    }
+}
