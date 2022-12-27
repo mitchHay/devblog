@@ -6,10 +6,12 @@
     "dev": "next dev --port 8080",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "npm run build && next export -o ./dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -26,6 +28,7 @@
     "@types/markdown-it": "^12.2.3",
     "gray-matter": "^4.0.3",
     "markdown-it": "^13.0.1",
+    "next-export-optimize-images": "^2.0.0",
     "sass": "^1.57.1"
   }
 }
