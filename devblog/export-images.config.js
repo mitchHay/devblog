@@ -1,11 +1,9 @@
-/**
- * @type {import('next-export-optimize-images').Config}
- */
-const config = {
+module.exports = {
   outDir: 'dist',
   convertFormat: [
-    ['png', 'webp']
-  ]
+    ['png', 'webp'],
+  ],
+  images: {
+    deviceSizes: [640, 960, 1280, 1600, 1920],
+  },
 }
-
-module.exports = config;

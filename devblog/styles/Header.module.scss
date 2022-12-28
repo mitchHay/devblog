@@ -1,6 +1,11 @@
 @use 'functions' as *;
 @use 'variables' as *;
 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
 .navigation {
   display: flex;
   flex-direction: column;
@@ -12,6 +17,8 @@
   left: 0;
   height: 100%;
   z-index: 999;
+  transition: box-shadow 0.25s ease-in-out;
+  min-width: $nav-bar-width;
 
   .mobileMenu {
     display: none;
@@ -44,7 +51,7 @@
 
         span {
           display: inline-block;
-          transition: all .25s ease-in-out;
+          transition: all .1s ease-in-out;
           visibility: hidden;
           max-width: 0px;
         }
@@ -68,6 +75,8 @@
   }
 
   &:hover {
+    box-shadow: rem(10) 0 rem(10) 0 rgba(0, 0, 0, .15);
+
     ul {
       padding: rem(32) rem(64);
     }

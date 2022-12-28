@@ -1,14 +1,46 @@
-import Link from "next/link";
 import { Post } from '../models/post';
-import Image from "next/image";
 import { getPosts, retrieveFrontMatter } from "../services/posts.service";
-import { fontClasses } from "../services/fonts.service";
 import styles from '../styles/Blog.module.scss';
+import dynamic from "next/dynamic";
+
+const Link = dynamic(() => import('next/link'));
+const Image = dynamic(() => import('next/image'));
 
 export default function Blog({ posts }: any) {
+  if (typeof(window) !== 'undefined') {
+    document.addEventListener('keydown', (keypress) => {
+      const searchInput = document.getElementById('blog-search');
+
+      switch (keypress.key) {
+        case '/':
+          keypress.preventDefault();
+          searchInput?.focus({
+            preventScroll: false
+          });
+
+          break;
+        case 'Escape':
+          keypress.preventDefault();
+          searchInput?.blur();
+
+          break;
+      }
+    });
+  }
+
   return (
-    <main className={`${styles.blogMain} ${fontClasses()}`}>
+    <main className={styles.blogMain}>
       <h1 className={styles.pageTitle}>Welcome to My Thoughtspace 💭</h1>
+      <input className={styles.blogSearch} 
+             id='blog-search' 
+             placeholder='Press / to search for a post...'>
+      </input>
+      <div className={styles.postFilters}>
+        <label htmlFor='postSort'>Sort by:</label>
+        <select name='postSort'>
+          <option>Most Recent</option>
+        </select>
+      </div>
       {
         !!posts &&
         posts.map((post: Post, index: number) => {
@@ -24,17 +56,19 @@ export default function Blog({ posts }: any) {
               <div>
                 <div className={styles.blogHeadingContainer}>
                   <h2>{title}</h2>
-                  <small className={styles.blogCategory}>{category}</small>
+                  {/* <small className={styles.blogCategory}>{category}</small> */}
                 </div>
                 <h3>{author}</h3>
                 <h4>{new Date(date).toLocaleDateString()}</h4>
-                {
-                  tags.map((tag, index) => {
-                    return (
-                      <small key={index}>{tag}</small>
-                    )
-                  })
-                }
+                <div className={styles.postTags}>
+                  {
+                    tags.map((tag, index) => {
+                      return (
+                        <small key={index} className={styles.postTag}>{tag}</small>
+                      )
+                    })
+                  }
+                </div>
               </div>
             </Link>
           )

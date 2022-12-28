@@ -1,18 +1,23 @@
 @use 'functions' as *;
+@use 'variables' as *;
 
 .main {
-  max-width: rem(900);
-  margin: 0 auto;
-
   .hero {
     display: flex;
     flex-direction: column;
     gap: rem(16);
     align-items: center;
-    margin-top: rem(32);
+    max-width: rem(500);
+    margin: 0 auto;
+    text-align: center;
 
     .avatar {
       border-radius: 50%;
+    }
+
+    p {
+      font-size: rem(16);
+      line-height: 120%;
     }
   }
 }

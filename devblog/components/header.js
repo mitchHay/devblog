@@ -1,5 +1,5 @@
 import styles from '../styles/Header.module.scss';
-import { faHome, faAddressCard, faFolder, faFolderTree, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFolder, faFolderTree, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -60,12 +60,6 @@ export default function Header() {
           <Link href='/'>
             <FontAwesomeIcon icon={ faHome }/>
             <span>Home</span>
-          </Link>
-        </li>
-        <li className={ styles.navItem }>
-          <Link href='/about'>
-            <FontAwesomeIcon icon={ faAddressCard }/>
-            <span>About me</span>
           </Link>
         </li>
         <li className={ styles.navItem }>

@@ -1,5 +1,9 @@
 const path =  require('path');
 const withExportImages = require('next-export-optimize-images');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE_BUNDLE == 'true',
+  openAnalyzer: false
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,6 +16,8 @@ const nextConfig = {
 }
 
 module.exports = withExportImages(
-  nextConfig, {
-  configPath: 'optimize.config.js',
-});
+  withBundleAnalyzer(nextConfig), 
+  {
+    configPath: 'export-images.config.js',
+  }
+);

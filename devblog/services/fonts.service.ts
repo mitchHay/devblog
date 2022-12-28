@@ -1,9 +1,4 @@
-import { Lacquer, Roboto } from "@next/font/google";
-
-const roboto = Roboto({
-  weight: ['100', '300', '400', '700'],
-  subsets: ['latin']
-});
+import { Josefin_Sans, Lacquer } from "@next/font/google";
 
 const lacquer = Lacquer({
   weight: ['400'],
@@ -11,20 +6,30 @@ const lacquer = Lacquer({
   display: 'swap'
 });
 
-const fontClasses = (): string => {
-  return roboto.className;
-}
+const josefinSans = Josefin_Sans({
+  weight: ['100', '200', '300', '400', '700'],
+  subsets: ['latin']
+})
 
-const getFontClass = (font: 'Roboto' | 'Lacquer'): string => {
+const getFontClass = (font: 'Josefin Sans' | 'Lacquer'): string => {
   switch (font) {
-    case 'Roboto':
-      return roboto.className;
+    case 'Josefin Sans':
+      return josefinSans.className;
     case 'Lacquer':
       return lacquer.className;
   }
 }
 
+const getFontFamily = (font: 'Josefin Sans' | 'Lacquer'): string => {
+  switch (font) {
+    case 'Josefin Sans':
+      return josefinSans.style.fontFamily;
+    case 'Lacquer':
+      return lacquer.style.fontFamily;
+  }
+}
+
 export {
-  fontClasses,
-  getFontClass
+  getFontClass,
+  getFontFamily
 }
