@@ -8,9 +8,9 @@ const Image = dynamic(() => import('next/image'));
 
 export default function Blog({ posts }: any) {
   if (typeof(window) !== 'undefined') {
-    document.addEventListener('keydown', (keypress) => {
-      const searchInput = document.getElementById('blog-search');
+    const searchInput = document.getElementById('blog-search');
 
+    document.addEventListener('keydown', (keypress) => {
       switch (keypress.key) {
         case '/':
           keypress.preventDefault();

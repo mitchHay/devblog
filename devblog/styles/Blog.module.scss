@@ -13,6 +13,14 @@
     label {
       margin-right: rem(6);
     }
+
+    > select {
+      &:hover {
+        cursor: pointer;
+        color: $font-color-primary-light;
+        background-color: $bg-color-hover;
+      }
+    }
   }
 
   .blogSearch {
@@ -50,6 +58,8 @@
     position: relative;
     gap: rem(16);
     align-items: center;
+    border: rem(2) solid $bg-color-primary;
+    border-radius: rem(4);
 
     img {
       position: relative !important;

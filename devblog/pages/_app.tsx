@@ -18,7 +18,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <style jsx global>{`
-        html {
+        html,
+        button {
           font-family: ${getFontFamily('Josefin Sans')};
         }
 

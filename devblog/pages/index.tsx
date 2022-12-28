@@ -24,10 +24,6 @@ export default function Home() {
           <p>I actually got into programming through video games. The first thing I ever tinkered with was creating Minecraft mods and servers with Java. I quickly leaped into Unity - where I well and truly got bitten by the software dev (and game dev) bug.</p>
           <h2>What gets me up in the morning?</h2>
           <p>I love making applications, games, and libraries that deliver awesome user/developer experiences. I’m 110% all about bringing amazing features and experiences to anyone who uses a product I’ve had the pleasure of working on. I’m also a huge lover of knowledge sharing, mentoring, and supporting people’s growth and development journeys in anyway I possibly can.</p>
-          {/* <h2>Who am I?</h2>
-          <p>Next question... Kidding, I'm a software developer with over five years experience.</p>
-          <h2>What do I like?</h2>
-          <p>Ice cream... and things like front-end development, game development, oh and test automation (a.k.a I like robots 🤖).</p> */}
         </div>
       </main>
     </>

@@ -41,7 +41,7 @@ a {
 main {
   max-width: rem(900);
   margin: 0 auto;
-  padding: rem(32) rem(64);
+  padding: rem(32) rem(64) rem(32) calc(#{$nav-bar-width} + #{rem(64)});
 
   @media(max-width: $breakpoint-mobile) {
     padding: rem(16) rem(32);

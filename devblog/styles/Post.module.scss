@@ -1,1 +1,40 @@
 @use 'functions' as *;
+@use 'variables' as *;
+
+.postMain {
+  h1,
+  h2 {
+    margin: rem(16) 0;
+  }
+
+  .postTitle {
+    margin-top: unset;
+  }
+
+  ul {
+    margin: rem(8) rem(16);
+  }
+
+  .postShare {
+    display: inline-block;
+    padding: rem(4) rem(4) rem(2) rem(4);
+    border-radius: rem(4);
+    color: $font-color-primary;
+    background-color: $bg-color-primary;
+    margin-top: rem(16);
+    font-size: rem(14);
+    transition: all .125s ease-in-out;
+    border: rem(2) transparent solid;
+
+    span {
+      margin-left: rem(4);
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $bg-color-hover;
+      color: $font-color-primary-light;
+      border-color: $bg-color-primary;
+    }
+  }
+}

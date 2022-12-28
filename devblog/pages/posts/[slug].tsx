@@ -1,15 +1,22 @@
 import md from 'markdown-it';
 import { FrontMatterData } from '../../models/frontmatter';
 import { getPosts, retrieveFrontMatter } from '../../services/posts.service';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/Post.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Post({ frontmatter, content }: any) {
   const { title, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
 
   return (
     <main className={styles.postMain}>
-      <h1>{title}</h1>
+      <h1 className={styles.postTitle}>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
+      {/* TODO: Move to component */}
+      <div className={styles.postShare}>
+        <FontAwesomeIcon icon={faLink}/>
+        <span>Share</span>
+      </div>
     </main>
   )
 }
