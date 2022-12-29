@@ -2,9 +2,14 @@
 @use 'variables' as *;
 
 .postMain {
+
   h1,
   h2 {
     margin: rem(16) 0;
+  }
+
+  h3 {
+    margin: rem(8) 0;
   }
 
   .postTitle {
@@ -16,15 +21,23 @@
   }
 
   .postShare {
-    display: inline-block;
+    display: flex;
+    gap: rem(2);
+    margin-top: rem(8);
+    justify-content: flex-end;
+  }
+
+  .postCopyLink {
+    display: block;
     padding: rem(4) rem(4) rem(2) rem(4);
     border-radius: rem(4);
     color: $font-color-primary;
     background-color: $bg-color-primary;
-    margin-top: rem(16);
     font-size: rem(14);
     transition: all .125s ease-in-out;
     border: rem(2) transparent solid;
+    margin-top: rem(16);
+    margin-left: auto;
 
     span {
       margin-left: rem(4);

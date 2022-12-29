@@ -56,10 +56,9 @@ export default function Blog({ posts }: any) {
                 width={200} height={100}
                 alt={`${title} thumbnail`}>
               </Image>
-              <div>
+              <div className={styles.blogBlurb}>
                 <div className={styles.blogHeadingContainer}>
                   <h2>{title}</h2>
-                  {/* <small className={styles.blogCategory}>{category}</small> */}
                 </div>
                 <h3>{author}</h3>
                 <h4>{new Date(date).toLocaleDateString()}</h4>

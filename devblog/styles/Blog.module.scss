@@ -60,11 +60,14 @@
     align-items: center;
     border: rem(2) solid $bg-color-primary;
     border-radius: rem(4);
+    transition: all .125s ease-in-out;
+    overflow: hidden;
 
     img {
       position: relative !important;
       object-fit: cover;
       object-position: center;
+      max-width: rem(200);
       height: 100%;
     }
 
@@ -96,6 +99,24 @@
 
     &:not(:last-child) {
       margin-bottom: rem(32);
+    }
+
+    &:hover {
+      background-color: $bg-color-hover;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    .blogLink {
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+
+      .blogBlurb {
+        padding: 0 rem(16) rem(16) rem(16);
+      }
     }
   }
 }
