@@ -23,8 +23,20 @@ This framework caught my attention initially as there was a bit of chatter about
 
 ### Next vs. Astro
 
-Astro was hot off the press into its 1.0 release whilst I was building this site. There is some super cool stuff packed into this framework, as well as the performance gains it's able to achieve via Islands architecture. So, why not Astro? Well I really wanted to delve into a framework that can do a bit more than static site generation, and Next does just that handling SSR as well - so I should have my bases covered if I build any other apps in the future that deal with dynamic data.
+Astro was hot off the press into its 1.0 release whilst I was building this site. There is some super cool stuff packed into this framework, as well as the performance gains it's able to achieve via Islands architecture. So, why not Astro? Well I really wanted to delve into a framework that can do a bit more than static site generation, and Next does just that handling server side rendering as well - so I should have my bases covered if I build any other apps in the future that deal with state. Other than that, if you are building a purely static site - astro or Qwik are definitely worth looking into.
 
 ### Next vs. Qwik
 
-Gotta be honest I didn't hear about Qwik until I had already begun development in Next.js. Qwik looks pretty promising and boasts a whole bunch of mad performance gains (I mean of course it does, since it comes from the team behind Playground and builder.io). This one is on my list to look into later on, so keep an eye out for a blog post as I'll post my developer experience. My main reason for not picking up Qwik for this site is because it is still currently in beta state.
+Gotta be honest I didn't hear about Qwik until I had already begun development in Next.js. Qwik looks pretty promising and boasts a whole bunch of mad performance gains (I mean of course it does, since it comes from the team behind Playground and builder.io). This one is on my list to look into later on, so keep an eye out for a blog post as I'll post my developer experience. So why didn't I choose Qwik? tldr; it's still in beta, and although the team have encouraged production use I've opted to go for Next.js for the greater community support and maturity (as of writing this post).
+
+## Creating the Next.js app
+
+Now this one is super simple, thanks to the team over at Vercel (the peeps who maintain Next.js) we can boot up a Next.js app template pretty quick via:
+
+```shell
+npx create-next-app@latest --typescript
+```
+
+Boom. We're in business.
+
+![very nice we have a next app](https://media.tenor.com/rbsk4-L0u9gAAAAM/joinharudimaciel.gif)

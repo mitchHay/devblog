@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
+import Image from 'next/image';
 
 const TwitterShareButton = dynamic(() => import('react-share').then(mod => mod.TwitterShareButton));
 const TwitterIcon = dynamic(() => import('react-share').then(mod => mod.TwitterIcon));
@@ -36,6 +37,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
 
   return (
     <main className={styles.postMain}>
+      <Image className={styles.postBanner} src={bannerImage} fill alt={`${title} banner`}/>
       <h1 className={styles.postTitle}>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
       
