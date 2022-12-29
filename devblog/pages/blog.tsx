@@ -2,31 +2,34 @@ import { Post } from '../models/post';
 import { getPosts, retrieveFrontMatter } from "../services/posts.service";
 import styles from '../styles/Blog.module.scss';
 import dynamic from "next/dynamic";
+import { useEffect } from 'react';
 
 const Link = dynamic(() => import('next/link'));
 const Image = dynamic(() => import('next/image'));
 
 export default function Blog({ posts }: any) {
-  if (typeof(window) !== 'undefined') {
-    const searchInput = document.getElementById('blog-search');
-
-    document.addEventListener('keydown', (keypress) => {
-      switch (keypress.key) {
-        case '/':
-          keypress.preventDefault();
-          searchInput?.focus({
-            preventScroll: false
-          });
-
-          break;
-        case 'Escape':
-          keypress.preventDefault();
-          searchInput?.blur();
-
-          break;
-      }
-    });
-  }
+  useEffect(() => {
+    if (typeof(window) !== 'undefined') {
+      const searchInput = document.getElementById('blog-search');
+  
+      document.addEventListener('keydown', (keypress) => {
+        switch (keypress.key) {
+          case '/':
+            keypress.preventDefault();
+            searchInput?.focus({
+              preventScroll: false
+            });
+  
+            break;
+          case 'Escape':
+            keypress.preventDefault();
+            searchInput?.blur();
+  
+            break;
+        }
+      });
+    }
+  });
 
   return (
     <main className={styles.blogMain}>

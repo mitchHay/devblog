@@ -4,9 +4,18 @@ import { getPosts, retrieveFrontMatter } from '../../services/posts.service';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/Post.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
+import { useEffect } from 'react';
 
 export default function Post({ frontmatter, content }: any) {
   const { title, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
+
+  useEffect(() => {
+    if (typeof(window) !== 'undefined') {
+      hljs.highlightAll();
+    }
+  });
 
   return (
     <main className={styles.postMain}>
