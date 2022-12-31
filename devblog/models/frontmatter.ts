@@ -9,5 +9,6 @@ export type FrontMatterData = {
     category: string,
     date: string,
     bannerImage: string,
+    published: boolean,
     tags: string[]
 }

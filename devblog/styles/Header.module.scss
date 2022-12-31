@@ -74,19 +74,21 @@
     background-color: $bg-color-accent;
   }
 
-  &:hover {
-    box-shadow: rem(10) 0 rem(10) 0 rgba(0, 0, 0, .15);
+  @media(min-width: $breakpoint-mobile) {
+    &:hover {
+      box-shadow: rem(10) 0 rem(10) 0 rgba(0, 0, 0, .15);
 
-    ul {
-      padding: rem(32) rem(64);
-    }
+      ul {
+        padding: rem(32) rem(64);
+      }
 
-    ul > .navItem {
-      span {
-        max-width: rem(80);
-        width: 100%;
-        visibility: visible;
-        margin-left: rem(8);
+      ul > .navItem {
+        span {
+          max-width: rem(80);
+          width: 100%;
+          visibility: visible;
+          margin-left: rem(8);
+        }
       }
     }
   }

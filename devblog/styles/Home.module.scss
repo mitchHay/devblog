@@ -1,15 +1,18 @@
 @use 'functions' as *;
 @use 'variables' as *;
 
+$max-hero-width: rem(500);
+
 .main {
   .hero {
     display: flex;
     flex-direction: column;
     gap: rem(16);
     align-items: center;
-    max-width: rem(500);
+    max-width: $max-hero-width;
     margin: 0 auto;
     text-align: center;
+    margin-bottom: rem(24);
 
     .avatar {
       border-radius: 50%;
@@ -18,6 +21,52 @@
     p {
       font-size: rem(16);
       line-height: 120%;
+    }
+  }
+
+  .heroCta {
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    max-width: $max-hero-width;
+    padding: rem(16) rem(32);
+    text-align: center;
+    color: $font-color-primary;
+    background-color: $bg-color-primary;
+    border-radius: rem(4);
+    justify-content: center;
+    align-items: center;
+    min-height: rem(150);
+    gap: rem(16);
+
+    lord-icon {
+      flex: 1 0 auto;
+      margin-left: -#{rem(16)};
+    }
+
+    .heroContainer {
+      display: flex;
+      flex-direction: column;
+      gap: rem(16);
+
+      button {
+        margin: 0 auto;
+      }
+    }
+
+    &.heroLight {
+      background-color: $bg-color-primary-light;
+      color: $font-color-primary-light;
+    }
+
+    &.heroReverse {
+      flex-direction: row-reverse;
+    }
+
+    &.innerHero {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-top: -#{rem(16)};
     }
   }
 }

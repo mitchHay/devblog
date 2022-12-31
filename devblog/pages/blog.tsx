@@ -48,7 +48,11 @@ export default function Blog({ posts }: any) {
         !!posts &&
         posts.map((post: Post, index: number) => {
           const { slug, frontmatter } = post;
-          const { title, author, category, date, bannerImage, tags } = frontmatter.data;
+          const { title, author, category, published, date, bannerImage, tags } = frontmatter.data;
+
+          if (!published) {
+            return;
+          }
 
           return (
             <Link href={`/posts/${slug}`} key={index} className={styles.blogLink}>

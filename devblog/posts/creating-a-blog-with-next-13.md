@@ -4,6 +4,7 @@ author: "Mitchell Hayward"
 category: "frontend"
 date: "2022-12-28"
 bannerImage: "/posts/nextBlogPostImg.png"
+published: false
 tags:
     - nextjs
     - javascript

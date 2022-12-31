@@ -38,6 +38,36 @@ a {
   text-decoration: none;
 }
 
+button,
+.btn {
+  display: block;
+  padding: rem(4) rem(8) rem(2) rem(8);
+  border-radius: rem(4);
+  color: $font-color-primary;
+  background-color: $bg-color-primary;
+  font-size: rem(14);
+  transition: all .125s ease-in-out;
+  border: rem(2) transparent solid;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $bg-color-hover;
+    color: $font-color-primary-light;
+    border-color: $bg-color-primary;
+  }
+
+  &.secondary {
+    background-color: $bg-color-accent;
+    color: $font-color-primary-light;
+    
+    &:hover {
+      background-color: $bg-color-primary;
+      border-color: $bg-color-accent;
+      color: $font-color-primary;
+    }
+  }
+}
+
 main {
   max-width: rem(900);
   margin: 0 auto;
