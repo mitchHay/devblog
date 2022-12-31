@@ -80,10 +80,5 @@ main {
 
 *::selection {
   background-color: $bg-color-hover;
+  color: $font-color-primary-light;
 }
-
-// @media (prefers-color-scheme: dark) {
-//   html {
-//     color-scheme: dark;
-//   }
-// }

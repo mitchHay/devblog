@@ -41,9 +41,9 @@ export default function Home() {
           <LordIcon colors={{
             primary: '#BD93F9',
             secondary: '#EEFC57'
-          }} src={'https://cdn.lordicon.com/mjmrmyzg.json'} height={150} width={150} trigger={'loop'} delay={'1000'}/>
+          }} src={'https://cdn.lordicon.com/dlkvcwcu.json'} height={150} width={150} trigger={'loop'} delay={'250'}/>
           <div className={styles.heroContainer}>
-            <h2>I'm all about sharing my knowledge and learnings</h2>
+            <h2>I'm all about knowledge sharing</h2>
             <Link className='btn secondary' href={'/blog'}>Read my blog</Link>
           </div>
         </div>
