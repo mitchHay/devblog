@@ -34,18 +34,18 @@ export default function Home() {
           </div>
           <h2>Want to know an absolutely shocking fact?</h2>
           <p>I actually got into programming through video games. The first thing I ever tinkered with was creating Minecraft mods and servers with Java. I quickly leaped into Unity - where I well and truly got bitten by the software dev (and game dev) bug.</p>
+          <div className={`${styles.heroCta} ${styles.heroLight} ${styles.heroInner}`}>
+            <LordIcon colors={{
+              primary: '#0A0012',
+              secondary: '#BD93F9'
+            }} src={'https://cdn.lordicon.com/flvisirw.json'} height={150} width={150} trigger={'loop'} delay={'1000'}/>
+            <div className={styles.heroContainer}>
+              <h2>I'm all about knowledge sharing</h2>
+              <Link className='btn' href={'/blog'}>Read my blog</Link>
+            </div>
+          </div>
           <h2>What gets me up in the morning?</h2>
           <p>I love making applications, games, and libraries that deliver awesome user/developer experiences. I’m 110% all about bringing amazing features and experiences to anyone who uses a product I’ve had the pleasure of working on. I’m also a huge lover of knowledge sharing, mentoring, and supporting people’s growth and development journeys in anyway I possibly can.</p>
-        </div>
-        <div className={styles.heroCta}>
-          <LordIcon colors={{
-            primary: '#BD93F9',
-            secondary: '#EEFC57'
-          }} src={'https://cdn.lordicon.com/dlkvcwcu.json'} height={150} width={150} trigger={'loop'} delay={'250'}/>
-          <div className={styles.heroContainer}>
-            <h2>I'm all about knowledge sharing</h2>
-            <Link className='btn secondary' href={'/blog'}>Read my blog</Link>
-          </div>
         </div>
       </main>
     </>
