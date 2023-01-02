@@ -7,8 +7,10 @@ export default function LordIcon({
   width,
   height,
   trigger,
-  delay,
+  delay
 }) {
+  const srcUrl = `https://cdn.lordicon.com/${src}`;
+
   useEffect(() => { 
     import('lord-icon-element').then(mod => {
       mod.defineElement(lottie.loadAnimation);
@@ -18,7 +20,7 @@ export default function LordIcon({
   return (
     <lord-icon
       colors={`primary:${colors?.primary},secondary:${colors?.secondary}`}
-      src={src}
+      src={srcUrl}
       trigger={trigger}
       delay={delay}
       style={{

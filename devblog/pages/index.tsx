@@ -62,7 +62,7 @@ export default function Home() {
             <LordIcon colors={{
               primary: '#0A0012',
               secondary: '#BD93F9'
-            }} src={'https://cdn.lordicon.com/zjscbpdr.json'} height={150} width={150} trigger={'loop'} delay={'10'} />
+            }} src={'zjscbpdr.json'} height={150} width={150} trigger={'loop'} delay={'10'} />
             <div className={styles.heroContainer}>
               <h2>Keen to see what I've done?</h2>
               <Link className='btn' href={'/portfolio'}>See my work</Link>
@@ -74,7 +74,7 @@ export default function Home() {
             <LordIcon colors={{
               primary: '#0A0012',
               secondary: '#BD93F9'
-            }} src={'https://cdn.lordicon.com/flvisirw.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
+            }} src={'flvisirw.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
             <div className={styles.heroContainer}>
               <h2>I'm all about knowledge sharing</h2>
               <Link className='btn' href={'/blog'}>Read my blog</Link>
@@ -87,7 +87,7 @@ export default function Home() {
           <LordIcon colors={{
             primary: '#BD93F9',
             secondary: '#0A0012'
-          }} src={'https://cdn.lordicon.com/pdpnqfoe.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
+          }} src={'pdpnqfoe.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
           <div className={styles.heroContainer}>
             <h2>Love my work? </h2>
             <button className='btn secondary' onClick={openDialog}>Contact me</button>

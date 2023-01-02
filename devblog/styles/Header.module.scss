@@ -1,11 +1,6 @@
 @use 'functions' as *;
 @use 'variables' as *;
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
 .navigation {
   display: flex;
   flex-direction: column;
@@ -138,6 +133,19 @@
           }
         }
       }
+    }
+
+    .navigationContainer {
+      position: fixed;
+      width: 100%;
+      top: rem(51);
+      background-color: $bg-color-primary;
+    }
+
+    .socialsContainer {
+      position: fixed;
+      width: 100%;
+      top: rem(206);
     }
   }
 }

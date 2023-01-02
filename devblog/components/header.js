@@ -1,5 +1,5 @@
 import styles from '../styles/Header.module.scss';
-import { faHome, faFolder, faFolderTree, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFolder, faFolderTree, faBars, faClose } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -37,6 +37,7 @@ function assignDisplayMode(displayMode) {
 export default function Header() {
   let opened = false;
   let route = useRouter().asPath;
+
   assignActiveTab(route);
 
   return (
@@ -53,7 +54,7 @@ export default function Header() {
         }
       }>
         <span className={ styles.route }>{ route }</span>
-        <FontAwesomeIcon icon={ faBars }/>
+        <FontAwesomeIcon icon={ opened ? faClose : faBars }/>
       </div>
       <ul className={ styles.navigationContainer }>
         <li className={ styles.navItem }>
