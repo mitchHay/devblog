@@ -16,8 +16,8 @@ $max-hero-width: rem(500);
 .main {
   .contact {
     display: none;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, .5);
     position: absolute;
     left: 0;

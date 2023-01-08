@@ -3,6 +3,7 @@ import { getPosts, retrieveFrontMatter } from "../services/posts.service";
 import styles from '../styles/Blog.module.scss';
 import dynamic from "next/dynamic";
 import { useEffect } from 'react';
+import { getFontClass } from '../services/fonts.service';
 
 const Link = dynamic(() => import('next/link'));
 const Image = dynamic(() => import('next/image'));
@@ -50,7 +51,7 @@ export default function Blog({ posts }: any) {
           const { slug, frontmatter } = post;
           const { title, author, category, published, date, bannerImage, tags } = frontmatter.data;
 
-          if (!published) {
+          if (!published && process.env.NODE_ENV !== 'development') {
             return;
           }
 
@@ -61,11 +62,15 @@ export default function Blog({ posts }: any) {
                 alt={`${title} thumbnail`}>
               </Image>
               <div className={styles.blogBlurb}>
+                {
+                  process.env.NODE_ENV === 'development' && !published &&
+                  <span className={styles.draftTag}>Draft</span>
+                }
                 <div className={styles.blogHeadingContainer}>
                   <h2>{title}</h2>
                 </div>
                 <h3>{author}</h3>
-                <h4>{new Date(date).toLocaleDateString()}</h4>
+                <span className={getFontClass('Josefin Sans')}>{new Date(date).toLocaleDateString()}</span>
                 <div className={styles.postTags}>
                   {
                     tags.map((tag, index) => {
