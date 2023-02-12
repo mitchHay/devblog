@@ -2,9 +2,28 @@
 @use 'variables' as *;
 
 .blogMain {
-  .pageTitle,
+  .pageTitle {
+    margin-bottom: rem(12);
+  }
+
+  .pageDescription {
+    font-weight: 300;
+    font-size: rem(16);
+    line-height: rem(20);
+  }
+
   .blogSearch {
+    margin-top: rem(24);
     margin-bottom: rem(24);
+  }
+
+  .blogHero {
+    display: flex;
+    align-items: center;
+
+    > lord-icon {
+      flex: 1 0 auto;
+    }
   }
 
   .postFilters {
@@ -65,14 +84,17 @@
     height: rem(150);
 
     img {
+      flex: 1 0 auto;
       position: relative !important;
       object-fit: cover;
       object-position: center;
-      max-width: rem(200);
+      max-width: rem(250);
       height: 100%;
     }
 
     .blogBlurb {
+      margin-right: rem(16);
+
       .draftTag {
         position: absolute;
         right: rem(16);
@@ -129,6 +151,15 @@
 
       .blogBlurb {
         padding: 0 rem(16) rem(16) rem(16);
+      }
+    }
+
+    .blogHero {
+      flex-direction: column;
+      justify-content: center;
+
+      .blogHeroContent {
+        text-align: center;
       }
     }
   }

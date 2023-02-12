@@ -28,17 +28,34 @@ function assignActiveTab(route) {
 }
 
 function assignDisplayMode(displayMode) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   const menus = document.getElementsByTagName('ul');
   for (let i = 0; i < menus.length; i++) {
     menus.item(i).style.display = displayMode;
   }
 }
 
+let opened = false;
 export default function Header() {
-  let opened = false;
   let route = useRouter().asPath;
+  let routeName = route;
+  
+  if (routeName === '/') {
+    routeName = 'Home';
+  } else if (routeName.includes('/')) {
+    const routeSegments = routeName.split('/');
+    routeName = routeSegments[routeSegments.length - 1];
+  }
 
   assignActiveTab(route);
+
+  if (opened) {
+    assignDisplayMode('none');
+    opened = false;
+  }
 
   return (
     <nav className={ `${getFontClass('Lacquer')} ${styles.navigation}` }>
@@ -53,7 +70,7 @@ export default function Header() {
           }
         }
       }>
-        <span className={ styles.route }>{ route }</span>
+        <span className={ styles.route }>{ routeName }</span>
         <FontAwesomeIcon icon={ opened ? faClose : faBars }/>
       </div>
       <ul className={ styles.navigationContainer }>

@@ -7,6 +7,8 @@ bannerImage: "/posts/nextjs13.png"
 published: false
 tags:
     - nextjs
+    - react
+    - frontend
 ---
 
 Okay, so I'm kinda new at this blogging thing. Gonna do my best to do it justice, but much like software dev I can only hope that I get better with each iteration. Today I'm going to write a bunch of words about how I created this blog. More specifically, how I made it in my chosen tech stack (spoiler alert, it's Next.js).
@@ -57,7 +59,7 @@ Lets shed some light on some pretty cool SSG frontend frameworks:
 - Qwik
     - Uses the concept of resumability to make your app instantly interactive (zero hydration required). Also React-dev friendly (the team use the phrase "you know React, you know Qwik"). Only just went into beta state, so not quite something I'd consider building my site on just yet. I'm super interested to see how this framework matures.
 - Hugo
-    - The worlds fastest SSG framework. Written in Go with its own templating system. Has a vast array of web templates to choose from.
+    - The worlds fastest SSG framework. Written in Go with its own templating system. Has a vast array of web templates to choose from. To be honest, I quite enjoy how Hugo works and how easy it is to create/structure new content... but on the other hand don't quite have the appetite to play around with the templating syntax.
 
 ## Creating the Next.js app
 
