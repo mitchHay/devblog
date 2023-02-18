@@ -2,12 +2,12 @@ import styles from '../styles/Home.module.scss';
 import dynamic from 'next/dynamic';
 import { getFontClass } from '../services/fonts.service';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SiteHead = dynamic(() => import('../components/siteHead'));
 const Image = dynamic(() => import('next/image'));
 const LordIcon = dynamic(() => import('../components/lordIcon'));
 const Link = dynamic(() => import('next/link'));
+const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
 export default function Home() {
   function openDialog() {

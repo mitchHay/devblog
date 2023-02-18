@@ -3,16 +3,16 @@ import { FrontMatterData } from '../../models/frontmatter';
 import { getPosts, getTimeToRead, retrieveFrontMatter } from '../../services/posts.service';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/Post.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
-import Image from 'next/image';
 
+const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 const SiteHead = dynamic(() => import('../../components/siteHead'));
+const Image = dynamic(() => import('next/image'));
 
 export default function Post({ frontmatter, content, shareUrl }: any) {
   const { title, description, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;

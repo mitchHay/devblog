@@ -1,10 +1,13 @@
 import styles from '../styles/Header.module.scss';
 import { faHome, faFolder, faFolderTree, faBars, faClose } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+
 import { getFontClass } from '../services/fonts.service';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+const Link = dynamic(() => import('next/link'));
+const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
 function assignActiveTab(route) {
   if (typeof window !== 'undefined') {

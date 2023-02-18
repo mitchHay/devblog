@@ -21,7 +21,7 @@
   }
 
   ul {
-    padding-left: rem(16);
+    padding-left: rem(12);
     margin: rem(8) rem(16);
   }
 
@@ -49,6 +49,11 @@
   img {
     max-width: 100%;
     border-radius: rem(2);
+  }
+
+  p,
+  li {
+    line-height: rem(24);
   }
 
   p + p {
