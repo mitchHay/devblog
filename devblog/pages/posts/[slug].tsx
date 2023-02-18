@@ -1,6 +1,6 @@
 import md from 'markdown-it';
 import { FrontMatterData } from '../../models/frontmatter';
-import { getPosts, retrieveFrontMatter } from '../../services/posts.service';
+import { getPosts, getTimeToRead, retrieveFrontMatter } from '../../services/posts.service';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/Post.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,17 +12,11 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 import Image from 'next/image';
 
-const TwitterShareButton = dynamic(() => import('react-share').then(mod => mod.TwitterShareButton));
-const TwitterIcon = dynamic(() => import('react-share').then(mod => mod.TwitterIcon));
-const FacebookShareButton = dynamic(() => import('react-share').then(mod => mod.FacebookShareButton));
-const FacebookIcon = dynamic(() => import('react-share').then(mod => mod.FacebookIcon));
-const LinkedinShareButton = dynamic(() => import('react-share').then(mod => mod.LinkedinShareButton));
-const LinkedinIcon = dynamic(() => import('react-share').then(mod => mod.LinkedinIcon));
-const RedditShareButton = dynamic(() => import('react-share').then(mod => mod.RedditShareButton));
-const RedditIcon = dynamic(() => import('react-share').then(mod => mod.RedditIcon));
+const SiteHead = dynamic(() => import('../../components/siteHead'));
 
 export default function Post({ frontmatter, content, shareUrl }: any) {
-  const { title, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
+  const { title, description, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
+  const timeToRead = getTimeToRead(content);
 
   useEffect(() => {
     if (typeof(window) !== 'undefined') {
@@ -36,34 +30,26 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
   }
 
   return (
-    <main className={styles.postMain}>
-      <Image className={styles.postBanner} src={bannerImage} fill alt={`${title} banner`}/>
-      <h1 className={styles.postTitle}>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
-      
-      <button className={styles.postCopyLink}>
-        <FontAwesomeIcon icon={faLink}/>
-        <span>Share</span>
-      </button>
-
-      <div className={styles.postShare}>
-        <TwitterShareButton url={getShareUrl()}>
-          <TwitterIcon size={24} round={true}/>
-        </TwitterShareButton>
-
-        <LinkedinShareButton url={getShareUrl()}>
-          <LinkedinIcon size={24} round={true}/>
-        </LinkedinShareButton>
-
-        <FacebookShareButton url={getShareUrl()}>
-          <FacebookIcon size={24} round={true}/>
-        </FacebookShareButton>
-
-        <RedditShareButton url={getShareUrl()}>
-          <RedditIcon size={24} round={true}/>
-        </RedditShareButton>
-      </div>
-    </main>
+    <>
+      <SiteHead 
+        title={title + " | Mitchell Hayward"}
+        description={description}
+        ogImage={bannerImage}></SiteHead>
+      <main className={styles.postMain}>
+        <Image className={styles.postBanner} src={bannerImage} fill alt={`${title} banner`}/>
+        <h1 className={styles.postTitle}>{title}</h1>
+        <div className={styles.authorCard}>
+          <span>Posted: { new Date(date).toDateString() }</span>
+          <span>{ timeToRead } min read</span>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
+        
+        <button className={styles.postCopyLink}>
+          <FontAwesomeIcon icon={faLink}/>
+          <span>Share</span>
+        </button>
+      </main>
+    </>
   )
 }
 

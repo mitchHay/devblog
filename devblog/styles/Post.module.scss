@@ -11,7 +11,8 @@
     margin: rem(12) 0;
   }
 
-  h4 {
+  h4,
+  h5 {
     margin: rem(8) 0;
   }
 
@@ -20,7 +21,21 @@
   }
 
   ul {
+    padding-left: rem(16);
     margin: rem(8) rem(16);
+  }
+
+  .authorCard {
+    display: flex;
+    flex-direction: column;
+    gap: rem(2);
+    margin-bottom: rem(24);
+    margin-top: -#{rem(8)};
+
+    > span {
+      color: #555555;
+      font-weight: 300;
+    }
   }
 
   .postBanner {
@@ -34,6 +49,10 @@
   img {
     max-width: 100%;
     border-radius: rem(2);
+  }
+
+  p + p {
+    margin-top: rem(8);
   }
 
   .postShare {

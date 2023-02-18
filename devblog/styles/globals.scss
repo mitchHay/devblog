@@ -38,6 +38,16 @@ a {
   text-decoration: none;
 }
 
+// Markdown link styling
+p > a {
+  border-bottom: rem(1) solid $font-color-primary-light;
+  transition: border-bottom .125s ease-in-out;
+
+  &:hover {
+    border-width: rem(2);
+  }
+}
+
 button,
 .btn {
   display: block;

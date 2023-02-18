@@ -46,9 +46,10 @@ export default function Blog({ posts }: any) {
           }} src={'rfbqeber.json'} height={150} width={150} trigger={'loop'} delay={'250'} />
           <div className={styles.blogHeroContent}>
             <h1 className={styles.pageTitle}>Welcome to My Thoughtspace</h1>
-            <span className={styles.pageDescription}>
+            <p className={styles.pageDescription}>
               Here you'll find a library of my (hopefully) many thoughts. I love to blog about anything really, but in particular you will find me blabbing about frontend development, game development, and test automation.
-            </span>
+            </p>
+            <p className={styles.contactCta}>Vibing with my content? <a href="/?contact">Reach out</a></p>
           </div>
         </div>
         <input className={styles.blogSearch} 
