@@ -4,16 +4,16 @@
 .postMain {
   h1,
   h2 {
-    margin: rem(16) 0;
+    margin: rem(18) 0;
   }
 
   h3 {
-    margin: rem(12) 0;
+    margin: rem(16) 0;
   }
 
   h4,
   h5 {
-    margin: rem(8) 0;
+    margin: rem(12) 0;
   }
 
   .postTitle {
@@ -56,7 +56,9 @@
     line-height: rem(24);
   }
 
-  p + p {
+  p + p,
+  pre + p,
+  p + pre {
     margin-top: rem(8);
   }
 

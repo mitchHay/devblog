@@ -2,7 +2,7 @@
 @use 'functions' as *;
 
 :root {
-  --max-width: 900px;
+  --max-width: #{rem(900)};
   --border-radius: 12px;
   --font-color: #{$font-color-primary-light};
   --background-color: #{$bg-color-primary-light};
@@ -25,7 +25,6 @@ html,
 body {
   height: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -80,7 +79,7 @@ button,
 
 main {
   height: 100%;
-  max-width: rem(900);
+  max-width: #{var(--max-width)};
   margin: 0 auto;
   padding: rem(32) rem(64) rem(32) calc(#{$nav-bar-width} + #{rem(64)});
 

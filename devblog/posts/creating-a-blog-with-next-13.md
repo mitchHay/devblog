@@ -24,7 +24,7 @@ I've really been curious about React and static site generation for a little whi
 
 ### What's popular?
 
-Another key factor for me is to consider what is currently popular. I do like to form my own opinions of course, but a frameworks popularity can narrow down a bit of the selection process. Why? Things like community support are super important (to me at least) so I know I have a support network behind me in case I hit a roadblock, or I need to extend the framework to add certain functionality; with a larger community it's increasingly likely that an npm package would exist with the functionality I would require (e.g. dynamic sitemap generation). A thriving community also means more features and bugfixes (assuming the framework is open source). More of that makes for a happy Mitchy.
+Another key factor for me is to consider what is currently popular. I do like to form my own opinions of course, but a frameworks popularity can narrow down a bit of the selection process. Why? Things like community support are super important (to me at least) so I know I have a support network behind me in case I hit a roadblock, or I need to extend the framework to add certain functionality; with a larger community it's increasingly likely that an npm package/solution would exist with the functionality I would require (e.g. dynamic sitemap generation) - of course not having one isn't the end of the world, but a larger network means I can spend more time focusing on my blog, rather than the tools required to support it. A thriving community also means more features and bugfixes (assuming the framework is open source). More of that makes for a happy Mitchy.
 
 ### Pull the numbers up!
 
@@ -235,4 +235,72 @@ Nice one! Lets test that worked by heading to `<your-localhost-url>/blog`. With 
 
 ### Building a post page
 
+Next.js uses the apps file structure to define its routes, so lets make a new folder called `posts` and create a file within it called `[slug].tsx`. What do the magic square brackets do? They tell Next.js that we intend to use a [dynamic route](https://nextjs.org/docs/routing/dynamic-routes) - this is what allows our site to provide blog posts with specific routes (e.g. `<your-localhost-url>/posts/your-post`)
 
+Lets write some more code to build out the post page content...
+
+##### [slug].tsx
+
+First lets grab our frontmatter data via the `getStaticProps` function. The `retrieveFrontMatter` function we made earlier is going to come in handy here!
+
+```tsx
+export async function getStaticProps({ params: { slug } }: any) {
+  const { data, content } = retrieveFrontMatter(`${slug}.md`);
+
+  return {
+    props: {
+      frontmatter: data,
+      content: content
+    }
+  }
+}
+```
+
+Now we have our data, lets give our page its slug (a.k.a dynamic route). We can do this via the `getStaticPaths` function, which will allow us to return an object containing a list of paths. For this we'll set `fallback` to `false` so that other routes return a 404 page.
+
+```tsx
+export async function getStaticPaths() {
+  const paths = getPosts().map((fileName) => ({
+    params: {
+      slug: fileName.replace('.md', '')
+    }
+  }));
+
+  return {
+    paths: paths,
+    fallback: false
+  }
+}
+```
+
+Now we're ready to build out our posts content structure!
+
+```tsx
+export default function Post({ frontmatter, content }: any) {
+  const { title, description, author, category, date, bannerImage } = frontmatter as FrontMatterData;
+
+  return (
+    <>
+      <main>
+        <Image src={ bannerImage } fill alt={ `${title} banner` }/>
+        <h1>{ title }</h1>
+        <h3>{ author }</h3>
+        <h4>{ `Posted on: ${date}` }</h4>
+        <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
+      </main>
+    </>
+  )
+}
+```
+
+Viola! Now you've done that, the world is your blogging oyster. Of course I have left out some pieces of the puzzle, you'll still need to choose somewhere to host your static site. 
+
+Here are some decent places to look at if you don't know where to start:
+
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
+- [Cloudflare pages](https://pages.cloudflare.com/)
+
+If you made it this far, thank you for putting up with my first attempt at being a tech blogger. I'm always open to any constructive criticism or feedback so feel free to reach out to me via the socials on my site, or my contact form.
+
+See ya! 👋

@@ -9,6 +9,7 @@ const Link = dynamic(() => import('next/link'));
 const Image = dynamic(() => import('next/image'));
 const SiteHead = dynamic(() => import('../components/siteHead'));
 const LordIcon = dynamic(() => import('../components/lordIcon'));
+const Select = dynamic(() => import('../components/select'));
 
 export default function Blog({ posts }: any) {
   useEffect(() => {
@@ -56,6 +57,7 @@ export default function Blog({ posts }: any) {
               id='blog-search' 
               placeholder='Press / to search for a post...'>
         </input>
+        {/* <Select id="test-select" label="Test" options={["Option A", "Option B"]}></Select> */}
         <div className={styles.postFilters}>
           <label htmlFor='postSort'>Sort by:</label>
           <select name='postSort'>
