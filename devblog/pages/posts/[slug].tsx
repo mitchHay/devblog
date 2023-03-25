@@ -17,17 +17,43 @@ const Image = dynamic(() => import('next/image'));
 export default function Post({ frontmatter, content, shareUrl }: any) {
   const { title, description, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
   const timeToRead = getTimeToRead(content);
+  const path = useRouter().asPath;
+  
+  shareUrl = `${shareUrl}${path}`
 
   useEffect(() => {
     if (typeof(window) !== 'undefined') {
       hljs.highlightAll();
     }
+
+    let preBlocks = document.querySelectorAll('pre');
+    preBlocks.forEach(preBlock => {
+      const copyCodeButton = document.createElement('button');
+      copyCodeButton.className = styles.copyCodeBtn;
+      copyCodeButton.onclick = () => {
+        const content = preBlock.innerText;
+        copyToClipboard(content);
+
+        const notification = document.getElementById('post-notification');
+        if (!notification) {
+          return;
+        }
+
+        notification.style.transform = 'scale(1)';
+        notification.textContent = 'Copied to clipboard';
+
+        setTimeout(() => {
+          notification.style.transform = 'scale(0)';
+        }, 2500);
+      }
+
+      preBlock.appendChild(copyCodeButton);
+    });
   });
 
-  const getShareUrl = () => {
-    const path = useRouter().asPath;
-    return `${shareUrl}${path}`;
-  }
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
 
   return (
     <>
@@ -36,6 +62,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
         description={description}
         ogImage={bannerImage}></SiteHead>
       <main className={styles.postMain}>
+        <span className={styles.notification} id='post-notification'></span>
         <Image className={styles.postBanner} src={bannerImage} fill alt={`${title} banner`}/>
         <h1 className={styles.postTitle}>{title}</h1>
         <div className={styles.authorCard}>
@@ -44,9 +71,23 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
         </div>
         <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
         
-        <button className={styles.postCopyLink}>
+        <button className={styles.postCopyLink} onClick={() => { 
+          copyToClipboard(shareUrl);
+          
+          const shareBtn = document.getElementById('share-btn');
+          if (!shareBtn || shareBtn?.innerText.includes('link')) {
+            return;
+          }
+
+          const originalBtnText = shareBtn.innerText;
+          shareBtn.innerText = 'Copied link';
+
+          setTimeout(() => {
+            shareBtn.innerText = originalBtnText;
+          }, 2500);
+         }}>
           <FontAwesomeIcon icon={faLink}/>
-          <span>Share</span>
+          <span id='share-btn'>Share</span>
         </button>
       </main>
     </>

@@ -50,7 +50,7 @@ export default function Blog({ posts }: any) {
             <p className={styles.pageDescription}>
               Here you'll find a library of my (hopefully) many thoughts. I love to blog about anything really, but in particular you will find me blabbing about frontend development, game development, and test automation.
             </p>
-            <p className={styles.contactCta}>Vibing with my content? <a href="/?contact">Reach out</a></p>
+            <p className={styles.contactCta}>Vibing with my content? <a href="/?open=contact">Reach out</a></p>
           </div>
         </div>
         <input className={styles.blogSearch} 
@@ -68,7 +68,7 @@ export default function Blog({ posts }: any) {
           !!posts &&
           posts.map((post: Post, index: number) => {
             const { slug, frontmatter } = post;
-            const { title, author, category, published, date, bannerImage, tags } = frontmatter.data;
+            const { title, author, published, date, bannerImage, tags } = frontmatter.data;
 
             if (!published && process.env.NODE_ENV !== 'development') {
               return;

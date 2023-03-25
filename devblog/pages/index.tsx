@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.scss';
 import dynamic from 'next/dynamic';
 import { getFontClass } from '../services/fonts.service';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
 
 const SiteHead = dynamic(() => import('../components/siteHead'));
 const Image = dynamic(() => import('next/image'));
@@ -10,6 +11,22 @@ const Link = dynamic(() => import('next/link'));
 const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
 export default function Home() {
+  const query = useRouter().query;
+  const { open } = query;
+
+  if (!!open) {
+    switch (open) {
+      case 'contact':
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm?.style.display === 'block') {
+          break;
+        }
+
+        openDialog();
+        break;
+    }
+  }
+
   function openDialog() {
     const form = document.getElementById('contact-form');
 

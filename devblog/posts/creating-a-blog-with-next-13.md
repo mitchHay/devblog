@@ -3,9 +3,9 @@ title: "Creating a blog with Next.js v13"
 description: "Lets go on a journey of how I created this blog with Next.js v13. I'll cover things from the actual framework choice all the way through to the implementation."
 author: "Mitchell Hayward"
 category: "frontend"
-date: "2023-02-18"
+date: "2023-03-25"
 bannerImage: "/posts/nextjs13.png"
-published: false
+published: true
 tags:
     - nextjs
     - react
