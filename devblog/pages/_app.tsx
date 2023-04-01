@@ -19,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <style jsx global>{`
         html,
+        input,
         button {
           font-family: ${getFontFamily('Josefin Sans')};
         }

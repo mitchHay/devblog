@@ -6,6 +6,22 @@
     margin-bottom: rem(12);
   }
 
+  .blogSubtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: rem(8);
+
+    @media(max-width: $breakpoint-mobile) {
+      row-gap: rem(4);
+      flex-direction: column;
+
+      > .blogFilter {
+        width: 100%;
+      }
+    }
+  }
+
   .pageDescription {
     font-weight: 300;
     font-size: rem(16);
@@ -52,9 +68,8 @@
     width: 100%;
   }
 
-  .blogSearch,
-  .postFilters > select {
-    padding: rem(12) rem(24);
+  .blogSearch {
+    padding: rem(12) rem(24) rem(10) rem(24);
     border: none;
     border-radius: rem(4);
     color: $font-color-primary;

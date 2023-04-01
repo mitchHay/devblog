@@ -9,9 +9,11 @@ const Link = dynamic(() => import('next/link'));
 const Image = dynamic(() => import('next/image'));
 const SiteHead = dynamic(() => import('../components/siteHead'));
 const LordIcon = dynamic(() => import('../components/lordIcon'));
-const Select = dynamic(() => import('../components/select'));
+const Select = dynamic(() => import('../components/Select'));
 
 export default function Blog({ posts }: any) {
+  const options: string[] = [];
+
   useEffect(() => {
     if (typeof(window) !== 'undefined') {
       const searchInput = document.getElementById('blog-search');
@@ -57,13 +59,16 @@ export default function Blog({ posts }: any) {
               id='blog-search' 
               placeholder='Press / to search for a post...'>
         </input>
-        {/* <Select id="test-select" label="Test" options={["Option A", "Option B"]}></Select> */}
-        <div className={styles.postFilters}>
-          <label htmlFor='postSort'>Sort by:</label>
-          <select name='postSort'>
-            <option>Most Recent</option>
-          </select>
+
+        <div className={styles.blogSubtitle}>
+          <h2>My Posts</h2>
+          <Select 
+            className={styles.blogFilter}
+            id="test-select"
+            placeholder='Filter'
+            options={["Latest", "Ascending (A-Z)", "Descending (Z-A)"]}/>
         </div>
+
         {
           !!posts &&
           posts.map((post: Post, index: number) => {
