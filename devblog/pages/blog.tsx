@@ -55,10 +55,11 @@ export default function Blog({ posts }: any) {
             <p className={styles.contactCta}>Vibing with my content? <a href="/?open=contact">Reach out</a></p>
           </div>
         </div>
-        <input className={styles.blogSearch} 
-              id='blog-search' 
-              placeholder='Press / to search for a post...'>
-        </input>
+
+        <input 
+          className={styles.blogSearch} 
+          id='blog-search' 
+          placeholder='Press / to search for a post...'/>
 
         <div className={styles.blogSubtitle}>
           <h2>My Posts</h2>

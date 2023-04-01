@@ -44,6 +44,11 @@ $border-width: rem(2);
       position: absolute;
       right: rem(12);
       color: $font-color-primary;
+      transition: all .125s ease-in-out;
+
+      &.active {
+        transform: rotateZ(180deg);
+      }
     }
   }
 
@@ -76,7 +81,7 @@ $border-width: rem(2);
     width: 100%;
     z-index: 1;
 
-    &:not(.optionsActive) {
+    &:not(.active) {
       display: none;
     }
 
