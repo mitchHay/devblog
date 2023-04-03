@@ -1,0 +1,19 @@
+@use 'functions' as *;
+@use 'variables' as *;
+
+.heroCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .heroContainer {
+    display: flex;
+    flex-direction: column;
+    gap: rem(4);
+
+    h2 {
+      margin-bottom: rem(12);
+    }
+  }
+}

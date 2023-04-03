@@ -20,8 +20,8 @@ export default function Select(props: SelectProps): any {
   let [value, setValue] = useState(props.value);
 
   function selectOption(e: any): void {
-    const option = e.target as HTMLOptionElement;
-    setValue(option.value);
+    const option = e.target as HTMLDivElement;
+    setValue(option.innerText);
   }
 
   function toggleOptions(optionsContainer: HTMLElement, selectIcon: HTMLElement, mode: 'open' | 'close'): void {
@@ -104,7 +104,8 @@ export default function Select(props: SelectProps): any {
           !!props.options &&
           props.options.map(option => {
             return (
-              <option 
+              <div
+                className={styles.option}
                 tabIndex={0} 
                 onClick={(e) => {
                   if (!!props.onSelect) {
@@ -114,7 +115,7 @@ export default function Select(props: SelectProps): any {
                   selectOption(e);
                 }}>
                   { option }
-              </option>
+              </div>
             )
           })
         }

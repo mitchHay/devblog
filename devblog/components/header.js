@@ -35,7 +35,8 @@ function assignDisplayMode(displayMode) {
     return;
   }
 
-  const menus = document.getElementsByTagName('ul');
+  const navElement = document.querySelector(`.${styles.navigation}`);
+  const menus = navElement.querySelectorAll('ul');
   for (let i = 0; i < menus.length; i++) {
     menus.item(i).style.display = displayMode;
   }
@@ -46,7 +47,7 @@ export default function Header() {
   let route = useRouter().asPath;
   let routeName = route;
   
-  if (routeName === '/') {
+  if (routeName === '/' || routeName.includes('?open=contact')) {
     routeName = 'Home';
   } else if (routeName.includes('/')) {
     const routeSegments = routeName.split('/');

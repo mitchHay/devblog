@@ -53,7 +53,7 @@ $border-width: rem(2);
   }
 
   .selectInput,
-  option {
+  .option {
     border-radius: rem(4);
     transition: all .125s ease-in-out;
     border: $border-width solid $bg-color-primary;
@@ -85,7 +85,7 @@ $border-width: rem(2);
       display: none;
     }
 
-    > option {
+    > .option {
       font-size: rem(14);
       padding: rem(4) rem(8) rem(2) rem(8);
 
