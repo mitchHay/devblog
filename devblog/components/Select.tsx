@@ -12,12 +12,12 @@ type SelectProps = {
   placeholder?: string,
   options: string[],
   label?: string,
-  onSelect?: Function
+  onSelect?: (selectedValue: string) => void
 };
 
 export default function Select(props: SelectProps): any {
   const activeClass = styles.active;
-  let [value, setValue] = useState(props.value);
+  let [value, setValue] = useState(props.value ?? '');
 
   function selectOption(e: any): void {
     const option = e.target as HTMLDivElement;
@@ -88,7 +88,8 @@ export default function Select(props: SelectProps): any {
               placeholder={props.placeholder}
               onMouseDown={(e) => e.preventDefault()}
               onTouchStart={(e) => e.preventDefault()}
-              value={value}/>
+              value={value}
+              readOnly/>
 
             <FontAwesomeIcon 
               className={styles.selectIcon}
@@ -109,7 +110,7 @@ export default function Select(props: SelectProps): any {
                 tabIndex={0} 
                 onClick={(e) => {
                   if (!!props.onSelect) {
-                    props.onSelect();
+                    props.onSelect(option);
                   }
 
                   selectOption(e);

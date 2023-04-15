@@ -1,0 +1,51 @@
+import { useEffect, useRef, useState } from "react";
+
+import styles from '../styles/components/FadeIn.module.scss';
+
+type FadeInProps = {
+  className?: string,
+  children: any
+}
+
+export default function FadeIn({ className, children }: FadeInProps): any {
+  const [visibilityClass, setVisibilityClass] = useState('');
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+      setVisibilityClass(
+        entry.isIntersecting
+          ? styles.visible
+          : ''
+      );
+      
+      if (!!containerRef?.current && entry.isIntersecting) {
+        observer.unobserve(containerRef.current);
+      }
+    }, {
+      root: document,
+      rootMargin: '0px',
+      threshold: 1.0
+    });
+
+    if (!!containerRef?.current) {
+      observer.observe(containerRef.current);
+    }
+  });
+
+  return (
+    <div 
+      className={ `${className} ${styles.fadeInContainer} ${visibilityClass}` }
+      ref={ containerRef }>
+      {
+        !!children &&
+        children
+      }
+    </div>
+  )
+}

@@ -3,6 +3,7 @@ import styles from '../styles/Portfolio.module.scss';
 
 const LordIcon = dynamic(() => import('../components/lordIcon'));
 const SiteHead = dynamic(() => import('../components/siteHead'));
+const FadeIn = dynamic(() => import('../components/FadeIn'));
 const Link = dynamic(() => import('next/link'));
 
 export default function Portfolio() {
@@ -11,7 +12,7 @@ export default function Portfolio() {
       <SiteHead title={'Portfolio | Mitchell Hayward'}
         description={"Checkout my portfolio of work. Ranging from full-stack development, game development, and test automation."} />
       <main>
-        <div className={styles.heroCta}>
+        <FadeIn className={styles.heroCta}>
           <LordIcon colors={{
             primary: '#0A0012',
             secondary: '#BD93F9'
@@ -23,7 +24,7 @@ export default function Portfolio() {
               Feel free to <Link href={'/blog'}>read my blog</Link> in the meantime to keep yourself occupied.
             </p>
           </div>
-        </div>
+        </FadeIn>
       </main>
     </>
   )

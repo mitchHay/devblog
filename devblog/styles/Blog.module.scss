@@ -151,12 +151,14 @@
       }
     }
 
-    &:not(:last-child) {
-      margin-bottom: rem(32);
-    }
-
     &:hover {
       background-color: $bg-color-hover;
+    }
+  }
+
+  .blogLinkContainer {
+    &:not(:last-child) {
+      margin-bottom: rem(32);
     }
   }
 
@@ -172,6 +174,7 @@
 
       .blogBlurb {
         padding: 0 rem(16) rem(16) rem(16);
+        margin-right: auto;
       }
     }
 

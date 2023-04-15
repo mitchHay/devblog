@@ -12,6 +12,7 @@ import 'highlight.js/styles/github-dark.css';
 
 const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 const SiteHead = dynamic(() => import('../../components/siteHead'));
+const FadeIn = dynamic(() => import('../../components/FadeIn'));
 const Image = dynamic(() => import('next/image'));
 
 export default function Post({ frontmatter, content, shareUrl }: any) {
@@ -69,26 +70,29 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
           <span>Posted: { new Date(date).toDateString() }</span>
           <span>{ timeToRead } min read</span>
         </div>
+
         <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
         
-        <button className={styles.postCopyLink} onClick={() => { 
-          copyToClipboard(shareUrl);
-          
-          const shareBtn = document.getElementById('share-btn');
-          if (!shareBtn || shareBtn?.innerText.includes('link')) {
-            return;
-          }
+        <FadeIn>
+          <button className={styles.postCopyLink} onClick={() => { 
+            copyToClipboard(shareUrl);
+            
+            const shareBtn = document.getElementById('share-btn');
+            if (!shareBtn || shareBtn?.innerText.includes('link')) {
+              return;
+            }
 
-          const originalBtnText = shareBtn.innerText;
-          shareBtn.innerText = 'Copied link';
+            const originalBtnText = shareBtn.innerText;
+            shareBtn.innerText = 'Copied link';
 
-          setTimeout(() => {
-            shareBtn.innerText = originalBtnText;
-          }, 2500);
-         }}>
-          <FontAwesomeIcon icon={faLink}/>
-          <span id='share-btn'>Share</span>
-        </button>
+            setTimeout(() => {
+              shareBtn.innerText = originalBtnText;
+            }, 2500);
+          }}>
+            <FontAwesomeIcon icon={faLink}/>
+            <span id='share-btn'>Share</span>
+          </button>
+        </FadeIn>
       </main>
     </>
   )

@@ -113,6 +113,14 @@ $max-hero-width: rem(500);
     }
   }
 
+  .container {
+    > * {
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+    }
+  }
+
   .heroCta {
     display: flex;
     margin: 0 auto;
