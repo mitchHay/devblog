@@ -1,15 +1,14 @@
 import styles from '../styles/Home.module.scss';
 import dynamic from 'next/dynamic';
-import { getFontClass } from '../services/fonts.service';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
+import { openDialog } from '../components/ContactModal';
 
-const SiteHead = dynamic(() => import('../components/siteHead'));
+const SiteHead = dynamic(() => import('../components/SiteHead'));
 const Image = dynamic(() => import('next/image'));
-const LordIcon = dynamic(() => import('../components/lordIcon'));
+const LordIcon = dynamic(() => import('../components/LordIcon'));
 const Link = dynamic(() => import('next/link'));
-const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
+const ContactModal = dynamic(() => import('../components/ContactModal'));
 
 export default function Home() {
   const query = useRouter().query;
@@ -28,44 +27,13 @@ export default function Home() {
     }
   }
 
-  function openDialog() {
-    const form = document.getElementById('contact-form');
-
-    if (!form) {
-      return;
-    }
-    
-    if (form?.style.display === 'none' || !form?.style.display) {
-      form.style.display = 'block';
-      return;
-    }
-
-    form.style.display = 'none';
-  }
-
   return (
     <>
       <SiteHead title={'Home | Mitchell Hayward'}
         description={"Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!"} />
       <main className={styles.main}>
-        {/* TODO: Make component and add data-netlify="true" */}
-        <div className={styles.contact} id='contact-form'>
-          <form name="contact" method="POST">
-            <button type='button' className={styles.closeBtn} onClick={openDialog}><FontAwesomeIcon icon={faClose}/></button>
-            <span className={`${styles.contactTitle} ${getFontClass('Lacquer')}`}>Contact me</span>
+        <ContactModal />
 
-            <label htmlFor='name'>Your Name:</label>
-            <input type="text" name="name" placeholder='John Smith'/>
-
-            <label htmlFor='email'>Your Email:</label>
-            <input type="email" name="email" placeholder='you@mailprovider.com' />
-
-            <label htmlFor='message'>Message:</label>
-            <textarea name="message" placeholder='What are you reaching out about?'></textarea>
-
-            <button className='btn secondary' type="submit">Send it</button>
-          </form>
-        </div>
         {/* TODO: Make component */}
         <div className={styles.hero}>
           <FadeIn className={styles.container}>

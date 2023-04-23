@@ -4,13 +4,15 @@ import styles from '../styles/Blog.module.scss';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { getFontClass } from '../services/fonts.service';
+import { openDialog } from '../components/ContactModal';
 
 const Link = dynamic(() => import('next/link'));
 const Image = dynamic(() => import('next/image'));
-const SiteHead = dynamic(() => import('../components/siteHead'));
-const LordIcon = dynamic(() => import('../components/lordIcon'));
+const SiteHead = dynamic(() => import('../components/SiteHead'));
+const LordIcon = dynamic(() => import('../components/LordIcon'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const Select = dynamic(() => import('../components/Select'));
+const ContactModal = dynamic(() => import('../components/ContactModal'));
 
 export default function Blog({ posts }: { posts: Post[] }) {
   const [blogPosts, setBlogPosts] = useState(posts);
@@ -70,6 +72,8 @@ export default function Blog({ posts }: { posts: Post[] }) {
       <SiteHead title={'Blog | Mitchell Hayward'}
         description={'Welcome to my thoughtspace! Here you\'ll find me talking about anything from front-end development, game development, or test automation.'} />
       <main className={styles.blogMain}>
+        <ContactModal />
+
         <FadeIn className={styles.blogHero}>
           <LordIcon colors={{
               primary: '#0A0012',
@@ -80,7 +84,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
             <p className={styles.pageDescription}>
               Here you'll find a library of my (hopefully) many thoughts. I love to blog about anything really, but in particular you will find me blabbing about frontend development, game development, and test automation.
             </p>
-            <p className={styles.contactCta}>Vibing with my content? <a href='/?open=contact'>Reach out</a></p>
+            <p className={styles.contactCta}>Vibing with my content? <a className={styles.linkBtn} onClick={openDialog}>Reach out</a></p>
           </div>
         </FadeIn>
 

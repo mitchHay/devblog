@@ -6,6 +6,16 @@
     margin-bottom: rem(12);
   }
 
+  .linkBtn {
+    transition: all .125s ease-in-out;
+    padding: rem(3) rem(2) 0 rem(2);
+
+    &:hover {
+      background-color: $bg-color-hover;
+      cursor: pointer;
+    }
+  }
+
   .blogSubtitle {
     display: flex;
     justify-content: space-between;

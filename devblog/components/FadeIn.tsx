@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
 import styles from '../styles/components/FadeIn.module.scss';
 
@@ -7,7 +7,7 @@ type FadeInProps = {
   children: any
 }
 
-export default function FadeIn({ className, children }: FadeInProps): any {
+export default function FadeIn({ className, children }: FadeInProps): ReactElement {
   const [visibilityClass, setVisibilityClass] = useState('');
   const containerRef = useRef(null);
 

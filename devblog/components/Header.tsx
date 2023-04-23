@@ -9,33 +9,40 @@ import dynamic from 'next/dynamic';
 const Link = dynamic(() => import('next/link'));
 const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
-function assignActiveTab(route) {
+function assignActiveTab(route: string) {
   if (typeof window !== 'undefined') {
     const links = document.getElementsByTagName('a');
-
-    for (let i = 0; i < links.length; i++) {
-      const item = links.item(i);
-      item.classList.remove(styles.active);
+    if (!links || links.length < 1) {
+      return;
     }
 
     for (let i = 0; i < links.length; i++) {
       const item = links.item(i);
-      const active = item.href.includes(route) || route.includes('post') && item.href.includes('blog');
+      item!.classList.remove(styles.active);
+    }
+
+    for (let i = 0; i < links.length; i++) {
+      const item = links.item(i);
+      const active = item!.href.includes(route) || route.includes('post') && item!.href.includes('blog');
 
       if (active) {
-        item.classList.add(styles.active);
+        item!.classList.add(styles.active);
         break;
       }
     }
   }
 }
 
-function assignDisplayMode(displayMode) {
+function assignDisplayMode(displayMode: 'none' | 'flex') {
   if (typeof window === 'undefined') {
     return;
   }
 
   const navElement = document.querySelector(`.${styles.navigation}`);
+  if (!navElement) {
+    return;
+  }
+
   const menus = navElement.querySelectorAll('ul');
   for (let i = 0; i < menus.length; i++) {
     menus.item(i).style.display = displayMode;

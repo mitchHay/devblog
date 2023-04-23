@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import styles from '../styles/Portfolio.module.scss';
 
-const LordIcon = dynamic(() => import('../components/lordIcon'));
+const LordIcon = dynamic(() => import('../components/LordIcon'));
 const SiteHead = dynamic(() => import('../components/siteHead'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const Link = dynamic(() => import('next/link'));
