@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { getFontFamily } from '../services/fonts.service';
 config.autoAddCss = false;
 
-const Layout = dynamic(() => import('../components/layout'));
+const Layout = dynamic(() => import('../components/Layout'));
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

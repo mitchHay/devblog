@@ -11,7 +11,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 
 const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
-const SiteHead = dynamic(() => import('../../components/siteHead'));
+const SiteHead = dynamic(() => import('../../components/SiteHead'));
 const FadeIn = dynamic(() => import('../../components/FadeIn'));
 const Image = dynamic(() => import('next/image'));
 
