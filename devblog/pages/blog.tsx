@@ -80,19 +80,20 @@ export default function Blog({ posts }: { posts: Post[] }) {
               secondary: '#BD93F9'
           }} src={'rfbqeber.json'} height={150} width={150} trigger={'loop'} delay={'250'} />
           <div className={styles.blogHeroContent}>
-            <h1 className={styles.pageTitle}>Welcome to My Thoughtspace</h1>
+            <h1 className={styles.pageTitle}>My Thoughtspace 💭</h1>
             <p className={styles.pageDescription}>
-              Here you'll find a library of my (hopefully) many thoughts. I love to blog about anything really, but in particular you will find me blabbing about frontend development, game development, and test automation.
+              Welcome to my thoughtspace! Feel free to have a snoop! 
+              I love to chat about anything really, but you'll mainly find me blabbing about frontend, game development, and test automation.
             </p>
-            <p className={styles.contactCta}>Vibing with my content? <a className={styles.linkBtn} onClick={openDialog}>Reach out</a></p>
           </div>
         </FadeIn>
 
-        <FadeIn>
+        <FadeIn className={styles.blogSearchContainer}>
           <input 
             className={styles.blogSearch} 
             id='blog-search' 
             placeholder='Press / to search for a post...'/>
+            <p className={styles.contactCta}>Vibing with my content? <a className={styles.linkBtn} onClick={openDialog}>Reach out</a></p>
         </FadeIn>
 
         <FadeIn className={styles.blogSubtitle}>
