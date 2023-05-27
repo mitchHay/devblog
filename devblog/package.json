@@ -10,6 +10,12 @@
     "export": "npm run build && next export -o ./dist && next-export-optimize-images",
     "export:analyze": "ANALYZE_BUNDLE=true && npm run export"
   },
+  "browserslist": [
+    ">0.3%",
+    "not ie 11",
+    "not dead",
+    "not op_mini all"
+  ],
   "dependencies": {
     "highlight.js": "^11.8.0",
     "lord-icon-element": "^4.1.1",

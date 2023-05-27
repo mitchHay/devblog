@@ -76,7 +76,11 @@ export default function Header() {
         }
       }>
         <span className={ styles.route }>{ routeName }</span>
-        <img src={'/images/icon-bars.svg'} width={16} height={16} loading='lazy'/>
+        <img src={'/images/icon-bars.svg'}
+             width={16}
+             height={16}
+             loading='eager'
+             alt='Open navigation menu'/>
       </div>
       <ul className={ styles.navigationContainer }>
         <li className={ styles.navItem }>
