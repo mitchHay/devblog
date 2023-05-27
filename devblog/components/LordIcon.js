@@ -1,4 +1,4 @@
-import lottie from 'lottie-web';
+import lottie from 'lottie-web/build/player/lottie_light.min.js';
 import { useEffect } from 'react';
 
 export default function LordIcon({
