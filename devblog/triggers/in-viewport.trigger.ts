@@ -15,7 +15,7 @@ export class InViewportTrigger implements ITrigger {
 
     const intersectionCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
+        if (!entry.isIntersecting && this.player.isPlaying) {
           this.player.loop = false;
           this.player.stop();
         } else if (!this.player.isPlaying) {
