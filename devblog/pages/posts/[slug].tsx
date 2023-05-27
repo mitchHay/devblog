@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-import hljs from 'highlight.js';
+import { highlightAll } from '../../services/hljs.service';
 import 'highlight.js/styles/github-dark.css';
 
 const SiteHead = dynamic(() => import('../../components/SiteHead'));
@@ -22,7 +22,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
 
   useEffect(() => {
     if (typeof(window) !== 'undefined') {
-      hljs.highlightAll();
+      highlightAll();
     }
 
     let preBlocks = document.querySelectorAll('pre');
