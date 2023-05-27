@@ -81,23 +81,31 @@ export default function Header() {
       <ul className={ styles.navigationContainer }>
         <li className={ styles.navItem }>
           <Link href='/'>
-            <img src='/images/icon-home.svg' width={16} height={16} loading='eager'/>
+            <img src='/images/icon-home.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'
+                 alt="Home" />
             <span>Home</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='/portfolio'>
-            <img id='work'
-                 src='/images/icon-folder-closed.svg'
+            <img src='/images/icon-folder-closed.svg'
                  width={16}
                  height={16}
-                 loading='eager'/>
+                 loading='eager'
+                 alt="Mitchell Hayward's portflio" />
             <span>My work</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='/blog'>
-            <img src='/images/icon-blog.svg' width={16} height={16} loading='eager'/>
+            <img src='/images/icon-blog.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'
+                 alt="Mitchell Hayward's blog" />
             <span>My blog</span>
           </Link>
         </li>
@@ -105,13 +113,21 @@ export default function Header() {
       <ul className={styles.socialsContainer}>
         <li className={ styles.navItem }>
           <Link href='https://twitter.com/mitchy_hay' target='_blank'>
-            <img src='/images/icon-twitter.svg' width={16} height={16} loading='eager'/>
+            <img src='/images/icon-twitter.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'
+                 alt="Mitchell Hayward's Twitter" />
             <span>Twitter</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='https://github.com/mitchHay' target='_blank'>
-            <img src='/images/icon-github.svg' width={16} height={16} loading='eager'/>
+            <img src='/images/icon-github.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'
+                 alt="Mitchell Hayward's Github"/>
             <span>Github</span>
           </Link>
         </li>
