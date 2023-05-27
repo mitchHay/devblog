@@ -1,5 +1,6 @@
 import { loadAnimation } from 'lottie-web';
 import { useEffect } from 'react';
+import { InViewportTrigger } from '../triggers/in-viewport.trigger';
 
 export default function LordIcon({
   colors,
@@ -7,13 +8,18 @@ export default function LordIcon({
   width,
   height,
   trigger,
-  delay
+  delay,
+  loading = 'lazy'
 }) {
   const srcUrl = `https://cdn.lordicon.com/${src}`;
 
   useEffect(() => { 
-    import('lord-icon-element').then(mod => {
-      mod.defineElement(loadAnimation);
+    import('lord-icon-element/element').then(mod => {
+      mod.Element.defineTrigger('in-viewport', InViewportTrigger);
+
+      import('lord-icon-element').then(mod => {
+        mod.defineElement(loadAnimation);
+      });
     });
   }, []);
 
@@ -27,6 +33,7 @@ export default function LordIcon({
         width: width,
         height: height,
       }}
+      loading={loading}
     />
   )
 }

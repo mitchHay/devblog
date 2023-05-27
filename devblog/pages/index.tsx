@@ -41,9 +41,12 @@ export default function Home() {
               src={'/avatar.png'}
               alt={'Developer profile picture'}
               width={150}
-              height={150}></Image>
+              height={150}
+              priority={true}
+              placeholder='blur'
+              loading='eager' />
               
-            <h1>Hey, I'm Mitch 👋</h1>
+            <h1>Hey, I'm Mitch <span>👋</span></h1>
             <h2>A little about me?</h2>
             <p>I’ve been in the software engineering industry for five years! I love test automation, video games, and at the risk of sounding a bit vague the full vertical slice of development (although I do have a deep love for front-end developement in particular)!</p>
           </FadeIn>
@@ -57,8 +60,9 @@ export default function Home() {
               src={'zjscbpdr.json'} 
               height={150} 
               width={150} 
-              trigger={'loop'} 
-              delay={'10'} />
+              trigger={'in-viewport'} 
+              delay={'10'}
+              loading='eager' />
 
             <div className={styles.heroContainer}>
               <h2>Keen to see what I've done?</h2>
@@ -75,7 +79,7 @@ export default function Home() {
             <LordIcon colors={{
               primary: '#0A0012',
               secondary: '#BD93F9'
-            }} src={'flvisirw.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
+            }} src={'flvisirw.json'} height={150} width={150} trigger={'in-viewport'} delay={'1000'} />
             <div className={styles.heroContainer}>
               <h2>I'm all about knowledge sharing</h2>
               <Link className='btn' href={'/blog'}>Read my blog</Link>
@@ -93,7 +97,7 @@ export default function Home() {
           <LordIcon colors={{
             primary: '#BD93F9',
             secondary: '#0A0012'
-          }} src={'pdpnqfoe.json'} height={150} width={150} trigger={'loop'} delay={'1000'} />
+          }} src={'pdpnqfoe.json'} height={150} width={150} trigger={'in-viewport'} delay={'1000'} />
           <div className={styles.heroContainer}>
             <h2>Love my work? </h2>
             <button className='btn secondary' onClick={openDialog}>Contact me</button>

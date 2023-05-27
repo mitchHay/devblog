@@ -26,7 +26,7 @@ export default function Portfolio() {
             src={'zjscbpdr.json'} 
             height={150} 
             width={150} 
-            trigger={'loop'} 
+            trigger={'in-viewport'} 
             delay={'10'} />
 
           <div className={styles.heroContainer}>

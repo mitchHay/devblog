@@ -78,7 +78,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
           <LordIcon colors={{
               primary: '#0A0012',
               secondary: '#BD93F9'
-          }} src={'rfbqeber.json'} height={150} width={150} trigger={'loop'} delay={'250'} />
+          }} src={'rfbqeber.json'} height={150} width={150} trigger={'in-viewport'} delay={'250'} />
           <div className={styles.blogHeroContent}>
             <h1 className={styles.pageTitle}>My Thoughtspace 💭</h1>
             <p className={styles.pageDescription}>

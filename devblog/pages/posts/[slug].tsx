@@ -62,7 +62,14 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
         ogImage={bannerImage}></SiteHead>
       <main className={styles.postMain}>
         <span className={styles.notification} id='post-notification'></span>
-        <Image className={styles.postBanner} src={bannerImage} fill alt={`${title} banner`}/>
+        <Image 
+          className={styles.postBanner} 
+          src={bannerImage} 
+          fill 
+          alt={`${title} banner`}
+          priority={true}
+          loading='eager'
+          placeholder='blur' />
         <h1 className={styles.postTitle}>{title}</h1>
         <div className={styles.authorCard}>
           <span>Posted: { new Date(date).toDateString() }</span>

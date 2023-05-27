@@ -30,7 +30,7 @@ export default function FadeIn({ className, children }: FadeInProps): ReactEleme
     }, {
       root: document,
       rootMargin: '0px',
-      threshold: 1.0
+      threshold: 0.75
     });
 
     if (!!containerRef?.current) {
