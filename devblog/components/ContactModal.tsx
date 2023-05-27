@@ -32,13 +32,13 @@ export default function ContactModal({}: ContactModalProps): ReactElement {
         <span className={`${styles.contactTitle} ${getFontClass('Lacquer')}`}>Contact me</span>
 
         <label htmlFor='name'>Your Name:</label>
-        <input type="text" name="name" placeholder='John Smith'/>
+        <input type="text" name="name" id="name" placeholder='John Smith'/>
 
         <label htmlFor='email'>Your Email:</label>
-        <input type="email" name="email" placeholder='you@mailprovider.com' />
+        <input type="email" name="email" id="email" placeholder='you@mailprovider.com' />
 
         <label htmlFor='message'>Message:</label>
-        <textarea name="message" placeholder='What are you reaching out about?' rows={4}></textarea>
+        <textarea name="message" id="message" placeholder='What are you reaching out about?' rows={4}></textarea>
 
         <button className='btn secondary' type="submit">Send it</button>
       </form>
