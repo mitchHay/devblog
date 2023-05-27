@@ -3,41 +3,38 @@ import { ITrigger } from 'lord-icon-element/interfaces';
 import { Player } from 'lord-icon-element/player';
 
 export class InViewportTrigger implements ITrigger {
-    private element: Element;
-    private targetElement: Element;
-    private player: Player;
-    private observer: IntersectionObserver;
+  private element: Element;
+  private targetElement: Element;
+  private player: Player;
+  private observer: IntersectionObserver;
 
-    constructor(element: Element, targetElement: Element, player: Player) {
-        this.element = element;
-        this.targetElement = targetElement;
-        this.player = player;
+  constructor(element: Element, targetElement: Element, player: Player) {
+    this.element = element;
+    this.targetElement = targetElement;
+    this.player = player;
 
-        const intersectionCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) {
-              console.log('stopping');
-              this.player.loop = false;
-              this.player.stop();
-            } else {
-              if (!this.player.isPlaying) {
-                this.player.loop = true;
-                this.player.playFromBeginning();
-              }
-            }
-          });
-        };
+    const intersectionCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          this.player.loop = false;
+          this.player.stop();
+        } else if (!this.player.isPlaying) {
+          this.player.loop = true;
+          this.player.playFromBeginning();
+        }
+      });
+    };
 
-        this.observer = new IntersectionObserver(intersectionCallback, {
-          threshold: 0.75
-        });
-    }
+    this.observer = new IntersectionObserver(intersectionCallback, {
+      threshold: 0.75
+    });
+  }
 
-    onReady() {
-      this.observer.observe(this.targetElement);
-    }
+  onReady() {
+    this.observer.observe(this.targetElement);
+  }
 
-    onDisconnected() {
-      this.observer.disconnect();
-    }
+  onDisconnected() {
+    this.observer.disconnect();
+  }
 }
