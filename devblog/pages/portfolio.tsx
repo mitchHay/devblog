@@ -45,7 +45,12 @@ export default function Portfolio() {
             <div className={styles.timelineContent}>
               <h2>Makeup By Amy Maree</h2>
               <div className={styles.timelineDescription}>Jan 2023 - Static Site</div>
-              <Image fill alt='Makeup By Amy Maree website by Mitchell hayward' src={'/work/makeupbyamymaree.png'}/>
+              <Image fill 
+                     alt='Makeup By Amy Maree website by Mitchell hayward'
+                     src={'/work/makeupbyamymaree.png'}
+                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                     priority={true}
+                     placeholder='blur' />
             </div>
             <Link className={`btn primary ${styles.ctaBtn}`} href={'https://makeupbyamymaree.com.au'} target='_blank'>Check it out!</Link>
           </FadeIn>

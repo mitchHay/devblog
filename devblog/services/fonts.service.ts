@@ -1,4 +1,4 @@
-import { Josefin_Sans, Lacquer } from "@next/font/google";
+import { Josefin_Sans, Lacquer } from "next/font/google";
 
 const lacquer = Lacquer({
   weight: ['400'],

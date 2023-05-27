@@ -30,18 +30,33 @@
     padding: rem(32) rem(32);
     transition: padding .25s ease-in-out;
 
-    >.navItem {
+    > .navItem {
+      display: flex;
+      align-items: center;
       white-space: nowrap;
 
       a {
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         padding: rem(4) rem(8);
         border-radius: rem(4);
         transition: background-color .125s ease-in-out;
+        
+        > img {
+          filter: invert(1);
+          object-fit: contain;
+          object-position: center;
+          width: 100%;
+        }
 
         &.active {
           color: $font-color-primary-light;
           background-color: $bg-color-accent;
+
+          > img {
+            filter: invert(0);
+          }
         }
 
         span {
@@ -54,6 +69,10 @@
         &:hover {
           background-color: $bg-color-hover;
           color: $font-color-hover;
+
+          > img {
+            filter: invert(0);
+          }
         }
       }
     }
@@ -67,6 +86,12 @@
     gap: rem(8);
     color: $font-color-primary-light;
     background-color: $bg-color-accent;
+    
+    img {
+      &:not(:hover) {
+        filter: invert(0);
+      }
+    }
   }
 
   @media(min-width: $breakpoint-mobile) {
@@ -97,6 +122,10 @@
       justify-content: space-between;
       align-items: center;
 
+      img {
+        filter: invert(1);
+      }
+
       &:hover {
         cursor: pointer;
       }
@@ -109,6 +138,7 @@
       justify-content: center;
       margin-left: -#{rem(32)};
       margin-right: -#{rem(32)};
+      align-items: center;
 
       &.socialsContainer { 
         margin-bottom: -#{rem(16)};
@@ -125,6 +155,10 @@
           &.active {
             color: unset;
             background-color: unset;
+
+            > img {
+              filter: invert(1);
+            }
           }
 
           span {

@@ -1,9 +1,5 @@
 import styles from '../styles/components/Select.module.scss';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
-
-const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
 type SelectProps = {
   id: string,
@@ -89,12 +85,15 @@ export default function Select(props: SelectProps): any {
               onMouseDown={(e) => e.preventDefault()}
               onTouchStart={(e) => e.preventDefault()}
               value={value}
-              readOnly/>
+              readOnly />
 
-            <FontAwesomeIcon 
+            <img 
               className={styles.selectIcon}
               id='select-icon'
-              icon={faAngleDown}/>
+              src='/images/icon-caret-down.svg'
+              width={14}
+              height={14}
+              loading='lazy'/>
           </div>
         </>
       }
@@ -103,11 +102,12 @@ export default function Select(props: SelectProps): any {
         className={styles.optionsContainer}>
         {
           !!props.options &&
-          props.options.map(option => {
+          props.options.map((option, index) => {
             return (
               <div
                 className={styles.option}
-                tabIndex={0} 
+                tabIndex={0}
+                key={index}
                 onClick={(e) => {
                   if (!!props.onSelect) {
                     props.onSelect(option);

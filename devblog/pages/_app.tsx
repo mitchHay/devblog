@@ -2,12 +2,9 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import Head from 'next/head';
 import { getFontFamily } from '../services/fonts.service';
-config.autoAddCss = false;
 
+const Head = dynamic(() => import('next/head'));
 const Layout = dynamic(() => import('../components/Layout'));
 
 export default function App({ Component, pageProps }: AppProps) {

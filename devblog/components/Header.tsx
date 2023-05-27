@@ -1,14 +1,12 @@
 import styles from '../styles/Header.module.scss';
-import { faHome, faFolder, faFolderTree, faBars, faClose } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import { getFontClass } from '../services/fonts.service';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 
 const Link = dynamic(() => import('next/link'));
-const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
+// TODO: Rewrite this all to use state
 function assignActiveTab(route: string) {
   if (typeof window !== 'undefined') {
     const links = document.getElementsByTagName('a');
@@ -34,10 +32,6 @@ function assignActiveTab(route: string) {
 }
 
 function assignDisplayMode(displayMode: 'none' | 'flex') {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
   const navElement = document.querySelector(`.${styles.navigation}`);
   if (!navElement) {
     return;
@@ -73,33 +67,37 @@ export default function Header() {
       <div className={ styles.mobileMenu } onClick={
         () => {
           if (opened) {
-            assignDisplayMode('none');
             opened = false;
+            assignDisplayMode('none');
           } else {
-            assignDisplayMode('flex');
             opened = true;
+            assignDisplayMode('flex');
           }
         }
       }>
         <span className={ styles.route }>{ routeName }</span>
-        <FontAwesomeIcon icon={ opened ? faClose : faBars }/>
+        <img src={'/images/icon-bars.svg'} width={16} height={16} loading='lazy'/>
       </div>
       <ul className={ styles.navigationContainer }>
         <li className={ styles.navItem }>
           <Link href='/'>
-            <FontAwesomeIcon icon={ faHome }/>
+            <img src='/images/icon-home.svg' width={16} height={16} loading='eager'/>
             <span>Home</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='/portfolio'>
-            <FontAwesomeIcon icon={ faFolder }/>
+            <img id='work'
+                 src='/images/icon-folder-closed.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'/>
             <span>My work</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='/blog'>
-            <FontAwesomeIcon icon={ faFolderTree }/>
+            <img src='/images/icon-blog.svg' width={16} height={16} loading='eager'/>
             <span>My blog</span>
           </Link>
         </li>
@@ -107,13 +105,13 @@ export default function Header() {
       <ul className={styles.socialsContainer}>
         <li className={ styles.navItem }>
           <Link href='https://twitter.com/mitchy_hay' target='_blank'>
-            <FontAwesomeIcon icon={ faTwitter }/>
+            <img src='/images/icon-twitter.svg' width={16} height={16} loading='eager'/>
             <span>Twitter</span>
           </Link>
         </li>
         <li className={ styles.navItem }>
           <Link href='https://github.com/mitchHay' target='_blank'>
-            <FontAwesomeIcon icon={ faGithub }/>
+            <img src='/images/icon-github.svg' width={16} height={16} loading='eager'/>
             <span>Github</span>
           </Link>
         </li>

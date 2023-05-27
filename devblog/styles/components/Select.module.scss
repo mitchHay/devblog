@@ -38,6 +38,10 @@ $border-width: rem(2);
       .selectInput {
         cursor: pointer;
       }
+
+      .selectIcon {
+        filter: invert(0);
+      }
     }
 
     .selectIcon {
@@ -45,6 +49,7 @@ $border-width: rem(2);
       right: rem(12);
       color: $font-color-primary;
       transition: all .125s ease-in-out;
+      filter: invert(1);
 
       &.active {
         transform: rotateZ(180deg);

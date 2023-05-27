@@ -1,7 +1,6 @@
 import md from 'markdown-it';
 import { FrontMatterData } from '../../models/frontmatter';
 import { getPosts, getTimeToRead, retrieveFrontMatter } from '../../services/posts.service';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/Post.module.scss';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -10,7 +9,6 @@ import { useRouter } from 'next/router';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 
-const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 const SiteHead = dynamic(() => import('../../components/SiteHead'));
 const FadeIn = dynamic(() => import('../../components/FadeIn'));
 const Image = dynamic(() => import('next/image'));
@@ -89,7 +87,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
               shareBtn.innerText = originalBtnText;
             }, 2500);
           }}>
-            <FontAwesomeIcon icon={faLink}/>
+            <img src='/images/icon-share.svg' width={14} height={14} loading='lazy'/>
             <span id='share-btn'>Share</span>
           </button>
         </FadeIn>

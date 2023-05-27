@@ -1,11 +1,7 @@
 import { ReactElement } from "react";
 import { getFontClass } from "../services/fonts.service";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import dynamic from "next/dynamic";
 
 import styles from '../styles/components/ContactModal.module.scss';
-
-const FontAwesomeIcon = dynamic(() => import('@fortawesome/react-fontawesome').then(mod => mod.FontAwesomeIcon));
 
 export type ContactModalProps = {
 
@@ -30,7 +26,9 @@ export default function ContactModal({}: ContactModalProps): ReactElement {
   return (
     <div className={styles.contact} id='contact-form'>
       <form name="contact" method="POST">
-        <button type='button' className={styles.closeBtn} onClick={openDialog}><FontAwesomeIcon icon={faClose}/></button>
+        <button type='button' className={styles.closeBtn} onClick={openDialog}>
+          <img src="/images/icon-close.svg" width={24} height={24} loading="lazy" />
+        </button>
         <span className={`${styles.contactTitle} ${getFontClass('Lacquer')}`}>Contact me</span>
 
         <label htmlFor='name'>Your Name:</label>
