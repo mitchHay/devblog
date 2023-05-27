@@ -1,4 +1,4 @@
-import lottie from 'lottie-web/build/player/lottie_light.min.js';
+import { loadAnimation } from 'lottie-web';
 import { useEffect } from 'react';
 
 export default function LordIcon({
@@ -13,7 +13,7 @@ export default function LordIcon({
 
   useEffect(() => { 
     import('lord-icon-element').then(mod => {
-      mod.defineElement(lottie.loadAnimation);
+      mod.defineElement(loadAnimation);
     });
   }, []);
 
