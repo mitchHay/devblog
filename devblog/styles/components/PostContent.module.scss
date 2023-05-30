@@ -1,0 +1,99 @@
+@use '../variables.scss' as *;
+@use '../functions.scss' as *;
+
+.notification {
+  position: fixed;
+  background-color: $bg-color-primary;
+  color: $font-color-primary;
+  font-size: rem(11);
+  line-height: rem(12);
+  z-index: 9999;
+  padding: .5rem 1rem .35rem 1rem;
+  right: 2rem;
+  top: 1rem;
+  border: rem(1.25) solid $font-color-primary;
+  border-radius: rem(4);
+  font-weight: 400;
+  text-transform: uppercase;
+  transform: scale(0);
+  transition: transform .1s ease-in-out;
+
+  @media (max-width: $breakpoint-mobile) {
+    top: unset;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+.postContent {
+  // Type
+  h1,
+  h2 {
+    margin: rem(18) 0;
+  }
+
+  h3 {
+    margin: rem(16) 0;
+  }
+
+  h4,
+  h5 {
+    margin: rem(12) 0;
+  }
+
+  ul {
+    padding-left: rem(12);
+    margin: rem(8) rem(16);
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: rem(2);
+  }
+
+  p,
+  li {
+    line-height: rem(24);
+  }
+
+  p + p,
+  pre + p,
+  p + pre {
+    margin-top: rem(8);
+  }
+
+  pre {
+    position: relative;
+
+    .copyCodeBtn {
+      content: '';
+      display: block;
+      position: absolute;
+      width: rem(18);
+      height: rem(18);
+      background-size: contain;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      border-radius: rem(2);
+      margin: 1em;
+      top: 0;
+      right: 0;
+    }
+
+
+    .copyCodeBtn {
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+
+  pre code {
+    background-color: $bg-color-primary;
+    border-radius: rem(4);
+    position: relative;
+    margin: rem(8) 0;
+  }
+}

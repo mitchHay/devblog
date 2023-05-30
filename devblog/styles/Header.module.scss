@@ -115,6 +115,7 @@
   @media (max-width: $breakpoint-mobile) {
     position: sticky;
     padding: rem(16) rem(32);
+    height: auto;
 
     .mobileMenu {
       display: flex;
@@ -171,14 +172,14 @@
     .navigationContainer {
       position: fixed;
       width: 100%;
-      top: rem(51);
+      top: rem(48);
       background-color: $bg-color-primary;
     }
 
     .socialsContainer {
       position: fixed;
       width: 100%;
-      top: rem(206);
+      top: rem(158);
     }
   }
 }

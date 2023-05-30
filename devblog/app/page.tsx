@@ -1,40 +1,26 @@
 import styles from '../styles/Home.module.scss';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import { openDialog } from '../components/ContactModal';
+import { Metadata } from 'next';
 
-const SiteHead = dynamic(() => import('../components/SiteHead'));
-const Image = dynamic(() => import('next/image'));
 const LordIcon = dynamic(() => import('../components/LordIcon'));
 const Link = dynamic(() => import('next/link'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const ContactModal = dynamic(() => import('../components/ContactModal'));
+const Button = dynamic(() => import('../components/Button'));
+const Image = dynamic(() => import('../components/Image'));
+
+export const metadata: Metadata = {
+  title: 'Home | Mitchell Hayward',
+  description: "Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!"
+};
 
 export default function Home() {
-  const query = useRouter().query;
-  const { open } = query;
-
-  if (!!open) {
-    switch (open) {
-      case 'contact':
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm?.style.display === 'block') {
-          break;
-        }
-
-        openDialog();
-        break;
-    }
-  }
-
   return (
     <>
-      <SiteHead title={'Home | Mitchell Hayward'}
-        description={"Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!"} />
       <main className={styles.main}>
         <ContactModal />
 
-        {/* TODO: Make component */}
         <div className={styles.hero}>
           <FadeIn className={styles.container}>
             <Image className={styles.avatar}
@@ -100,7 +86,7 @@ export default function Home() {
           }} src={'pdpnqfoe.json'} height={150} width={150} trigger={'in-viewport'} delay={'1000'} />
           <div className={styles.heroContainer}>
             <h2>Love my work? </h2>
-            <button className='btn secondary' onClick={openDialog}>Contact me</button>
+            <Button style='secondary' text='Contact me' onClick={openDialog} />
           </div>
         </FadeIn>
 

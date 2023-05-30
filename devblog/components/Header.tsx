@@ -1,8 +1,11 @@
+'use client';
+
 import styles from '../styles/Header.module.scss';
 
 import { getFontClass } from '../services/fonts.service';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation';
 
 const Link = dynamic(() => import('next/link'));
 
@@ -45,7 +48,7 @@ function assignDisplayMode(displayMode: 'none' | 'flex') {
 
 let opened = false;
 export default function Header() {
-  let route = useRouter().asPath;
+  let route = usePathname() ?? '';
   let routeName = route;
   
   if (routeName === '/' || routeName.includes('?open=contact')) {
@@ -75,7 +78,7 @@ export default function Header() {
           }
         }
       }>
-        <span className={ styles.route }>{ routeName }</span>
+        {/* <span className={ styles.route }>{ routeName }</span> */}
         <img src={'/images/icon-bars.svg'}
              width={16}
              height={16}

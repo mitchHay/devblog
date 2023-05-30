@@ -79,7 +79,6 @@ button,
 }
 
 main {
-  height: 100%;
   max-width: #{var(--max-width)};
   margin: 0 auto;
   padding: rem(32) rem(64) rem(32) calc(#{$nav-bar-width} + #{rem(64)});

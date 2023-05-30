@@ -1,19 +1,23 @@
 import dynamic from 'next/dynamic';
-import styles from '../styles/Portfolio.module.scss';
-import { openDialog } from '../components/ContactModal';
+import styles from '../../styles/Portfolio.module.scss';
+import { openDialog } from '../../components/ContactModal';
+import { Metadata } from 'next';
 
-const LordIcon = dynamic(() => import('../components/LordIcon'));
-const SiteHead = dynamic(() => import('../components/SiteHead'));
-const FadeIn = dynamic(() => import('../components/FadeIn'));
-const Image = dynamic(() => import('next/image'));
+const LordIcon = dynamic(() => import('../../components/LordIcon'));
+const FadeIn = dynamic(() => import('../../components/FadeIn'));
+const Image = dynamic(() => import('../../components/Image'));
 const Link = dynamic(() => import('next/link'));
-const ContactModal = dynamic(() => import('../components/ContactModal'));
+const ContactModal = dynamic(() => import('../../components/ContactModal'));
+const Button = dynamic(() => import('../../components/Button'));
+
+export const metadata: Metadata = {
+  title: 'Portfolio | Mitchell Hayward',
+  description: "Checkout my portfolio of work. Ranging from full-stack development, game development, and test automation."
+};
 
 export default function Portfolio() {
   return (
     <>
-      <SiteHead title={'Portfolio | Mitchell Hayward'}
-        description={"Checkout my portfolio of work. Ranging from full-stack development, game development, and test automation."} />
       <main>
         <ContactModal />
 
@@ -58,8 +62,8 @@ export default function Portfolio() {
 
         <FadeIn className={`${styles.heroCta} ${styles.heroBasic}`}>
           <div className={styles.heroContainer}>
-            <h2>Loving what you see? </h2>
-            <button className='btn secondary' onClick={openDialog}>Contact me</button>
+            <h2>Loving what you see?</h2>
+            <Button style='secondary' onClick={openDialog} text='Contact me' />
           </div>
         </FadeIn>
 

@@ -1,4 +1,4 @@
 [build]
   base = "devblog/"
   publish = "dist/"
-  command = "SITE_URL=$URL npm run export"
+  command = "SITE_URL=$URL npm run build"

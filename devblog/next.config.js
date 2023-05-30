@@ -11,6 +11,8 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  output: 'export',
+  distDir: 'dist',
   swcMinify: true,
   compress: true
 }

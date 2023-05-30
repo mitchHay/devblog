@@ -1,0 +1,40 @@
+@use '../variables.scss' as *;
+@use '../functions.scss' as *;
+
+.postCopyLink {
+  display: flex;
+  align-items: center;
+  padding: rem(4) rem(4) rem(2) rem(4);
+  border-radius: rem(4);
+  color: $font-color-primary;
+  background-color: $bg-color-primary;
+  font-size: rem(14);
+  transition: all .125s ease-in-out;
+  border: rem(2) transparent solid;
+  margin-top: rem(16);
+  margin-left: auto;
+
+  > img {
+    filter: invert(1);
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    margin-bottom: rem(2);
+  }
+
+  span {
+    margin-left: rem(4);
+    white-space: nowrap;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $bg-color-hover;
+    color: $font-color-primary-light;
+    border-color: $bg-color-primary;
+
+    > img {
+      filter: invert(0);
+    }
+  }
+}
