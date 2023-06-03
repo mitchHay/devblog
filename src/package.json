@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 8080",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build && next-export-optimize-images",
     "lint": "next lint",
-    "export": "npm run build && next export -o ./dist && next-export-optimize-images",
-    "export:analyze": "ANALYZE_BUNDLE=true && npm run export"
+    "export:analyze": "ANALYZE_BUNDLE=true && npm run build"
   },
   "browserslist": [
     ">0.3%",
