@@ -118,7 +118,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
 
             return (
               <FadeIn className={styles.blogLinkContainer} key={index}>
-                <Link href={`/posts/${slug}`} className={styles.blogLink}>
+                <Link href={`/blog/${slug}`} className={styles.blogLink}>
                   <Image src={bannerImage}
                     width={200} height={100}
                     alt={`${title} thumbnail`}>

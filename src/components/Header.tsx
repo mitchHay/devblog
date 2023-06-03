@@ -21,7 +21,7 @@ function assignActiveTab(route: string) {
 
     for (let i = 0; i < links.length; i++) {
       const item = links.item(i);
-      const active = item!.href.includes(route) || route.includes('post') && item!.href.includes('blog');
+      const active = item!.href.includes(route) || route.includes('blog') && item!.href.includes('blog');
 
       if (active) {
         item!.classList.add(styles.active);

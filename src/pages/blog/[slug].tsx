@@ -123,7 +123,7 @@ export async function getStaticProps({ params: { slug } }: any) {
     props: {
       frontmatter: data,
       content: content,
-      shareUrl: process.env.SITE_URL 
+      shareUrl: process.env.SITE_URL ?? ''
     }
   }
 }
