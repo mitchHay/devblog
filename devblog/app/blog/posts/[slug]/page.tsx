@@ -1,4 +1,3 @@
-
 import { Metadata, ResolvingMetadata } from 'next';
 import { FrontMatterData } from '../../../../models/frontmatter';
 import { getPosts, getTimeToRead, retrieveFrontMatter } from '../../../../services/posts.service';
