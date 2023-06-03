@@ -17,7 +17,7 @@ export class InViewportTrigger implements ITrigger {
       entries.forEach((entry) => {
         if (!entry.isIntersecting && this.player.isPlaying) {
           this.player.loop = false;
-          this.player.stop();
+          this.player.pause();
         } else if (!this.player.isPlaying) {
           this.player.loop = true;
           this.player.playFromBeginning();
