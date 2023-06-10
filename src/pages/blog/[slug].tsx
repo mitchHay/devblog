@@ -59,13 +59,14 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
       <SiteHead 
         title={title + " | Mitchell Hayward"}
         description={description}
-        ogImage={bannerImage}></SiteHead>
+        ogImage={bannerImage} />
+
       <main className={styles.postMain}>
         <span className={styles.notification} id='post-notification'></span>
         <Image 
           className={styles.postBanner} 
           src={bannerImage} 
-          fill 
+          fill
           alt={`${title} banner`}
           priority={true}
           loading='eager'
