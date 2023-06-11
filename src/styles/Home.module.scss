@@ -1,8 +1,6 @@
 @use 'functions' as *;
 @use 'variables' as *;
 
-$max-hero-width: rem(500);
-
 .main {
   .hero {
     display: flex;
@@ -28,74 +26,6 @@ $max-hero-width: rem(500);
     > * {
       &:not(:last-child) {
         margin-bottom: rem(16);
-      }
-    }
-  }
-
-  .heroCta {
-    display: flex;
-    margin: 0 auto;
-    position: relative;
-    max-width: $max-hero-width;
-    padding: rem(16) rem(32);
-    text-align: center;
-    color: $font-color-primary;
-    background-color: $bg-color-primary;
-    border-radius: rem(4);
-    justify-content: center;
-    align-items: center;
-    min-height: rem(150);
-    gap: rem(16);
-
-    lord-icon {
-      flex: 1 0 auto;
-      margin-left: -#{rem(16)};
-    }
-
-    .heroContainer {
-      display: flex;
-      flex-direction: column;
-      gap: rem(16);
-      min-width: 66%;
-
-      .btn {
-        margin: 0 auto;
-      }
-    }
-
-    &.heroLight {
-      background-color: $bg-color-primary-light;
-      color: $font-color-primary-light;
-    }
-
-    &.heroReverse {
-      flex-direction: row-reverse;
-    }
-
-    &.innerHero {
-      margin-top: -#{rem(16)};
-    }
-
-    &.outerHero {
-      margin-top: rem(48);
-    }
-
-    @media(max-width: $breakpoint-mobile) {
-      flex-direction: column;
-      gap: rem(8);
-      margin: rem(16) 0 rem(32) 0;
-
-      &.heroReverse {
-        flex-direction: column;
-      }
-
-      &.innerHero {
-        margin-top: rem(16);
-      }
-
-      lord-icon {
-        margin-top: -#{rem(28)};
-        margin-left: 0;
       }
     }
   }

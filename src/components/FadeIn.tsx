@@ -7,6 +7,9 @@ type FadeInProps = {
   children: any
 }
 
+/**
+ * Used to fade the children nodes provided into the viewport
+ */
 export default function FadeIn({ className, children }: FadeInProps): ReactElement {
   const [visibilityClass, setVisibilityClass] = useState('');
   const containerRef = useRef(null);

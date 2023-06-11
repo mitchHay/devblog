@@ -5,10 +5,9 @@ import { openDialog } from '../components/ContactModal';
 
 const SiteHead = dynamic(() => import('../components/SiteHead'));
 const Image = dynamic(() => import('next/image'));
-const LordIcon = dynamic(() => import('../components/LordIcon'));
-const Link = dynamic(() => import('next/link'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const ContactModal = dynamic(() => import('../components/ContactModal'));
+const Hero = dynamic(() => import('../components/Hero'));
 
 export default function Home() {
   const query = useRouter().query;
@@ -51,23 +50,25 @@ export default function Home() {
             <p>I’ve been in the software engineering industry for five years! I love test automation, video games, and at the risk of sounding a bit vague the full vertical slice of development (although I do have a deep love for front-end developement in particular)!</p>
           </FadeIn>
 
-          <FadeIn className={`${styles.heroCta} ${styles.heroLight} ${styles.heroReverse} ${styles.innerHero}`}>
-            <LordIcon 
-              colors={{
-                primary: '#0A0012',
-                secondary: '#BD93F9'
+          <FadeIn>
+            <Hero
+              title="Keen to see what I've done?"
+              order='reverse'
+              type='innerHero'
+              link={{
+                text: 'See my work',
+                href: '/portfolio'
               }}
-              src={'zjscbpdr.json'} 
-              height={150} 
-              width={150} 
-              trigger={'in-viewport'} 
-              delay={'10'}
-              loading='eager' />
-
-            <div className={styles.heroContainer}>
-              <h2>Keen to see what I've done?</h2>
-              <Link className='btn' href={'/portfolio'}>See my work</Link>
-            </div>
+              lordIcon={{
+                src: 'zjscbpdr.json',
+                loading: 'eager',
+                delay: 10,
+                colors: {
+                  primary: '#0A0012',
+                  secondary: '#BD93F9'
+                }
+              }}
+            />
           </FadeIn>
 
           <FadeIn className={styles.container}>
@@ -75,15 +76,24 @@ export default function Home() {
             <p>I actually got into programming through video games. The first thing I ever tinkered with was creating Minecraft mods and servers with Java. I quickly leaped into Unity - where I well and truly got bitten by the software dev (and game dev) bug.</p>
           </FadeIn>
 
-          <FadeIn className={`${styles.heroCta} ${styles.heroLight} ${styles.heroInner}`}>
-            <LordIcon colors={{
-              primary: '#0A0012',
-              secondary: '#BD93F9'
-            }} src={'flvisirw.json'} height={150} width={150} trigger={'in-viewport'} delay={'1000'} />
-            <div className={styles.heroContainer}>
-              <h2>I'm all about knowledge sharing</h2>
-              <Link className='btn' href={'/blog'}>Read my blog</Link>
-            </div>
+          <FadeIn>
+            <Hero
+              title="I'm all about knowledge sharing"
+              type='innerHero'
+              link={{
+                text: 'Read my blog',
+                href: '/blog'
+              }}
+              lordIcon={{
+                src: 'flvisirw.json',
+                loading: 'eager',
+                delay: 1000,
+                colors: {
+                  primary: '#0A0012',
+                  secondary: '#BD93F9'
+                }
+              }}
+            />
           </FadeIn>
 
           <FadeIn className={styles.container}>
@@ -93,15 +103,27 @@ export default function Home() {
 
         </div>
 
-        <FadeIn className={`${styles.heroCta} ${styles.heroReverse} ${styles.outerHero}`}>
-          <LordIcon colors={{
-            primary: '#BD93F9',
-            secondary: '#0A0012'
-          }} src={'pdpnqfoe.json'} height={150} width={150} trigger={'in-viewport'} delay={'1000'} />
-          <div className={styles.heroContainer}>
-            <h2>Love my work? </h2>
-            <button className='btn secondary' onClick={openDialog}>Contact me</button>
-          </div>
+        <FadeIn>
+          <Hero
+            title="Love my work?"
+            type='outerHero'
+            order='reverse'
+            dark={true}
+            button={{
+              text: "Contact me",
+              onClick: openDialog,
+              type: 'secondary'
+            }}
+            lordIcon={{
+              src: 'pdpnqfoe.json',
+              loading: 'eager',
+              delay: 1000,
+              colors: {
+                primary: '#BD93F9',
+                secondary: '#0A0012'
+              }
+            }}
+          />
         </FadeIn>
 
       </main>
