@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { InViewportTrigger } from '../triggers/in-viewport.trigger';
+import { block } from 'million/react';
 
 export type LordIconTrigger =
   | 'hover'
@@ -10,15 +11,11 @@ export type LordIconTrigger =
   | 'morph-two-way'
   | 'in-viewport';
 
-export type LordIconColors = {
-  primary?: string;
-  secondary?: string;
-};
-
 export type LordIconProps = {
   src?: string;
   trigger?: LordIconTrigger;
-  colors?: LordIconColors;
+  primaryColor?: string;
+  secondaryColor?: string;
   delay?: string | number;
   size?: number;
   width?: number,
@@ -26,7 +23,7 @@ export type LordIconProps = {
   loading?: 'lazy' | 'eager'
 };
 
-export default function LordIcon(props: LordIconProps) {
+function LordIconFn(props: LordIconProps) {
   const srcUrl = `https://cdn.lordicon.com/${props.src}`;
 
   useEffect(() => {
@@ -43,7 +40,7 @@ export default function LordIcon(props: LordIconProps) {
 
   return (
     <lord-icon
-      colors={`primary:${props.colors?.primary},secondary:${props.colors?.secondary}`}
+      colors={`primary:${props.primaryColor},secondary:${props.secondaryColor}`}
       src={srcUrl}
       trigger={props.trigger ?? 'loop'}
       delay={props.delay}
@@ -55,3 +52,6 @@ export default function LordIcon(props: LordIconProps) {
     />
   )
 }
+
+const LordIcon = block(LordIconFn);
+export default LordIcon;

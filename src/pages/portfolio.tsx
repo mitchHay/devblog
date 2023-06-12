@@ -19,10 +19,8 @@ export default function Portfolio() {
 
         <FadeIn className={styles.heroCta}>
           <LordIcon 
-            colors={{
-              primary: '#0A0012',
-              secondary: '#BD93F9'
-            }}
+            primaryColor='#0A0012'
+            secondaryColor='#BD93F9'
             src={'zjscbpdr.json'} 
             height={150} 
             width={150} 

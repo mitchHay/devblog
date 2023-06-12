@@ -1,4 +1,5 @@
-const path =  require('path');
+const million = require('million/compiler');
+const path = require('path');
 const withExportImages = require('next-export-optimize-images');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE_BUNDLE == 'true',
@@ -17,9 +18,11 @@ const nextConfig = {
   compress: true
 }
 
-module.exports = withExportImages(
-  withBundleAnalyzer(nextConfig), 
-  {
-    configPath: 'export-images.config.js',
-  }
+module.exports = million.next(
+  withExportImages(
+    withBundleAnalyzer(nextConfig), 
+    {
+      configPath: 'export-images.config.js',
+    }
+  )
 );

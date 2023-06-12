@@ -60,10 +60,8 @@ export default function Hero({ title, dark, type, order, lordIcon, link, button 
       {
         !!lordIcon &&
         <LordIcon 
-          colors={{
-            primary: lordIcon.colors?.primary,
-            secondary: lordIcon.colors?.secondary
-          }}
+          primaryColor={lordIcon.primaryColor}
+          secondaryColor={lordIcon.secondaryColor}
           src={lordIcon.src} 
           height={150} 
           width={150} 

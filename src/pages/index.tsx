@@ -63,10 +63,8 @@ export default function Home() {
                 src: 'zjscbpdr.json',
                 loading: 'eager',
                 delay: 10,
-                colors: {
-                  primary: '#0A0012',
-                  secondary: '#BD93F9'
-                }
+                primaryColor: '#0A0012',
+                secondaryColor: '#BD93F9'
               }}
             />
           </FadeIn>
@@ -88,10 +86,8 @@ export default function Home() {
                 src: 'flvisirw.json',
                 loading: 'eager',
                 delay: 1000,
-                colors: {
-                  primary: '#0A0012',
-                  secondary: '#BD93F9'
-                }
+                primaryColor: '#0A0012',
+                secondaryColor: '#BD93F9'
               }}
             />
           </FadeIn>
@@ -118,10 +114,8 @@ export default function Home() {
               src: 'pdpnqfoe.json',
               loading: 'eager',
               delay: 1000,
-              colors: {
-                primary: '#BD93F9',
-                secondary: '#0A0012'
-              }
+              primaryColor: '#BD93F9',
+              secondaryColor: '#0A0012'
             }}
           />
         </FadeIn>

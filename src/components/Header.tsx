@@ -44,6 +44,7 @@ function assignDisplayMode(displayMode: 'none' | 'flex') {
 }
 
 let opened = false;
+
 export default function Header() {
   let route = useRouter().asPath;
   let routeName = route;
