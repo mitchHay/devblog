@@ -6,9 +6,9 @@ const Footer = dynamic(() => import('./Footer'));
 export default function Layout({children}: any) {
   return (
     <>
-      <Header/>
+      <Header />
       { children }
-      <Footer/>
+      <Footer />
     </>
   );
 }

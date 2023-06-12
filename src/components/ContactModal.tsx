@@ -1,11 +1,7 @@
-import { ReactElement } from "react";
 import { getFontClass } from "../services/fonts.service";
 
 import styles from '../styles/components/ContactModal.module.scss';
-
-export type ContactModalProps = {
-
-};
+import { block } from "million/react";
 
 export function openDialog(): void {
   const form = document.getElementById('contact-form');
@@ -22,7 +18,7 @@ export function openDialog(): void {
   form.style.display = 'none';
 }
 
-export default function ContactModal({}: ContactModalProps): ReactElement {
+function ContactModalFn(): React.ReactElement {
   return (
     <div className={styles.contact} id='contact-form'>
       <form name="contact" method="POST">
@@ -45,3 +41,6 @@ export default function ContactModal({}: ContactModalProps): ReactElement {
     </div>
   );
 }
+
+const ContactModal = block(ContactModalFn);
+export default ContactModal;
