@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 8080",
-    "build": "npm run sitemap && next build && next-export-optimize-images",
+    "build": "next build && next-export-optimize-images && npm run sitemap",
     "lint": "next lint",
     "export:analyze": "ANALYZE_BUNDLE=true && npm run build",
     "sitemap": "next-sitemap"
