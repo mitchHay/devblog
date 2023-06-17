@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 8080",
-    "build": "next build && next-export-optimize-images",
+    "build": "next build && next-export-optimize-images && npm run sitemap",
     "lint": "next lint",
-    "export:analyze": "ANALYZE_BUNDLE=true && npm run build"
+    "export:analyze": "ANALYZE_BUNDLE=true && npm run build",
+    "sitemap": "next-sitemap"
   },
   "browserslist": [
     ">0.3%",
@@ -33,6 +34,7 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^13.0.1",
     "next-export-optimize-images": "^2.1.0",
+    "next-sitemap": "^4.1.3",
     "sass": "^1.63.3"
   }
 }
