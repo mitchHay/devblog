@@ -107,6 +107,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
             id='test-select'
             placeholder='Sort'
             options={options}
+            value={options[0]}
             onSelect={(option) => sort(option)}/>
         </FadeIn>
 
@@ -168,6 +169,10 @@ export async function getStaticProps() {
     blogPosts.push({
       slug: slug,
       frontmatter: fm
+    });
+
+    blogPosts.sort((a, b) => {
+      return new Date(b.frontmatter.data.date).valueOf() - new Date(a.frontmatter.data.date).valueOf()
     });
   });
 

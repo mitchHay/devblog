@@ -1,5 +1,6 @@
 @use 'functions' as *;
 @use 'variables' as *;
+@use 'sass:color' as color;
 
 .postMain {
   .notification {
@@ -47,6 +48,18 @@
   ul {
     padding-left: rem(12);
     margin: rem(8) rem(16);
+  }
+
+  blockquote {
+    padding: rem(16) rem(12);
+    margin: rem(16) 0;
+    background-color: color.scale($bg-color-accent, $lightness: 80%);
+    border-radius: rem(4);
+    border: rem(1) solid color.scale($bg-color-accent, $lightness: 65%);
+
+    code {
+      border: rem(1) solid #DDDDDD;
+    }
   }
 
   .authorCard {
@@ -110,7 +123,6 @@
       filter: invert(1);
       object-fit: contain;
       object-position: center;
-      width: 100%;
       margin-bottom: rem(2);
     }
 
@@ -159,9 +171,17 @@
     }
   }
 
+  code {
+    background-color: #EEEEEE;
+    padding: rem(2) rem(3) rem(1) rem(3);
+    border-radius: rem(2);
+    border: rem(1) solid #DDDDDD;
+  }
+
   pre code {
     background-color: $bg-color-primary;
     border-radius: rem(4);
+    border: unset;
     position: relative;
     margin: rem(8) 0;
   }

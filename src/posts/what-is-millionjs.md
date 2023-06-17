@@ -1,0 +1,143 @@
+---
+title: "What is MillionJS and when should I use it?"
+description: "You may have heard of MillionJS being thrown around when talking about React. Lets talk about what MillionJS is, how it works, and how to implement it within a NextJS application."
+author: "Mitchell Hayward"
+category: "frontend"
+date: "2023-06-17"
+bannerImage: "/posts/millionjs.png"
+published: true
+tags:
+    - nextjs
+    - react
+    - typescript
+    - millionjs
+---
+
+You may or may not have heard about this new JavaScript library that has been on the tip of every React developers tongue recently. Fireship.io did a [code report video](https://www.youtube.com/watch?v=VkezQMb1DHw) on it and the Twitter world are raving about its performance boosts. What am I on about? [MillionJS](https://million.dev/) is a JavaScript library that boasts up to a 70% gain in rendering performance VS. that of Reacts virtual DOM. Lets have a bit of a look into what on earth a virtual DOM is, and when you should use MillionJS in your React app.
+
+## What is a virtual DOM?
+
+Okay, so a virtual DOM is a technique used that takes a copy of the UI you're seeing and stores it in-memory. This in-memory representation of the UI is then synced with the actual HTML DOM instance (for example, maybe some state changes in your React component, this would trigger a "sync" from the virtual DOM to the real HTML DOM instance). If you want to learn a bit more on how this process works, React have some information on how they preserve and reset state [here](https://react.dev/learn/preserving-and-resetting-state).
+
+### But why use a virtual DOM?
+
+It's important to note that virtual DOM isn't a technology, but a pattern used throughout multiple JavaScript libraries (i.e. not just React). In React terms, the virtual DOM is used to inform a React element that it has changed state and to ensure that the HTML DOM matches it. This simplifies some of the HTML DOM interfacing you have to do, as you don't need to be concerened with event handling, attribute manipulation, and well, manually updating the DOM.
+
+## What is MillionJS?
+
+MillionJS is a JavaScript library that replaces Reacts virtual DOM with its own, making React components render up to 70% faster. It's lightweight (less than 4kb in size) and easy to use. It achieves these performance gains by implementing a new approach to virtual DOMs called the "block" virtual DOM. I won't go over it too in-depth within this blog post, but if you do find yourself wanting to learn more you can read Aiden Bai's excellent write-up on it [here](https://million.dev/blog/virtual-dom).
+
+## When should I use MillionJS?
+
+So all of the stuff I was chatting about earlier sounds pretty neat right? If I were you I'd be wondering, well when should I actually use MillionJS? And that's a damn good question, so good in-fact that even I asked it myself.
+
+The answer is, if you're using React and you're dealing with a lot of state or a highly interactive user interface then you probably should.
+
+Let me explain.
+
+You know that virtual DOM thing we were talking about earlier, well turns out that Reacts implementation actually requires a lot of computation power to render a React component. 
+
+### How the virtual DOM works in React
+
+Lets say we have a component that looks like this:
+
+```tsx
+export default function Counter(): React.ReactElement {
+    let [count, setCount] = useState<number>(0);
+
+    function setCounter = () => {
+        const newValue = count += 1;
+        setCount(newValue);
+    }
+
+    return (
+        <div>
+            <span>Count: {count}</span>
+            <button onClick={setCounter}>Set count</button>
+        </div>
+    )
+}
+```
+
+When I click the `button` within my component, React will re-render the virtual DOM tree and compare it against our current one in-memory to see if anything has changed. I don't know about you, but to me that seems like a little bit of effort just to detect that our count state has been updated. Here's what that process looks like in a fancy diagram (diagrams always make things better, right?...):
+
+![Example of how React uses virtual DOM](/posts/react-virtual-dom.png)
+
+### How MillionJS improves Reacts virtual DOM
+
+MillionJS makes this process more efficient by statically analysing the JSX (our React component) code to determine where the state of our count is rendered. It will then create a mapping that allows it to directly update dynamic HTML nodes. What does that mean? Well all we have to do is compare the two states and if our count has changed MillionJS will update the node itself directly without having to re-render the entire UI tree. Time for another diagram? No? Okay, here's a diagram:
+
+![Example of MillionJS blocks](/posts/millionjs-virtual-dom.png)
+
+### When you won't benefit from MillionJS
+
+Of course MillionJS isn't a silver bullet, they even say so themselves! With each technology, or library that we use always come limitations. 
+
+Here are some limitations of MillonJS:
+
+- Using `Array.map()` will degrade performance, you must use the `<For/>` block to benefit from MillionJS rendering speeds.
+- You can't use deterministic returns in your React components. Doing so will cause degraded performance.
+- Not ideal to use with UI libraries, doing so will cause degraded performance. You should use DOM elements instead.
+
+There are a couple of more to add to the list, but those are the main things to think about before picking up MillionJS. You can view the full list of block rules [here](https://million.dev/docs/rules).
+
+> **Note**: MillionJS won't break if it can't process one of your React components, instead it will fallback to React's default renderer.
+>
+> [Learn more](https://million.dev/docs/rules#breaking-rules-of-blocks)
+
+## How do I use MillionJS with NextJS?
+
+Alright, so you've made it this far and maybe you're wondering can I still benefit from MillionJS if I use a meta-framework like NextJS? The answer is absolutely!
+
+### Setting up the million compiler
+
+First you'll have to register the MillionJS compiler in your `next.config.js` file like so:
+
+#### next.config.js
+
+```js
+const million = require('million/compiler');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    // Your next config
+};
+
+module.exports = million.next(nextConfig);
+```
+
+That's it, you can start using MillionJS in your components now!
+
+### Creating your first block
+
+Using MillionJS is as simple as wrapping your React component in the `block` function.
+
+I like to setup my component with a private (non-exported) function named `ComponentFn` and then export the actual constant that wraps the component function in the MillionJS `block`. I find this makes the code a little easier to read and allows your exported component member to keep its original naming (MillionJS docs show examples of components that have been renamed to something like `ButtonBlock` - whilst this is okay, I think components should be named agnostic of the tech that you're using. For instance my button component will always be a button, regardless if I use MillionJS or not).
+
+> **Note:** When importing the block function, you must reference it from `million/react` and not `million`. If you do not, you will experience compilation errors or degraded rendering performance.
+
+#### Button.tsx
+
+```tsx
+// Make sure you import block from million/react and NOT million here
+import { block } from 'million/react';
+
+function ButtonFn({text, type, onClick}: ButtonProps): React.ReactElement {
+    return (
+        <button className={`btn ${type}`} onClick={onClick}>{text}</button>
+    )
+}
+
+const Button = block(ButtonFn);
+export default Button;
+```
+
+That's all there is! Now you're using MillionJS in your NextJS application and experiencing all those rendering performance gains 💪🏼
+
+If you made it this far, thanks for reading I appreciate you - have a lovely day (or night) 👋
+
+## References
+
+- [Aiden Bai - How MillionJS works via Twitter](https://twitter.com/aidenybai/status/1647005716350406656)
+- [Virtual DOM and internals via reactjs.org](https://legacy.reactjs.org/docs/faq-internals.html)
+- [Preserving and resetting state via react.dev](https://react.dev/learn/preserving-and-resetting-state)

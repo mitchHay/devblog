@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
 
-    > lord-icon {
+    > slot lord-icon {
       flex: 1 0 auto;
     }
 
@@ -123,6 +123,7 @@
       object-fit: cover;
       object-position: center;
       max-width: rem(250);
+      min-width: rem(250);
       height: 100%;
     }
 
