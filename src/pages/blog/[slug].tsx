@@ -21,33 +21,33 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
   shareUrl = `${shareUrl}${path}`
 
   useEffect(() => {
-    if (typeof(window) !== 'undefined') {
+    if (typeof window !== 'undefined') {
       highlightAll();
-    }
 
-    let preBlocks = document.querySelectorAll('pre');
-    preBlocks.forEach(preBlock => {
-      const copyCodeButton = document.createElement('button');
-      copyCodeButton.className = styles.copyCodeBtn;
-      copyCodeButton.onclick = () => {
-        const content = preBlock.innerText;
-        copyToClipboard(content);
-
-        const notification = document.getElementById('post-notification');
-        if (!notification) {
-          return;
+      const preBlocks = document.querySelectorAll('pre');
+      preBlocks.forEach(preBlock => {
+        const copyCodeButton = document.createElement('button');
+        copyCodeButton.className = styles.copyCodeBtn;
+        copyCodeButton.onclick = () => {
+          const content = preBlock.innerText;
+          copyToClipboard(content);
+  
+          const notification = document.getElementById('post-notification');
+          if (!notification) {
+            return;
+          }
+  
+          notification.style.transform = 'scale(1)';
+          notification.textContent = 'Copied to clipboard';
+  
+          setTimeout(() => {
+            notification.style.transform = 'scale(0)';
+          }, 2500);
         }
-
-        notification.style.transform = 'scale(1)';
-        notification.textContent = 'Copied to clipboard';
-
-        setTimeout(() => {
-          notification.style.transform = 'scale(0)';
-        }, 2500);
-      }
-
-      preBlock.appendChild(copyCodeButton);
-    });
+  
+        preBlock.appendChild(copyCodeButton);
+      });
+    }
   });
 
   const copyToClipboard = (text: string) => {
