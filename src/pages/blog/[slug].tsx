@@ -70,7 +70,8 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
           alt={`${title} banner`}
           priority={true}
           loading='eager'
-          placeholder='blur' />
+          placeholder='blur'
+          sizes='100vw' />
         <h1 className={styles.postTitle}>{title}</h1>
         <div className={styles.authorCard}>
           <span>Posted: { new Date(date).toDateString() }</span>

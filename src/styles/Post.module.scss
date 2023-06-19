@@ -3,6 +3,8 @@
 @use 'sass:color' as color;
 
 .postMain {
+  position: relative;
+
   .notification {
     position: fixed;
     background-color: $bg-color-accent;

@@ -3,6 +3,10 @@ import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import dynamic from 'next/dynamic';
 
 import { getFontFamily } from '../services/fonts.service';
+import Script from 'next/script';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import GTMService from '../services/gtm.service';
 
 const Head = dynamic(() => import('next/head'));
 const Layout = dynamic(() => import('../components/Layout'));
@@ -14,14 +18,57 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
   }
 }
 
+const gtmService = new GTMService();
+
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const googleAnalyticsId = gtmService.trackingId;
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (!gtmService.gtagExists) {
+        return;
+      }
+
+      gtmService.pageView(url);
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events]);
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
         <link rel="preconnect" href="https://cdn.lordicon.com" />
       </Head>
+
+      {
+        !!googleAnalyticsId &&
+        <>
+          <Script async 
+                  strategy={'afterInteractive'}
+                  src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
+          <Script strategy={'afterInteractive'}>
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+      
+              gtag('config', '${googleAnalyticsId}');
+            `}
+          </Script>
+        </>
+      }
+
       <style jsx global>{`
         html,
         input,
