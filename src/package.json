@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 8080",
-    "build": "next build && next-export-optimize-images && npm run sitemap",
+    "dev": "npm run patch-partytown && next dev --port 8080",
+    "build": "npm run patch-partytown && next build && next-export-optimize-images && npm run sitemap",
+    "partytown": "partytown copylib public/~partytown",
+    "patch-partytown": "chmod +x ./scripts/partytown.sh && ./scripts/partytown.sh",
     "lint": "next lint",
     "export:analyze": "ANALYZE_BUNDLE=true && npm run build",
     "sitemap": "next-sitemap"
@@ -18,14 +20,15 @@
   "dependencies": {
     "highlight.js": "^11.8.0",
     "lord-icon-element": "^4.1.1",
-    "lottie-web": "^5.12.0",
-    "million": "^2.4.5",
+    "lottie-web": "^5.12.2",
+    "million": "^2.4.7",
     "next": "^13.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.3"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.8.0",
     "@next/bundle-analyzer": "^13.4.5",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^18.15.11",

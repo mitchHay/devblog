@@ -38,6 +38,13 @@ export default class GTMService {
     return typeof this.window.gtag !== 'undefined';
   }
 
+  /**
+   * The URL for Google Tag Manager
+   */
+  get gtmUrl(): string {
+    return 'https://www.googletagmanager.com/gtag';
+  }
+
   private get window(): any {
     return (window as any);
   }
