@@ -57,7 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="preconnect" href="https://cdn.lordicon.com" />
 
         {/* Partytown */}
-        <Partytown forward={['gtag']} debug />
+        <Partytown forward={['gtag']} />
 
         {/* Analytics */}
         {
