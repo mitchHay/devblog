@@ -28,6 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       if (!gtmService.gtagExists) {
+        console.warn('Failed to fire event, window.gtag is not defined');
         return;
       }
 
@@ -56,23 +57,24 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="preconnect" href="https://cdn.lordicon.com" />
 
         {/* Partytown */}
-        <Partytown forward={['dataLayer.push']} />
+        <Partytown forward={['gtag']} debug />
 
         {/* Analytics */}
         {
           !!googleAnalyticsId &&
           <>
-            <Script async
-                    strategy={'afterInteractive'}
-                    src={`${gtmService.gtmUrl}/js?id=${googleAnalyticsId}`} />
-            <Script id="google-analytics"
-                    strategy={'afterInteractive'}
-                    type="text/partytown">
+            <Script src={`${gtmService.gtmUrl}/js?id=${googleAnalyticsId}`}
+                    strategy='worker'/>
+
+            <Script id='gtag'
+                    strategy='worker'>
               {`
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-        
+                window.gtag = function gtag() {
+                  window.dataLayer.push(arguments);
+                }
+
+                gtag('js', new Date());        
                 gtag('config', '${googleAnalyticsId}');
               `}
             </Script>

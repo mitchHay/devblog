@@ -15,7 +15,10 @@ const nextConfig = {
   output: 'export',
   distDir: 'dist',
   swcMinify: true,
-  compress: true
+  compress: true,
+  experimental: {
+    nextScriptWorkers: true
+  }
 }
 
 module.exports = million.next(
