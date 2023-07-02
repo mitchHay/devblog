@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import { ButtonProps, buildButtonClasses } from "./Button";
-import { block } from "million/react";
 
 import styles from '../styles/components/Button.module.scss';
 
@@ -8,7 +7,7 @@ const Link = dynamic(() => import('next/link'));
 
 export type LinkButtonProps = {
   href: string,
-  target: '_self' | '_blank' | '_parent' | '_top'
+  target?: '_self' | '_blank' | '_parent' | '_top'
 } & ButtonProps;
 
 export default function LinkButton({text, href, style, className, target}: LinkButtonProps): React.ReactElement {
@@ -17,7 +16,7 @@ export default function LinkButton({text, href, style, className, target}: LinkB
   return (
     <Link className={classNames.join(' ')}
           href={href}
-          target={target}>
+          target={target ?? '_self'}>
       {text}
     </Link>
   );
