@@ -1,0 +1,46 @@
+@use '../variables.scss' as *;
+@use '../functions.scss' as *;
+@use 'sass:color' as sass-color;
+
+$padding-x: rem(12);
+$brightness-offset: 12%;
+
+.btn {
+  display: block;
+  padding: rem(8) $padding-x rem(6) $padding-x;
+  border-radius: calc($padding-x * 2);
+  color: $font-color-primary-light;
+  background-color: $bg-color-cream;
+  font-size: rem(14);
+  transition: all .125s ease-in-out;
+  border: rem(2) solid #282936;
+  box-shadow: 0 rem(4) sass-color.scale($bg-color-primary, $lightness: -$brightness-offset);
+  width: fit-content;
+  max-width: 100%;
+
+  &:hover {
+    cursor: pointer;
+    background-color: sass-color.scale($bg-color-cream, $lightness: $brightness-offset);
+    color: $font-color-primary-light;
+    border-color: $bg-color-primary;
+  }
+
+  &.secondary {
+    background-color: $bg-color-accent;
+    color: $font-color-primary-light;
+    box-shadow: 0 rem(4) sass-color.scale($bg-color-accent, $lightness: -$brightness-offset);
+    border-color: $bg-color-accent;
+    
+    &:hover {
+      $secondary-hover-color: sass-color.scale($bg-color-accent, $lightness: $brightness-offset);
+
+      background-color: $secondary-hover-color;
+      border-color: $secondary-hover-color;
+    }
+  }
+
+  &:active {
+    box-shadow: unset;
+    transform: translateY(rem(4));
+  }
+}

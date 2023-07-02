@@ -8,7 +8,8 @@ import { MouseEventHandler } from "react";
 
 // Component imports
 const LordIcon = dynamic(() => import('../components/LordIcon'));
-const Link = dynamic(() => import('next/link'));
+const LinkButton = dynamic(() => import('../components/LinkButton'));
+const Button = dynamic(() => import('../components/Button').then(mod => mod.Button));
 
 export type HeroProps = {
   title: string,
@@ -76,13 +77,15 @@ export default function Hero({ title, dark, type, order, lordIcon, link, button 
         {/* Links */}
         {
           !!link &&
-          <Link className='btn' href={link.href}>{link.text}</Link>
+          <LinkButton href={link.href} text={link.text} />
         }
 
         {/* Buttons */}
         {
           !!button &&
-          <button className={`btn ${button.type}`} onClick={button.onClick}>{button.text}</button>
+          <Button text={button.text}
+                  onClick={button.onClick}
+                  style={button.type} />
         }
 
       </div>

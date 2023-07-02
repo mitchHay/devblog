@@ -18,7 +18,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
   const timeToRead = getTimeToRead(content);
   const path = useRouter().asPath;
   
-  shareUrl = `${shareUrl}${path}`
+  shareUrl = `${shareUrl}${path}`;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -66,7 +66,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
         <Image 
           className={styles.postBanner} 
           src={bannerImage} 
-          fill
+          fill={true}
           alt={`${title} banner`}
           priority={true}
           loading='eager'
@@ -74,7 +74,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
           sizes='100vw' />
         <h1 className={styles.postTitle}>{title}</h1>
         <div className={styles.authorCard}>
-          <span>Posted: { new Date(date).toDateString() }</span>
+          <span>Posted: { new Date(date).getDate() }</span>
           <span>{ timeToRead } min read</span>
         </div>
 

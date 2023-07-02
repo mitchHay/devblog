@@ -3,6 +3,7 @@ import styles from '../styles/Header.module.scss';
 import { getFontClass } from '../services/fonts.service';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import { openDialog } from './ContactModal';
 
 const Link = dynamic(() => import('next/link'));
 
@@ -116,6 +117,16 @@ export default function Header() {
         </li>
       </ul>
       <ul className={styles.socialsContainer}>
+        <li className={ styles.navItem }>
+          <button onClick={openDialog}>
+            <img src='/images/icon-email.svg'
+                 width={16}
+                 height={16}
+                 loading='eager'
+                 alt="Contact me"/>
+            <span>Contact</span>
+          </button>
+        </li>
         <li className={ styles.navItem }>
           <Link href='https://twitter.com/mitchy_hay' target='_blank'>
             <img src='/images/icon-twitter.svg'

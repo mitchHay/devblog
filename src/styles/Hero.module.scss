@@ -10,7 +10,7 @@
   text-align: center;
   color: $font-color-primary;
   background-color: $bg-color-primary;
-  border-radius: rem(4);
+  border-radius: rem(8);
   justify-content: center;
   align-items: center;
   min-height: rem(150);
@@ -27,7 +27,8 @@
     gap: rem(16);
     min-width: 66%;
 
-    .btn {
+    a,
+    button {
       margin: 0 auto;
     }
   }

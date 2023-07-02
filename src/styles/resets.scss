@@ -1,0 +1,18 @@
+/**
+** Various browser resets for HTML element
+**/
+
+button {
+  border: unset;
+  background-color: transparent;
+  transition: all .125s ease-in-out; // Default transition
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input,
+textarea {
+  outline: 0;
+}

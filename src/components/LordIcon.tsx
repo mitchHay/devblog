@@ -12,7 +12,7 @@ export type LordIconTrigger =
   | 'in-viewport';
 
 export type LordIconProps = {
-  src?: string;
+  src: string;
   trigger?: LordIconTrigger;
   primaryColor?: string;
   secondaryColor?: string;

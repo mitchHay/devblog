@@ -9,22 +9,23 @@ const FadeIn = dynamic(() => import('../components/FadeIn'));
 const ContactModal = dynamic(() => import('../components/ContactModal'));
 const Hero = dynamic(() => import('../components/Hero'));
 
+function processOpenQuery(query?: string | string[]): void {
+  if (!query) {
+    return;
+  }
+
+  switch (query) {
+    case 'contact':
+      openDialog();
+      break;
+  }
+}
+
 export default function Home() {
   const query = useRouter().query;
   const { open } = query;
 
-  if (!!open) {
-    switch (open) {
-      case 'contact':
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm?.style.display === 'block') {
-          break;
-        }
-
-        openDialog();
-        break;
-    }
-  }
+  processOpenQuery(open);
 
   return (
     <>
@@ -33,7 +34,6 @@ export default function Home() {
       <main className={styles.main}>
         <ContactModal />
 
-        {/* TODO: Make component */}
         <div className={styles.hero}>
           <FadeIn className={styles.container}>
             <Image className={styles.avatar}

@@ -1,7 +1,10 @@
+import dynamic from "next/dynamic";
 import { getFontClass } from "../services/fonts.service";
 
 import styles from '../styles/components/ContactModal.module.scss';
 import { block } from "million/react";
+
+const Button = dynamic(() => import('../components/Button').then(mod => mod.Button));
 
 export function openDialog(): void {
   const form = document.getElementById('contact-form');
@@ -25,6 +28,7 @@ function ContactModalFn(): React.ReactElement {
         <button type='button' className={styles.closeBtn} onClick={openDialog}>
           <img src="/images/icon-close.svg" width={24} height={24} loading="lazy" />
         </button>
+        
         <span className={`${styles.contactTitle} ${getFontClass('Lacquer')}`}>Contact me</span>
 
         <label htmlFor='name'>Your Name:</label>
@@ -34,9 +38,12 @@ function ContactModalFn(): React.ReactElement {
         <input type="email" name="email" id="email" placeholder='you@mailprovider.com' autoComplete="email"/>
 
         <label htmlFor='message'>Message:</label>
-        <textarea name="message" id="message" placeholder='What are you reaching out about?' rows={4}></textarea>
+        <textarea name="message" id="message" placeholder='What are you reaching out about?' rows={4}/>
 
-        <button className='btn secondary' type="submit">Send it</button>
+        <Button className={styles.submitBtn}
+                style="secondary"
+                text="Send it"
+                type="submit" />
       </form>
     </div>
   );

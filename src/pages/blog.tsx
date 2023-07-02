@@ -96,8 +96,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
           <input 
             className={styles.blogSearch} 
             id='blog-search' 
-            placeholder='Press / to search for a post...'/>
-            <p className={styles.contactCta}>Vibing with my content? <a className={styles.linkBtn} onClick={openDialog}>Reach out</a></p>
+            placeholder='Press / to search for a post...' />
         </FadeIn>
 
         <FadeIn className={styles.blogSubtitle}>
@@ -108,7 +107,7 @@ export default function Blog({ posts }: { posts: Post[] }) {
             placeholder='Sort'
             options={options}
             value={options[0]}
-            onSelect={(option) => sort(option)}/>
+            onSelect={(option) => sort(option)} />
         </FadeIn>
 
         {

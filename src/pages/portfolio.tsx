@@ -6,7 +6,7 @@ const LordIcon = dynamic(() => import('../components/LordIcon'));
 const SiteHead = dynamic(() => import('../components/SiteHead'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const Image = dynamic(() => import('next/image'));
-const Link = dynamic(() => import('next/link'));
+const LinkButton = dynamic(() => import('../components/LinkButton'));
 const ContactModal = dynamic(() => import('../components/ContactModal'));
 
 export default function Portfolio() {
@@ -50,16 +50,12 @@ export default function Portfolio() {
                      priority={true}
                      placeholder='blur' />
             </div>
-            <Link className={`btn primary ${styles.ctaBtn}`} href={'https://makeupbyamymaree.com.au'} target='_blank'>Check it out!</Link>
+            <LinkButton className={`btn primary ${styles.ctaBtn}`} 
+                        href={'https://makeupbyamymaree.com.au'}
+                        text='Check it out'
+                        target='_blank'/>
           </FadeIn>
         </div>
-
-        <FadeIn className={`${styles.heroCta} ${styles.heroBasic}`}>
-          <div className={styles.heroContainer}>
-            <h2>Loving what you see? </h2>
-            <button className='btn secondary' onClick={openDialog}>Contact me</button>
-          </div>
-        </FadeIn>
 
       </main>
     </>

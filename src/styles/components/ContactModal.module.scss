@@ -38,19 +38,20 @@
     padding: rem(24) rem(32);
     background-color: $bg-color-primary;
     color: $font-color-primary;
-    border-radius: rem(4);
+    border-radius: rem(8);
     max-width: rem(500);
     width: 100%;
     animation-name: dialog-open;
     animation-duration: .25s;
 
+    .submitBtn {
+      min-width: 20%;
+      margin-left: auto;
+    }
+
     .closeBtn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: absolute;
       right: rem(32);
-      font-size: rem(24);
 
       > img {
         filter: invert(1);
@@ -59,9 +60,8 @@
       }
 
       &:hover {
-        > img {
-          filter: invert(0);
-        }
+        transform: scale(1.1);
+        filter: drop-shadow(0px 0px rem(8) $bg-color-accent);
       }
     }
 
@@ -76,8 +76,7 @@
     input,
     textarea {
       padding: rem(8) rem(16);
-      border: rem(2) solid white;
-      outline: 0;
+      border: rem(2) solid $bg-color-cream;
       border-radius: rem(4);
       color: $font-color-primary;
       background-color: $bg-color-primary;
