@@ -2,7 +2,7 @@
 module.exports = {
   siteUrl: process.env.SITE_URL,
   generateRobotsTxt: true,
-  output: 'static',
+  output: 'export',
   exclude: [
     "/blog/test"
   ]
