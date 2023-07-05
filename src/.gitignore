@@ -13,13 +13,6 @@
 /dist/
 /out/
 
-# Sitemap
-/public/sitemap*.xml
-/public/robots.txt
-
-# Partytown
-/public/~partytown/
-
 # production
 /build
 
