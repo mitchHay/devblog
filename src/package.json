@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run patch-partytown && next dev --port 8080",
-    "build": "npm run patch-partytown && next build && next-export-optimize-images && npm run sitemap",
+    "dev": "npm run partytown && next dev --port 8080",
+    "build": "npm run partytown && next build && next-export-optimize-images && npm run sitemap",
     "partytown": "partytown copylib public/~partytown",
-    "patch-partytown": "chmod +x ./scripts/partytown.sh && ./scripts/partytown.sh",
     "lint": "next lint",
     "export:analyze": "ANALYZE_BUNDLE=true && npm run build",
     "sitemap": "next-sitemap"
