@@ -13,6 +13,30 @@ const SiteHead = dynamic(() => import('../../components/SiteHead'));
 const FadeIn = dynamic(() => import('../../components/FadeIn'));
 const Image = dynamic(() => import('next/image'));
 
+function generatePostedDate(date: Date) {
+  const now = new Date();
+  const diff = Math.floor(now.getTime() - date.getTime());
+  const day = 1000 * 60 * 60 * 24;
+
+  const days = Math.floor(diff / day);
+  if (days < 7) {
+    return `${days} days ago`;
+  }
+
+  const weeks = Math.floor(days / 7);
+  if (weeks < 4) {
+    return `${weeks} weeks ago`;
+  }
+
+  const months = Math.floor(days / 31);
+  if (months < 12) {
+    return `${months} months ago`;
+  }
+
+  const years = Math.floor(months / 12);
+  return `${years} years ago`;
+}
+
 export default function Post({ frontmatter, content, shareUrl }: any) {
   const { title, description, author, category, date, bannerImage, tags } = frontmatter as FrontMatterData;
   const timeToRead = getTimeToRead(content);
@@ -74,7 +98,7 @@ export default function Post({ frontmatter, content, shareUrl }: any) {
           sizes='100vw' />
         <h1 className={styles.postTitle}>{title}</h1>
         <div className={styles.authorCard}>
-          <span>Posted: { new Date(date).getDate() }</span>
+          <span>Posted: { generatePostedDate(new Date(date)) }</span>
           <span>{ timeToRead } min read</span>
         </div>
 

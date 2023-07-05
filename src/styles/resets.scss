@@ -6,6 +6,7 @@ button {
   border: unset;
   background-color: transparent;
   transition: all .125s ease-in-out; // Default transition
+  font-weight: normal;
 
   &:hover {
     cursor: pointer;

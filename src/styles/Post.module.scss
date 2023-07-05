@@ -103,7 +103,7 @@
 
   // Markdown link styling
   p > a,
-  main li > a {
+  li > a {
     border-bottom: rem(1) solid $font-color-primary-light;
     transition: border-bottom .125s ease-in-out;
 

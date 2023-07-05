@@ -10,6 +10,7 @@ import GTMService from '../services/gtm.service';
 import { Partytown } from '@builder.io/partytown/react';
 
 const Head = dynamic(() => import('next/head'));
+const ContactModal = dynamic(() => import('../components/ContactModal'));
 const Layout = dynamic(() => import('../components/Layout'));
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
@@ -104,6 +105,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       {/* Website layout */}
       <Layout>
+        <ContactModal />
         <Component {...pageProps} />
       </Layout>
     </>

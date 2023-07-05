@@ -6,7 +6,6 @@ import { openDialog } from '../components/ContactModal';
 const SiteHead = dynamic(() => import('../components/SiteHead'));
 const Image = dynamic(() => import('next/image'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
-const ContactModal = dynamic(() => import('../components/ContactModal'));
 const Hero = dynamic(() => import('../components/Hero'));
 
 function processOpenQuery(query?: string | string[]): void {
@@ -32,8 +31,6 @@ export default function Home() {
       <SiteHead title={'Home | Mitchell Hayward'}
         description={"Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!"} />
       <main className={styles.main}>
-        <ContactModal />
-
         <div className={styles.hero}>
           <FadeIn className={styles.container}>
             <Image className={styles.avatar}
@@ -61,7 +58,7 @@ export default function Home() {
               }}
               lordIcon={{
                 src: 'zjscbpdr.json',
-                loading: 'eager',
+                loading: 'lazy',
                 delay: 10,
                 primaryColor: '#0A0012',
                 secondaryColor: '#BD93F9'
@@ -84,8 +81,8 @@ export default function Home() {
               }}
               lordIcon={{
                 src: 'flvisirw.json',
-                loading: 'eager',
-                delay: 1000,
+                loading: 'lazy',
+                delay: 2500,
                 primaryColor: '#0A0012',
                 secondaryColor: '#BD93F9'
               }}
@@ -112,8 +109,8 @@ export default function Home() {
             }}
             lordIcon={{
               src: 'pdpnqfoe.json',
-              loading: 'eager',
-              delay: 1000,
+              loading: 'lazy',
+              delay: 2500,
               primaryColor: '#BD93F9',
               secondaryColor: '#0A0012'
             }}

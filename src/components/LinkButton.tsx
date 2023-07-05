@@ -21,9 +21,3 @@ export default function LinkButton({text, href, style, className, target}: LinkB
     </Link>
   );
 }
-
-// const LinkButton = block(LinkButtonFn);
-
-// export {
-//   LinkButton
-// };

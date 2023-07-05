@@ -155,6 +155,7 @@
       }
 
       >.navItem {
+        button,
         a {
           display: flex;
           flex-direction: row;
@@ -189,7 +190,7 @@
     .socialsContainer {
       position: fixed;
       width: 100%;
-      top: rem(206);
+      top: rem(190);
     }
   }
 }

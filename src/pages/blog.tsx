@@ -12,7 +12,6 @@ const SiteHead = dynamic(() => import('../components/SiteHead'));
 const LordIcon = dynamic(() => import('../components/LordIcon'));
 const FadeIn = dynamic(() => import('../components/FadeIn'));
 const Select = dynamic(() => import('../components/Select'));
-const ContactModal = dynamic(() => import('../components/ContactModal'));
 
 export default function Blog({ posts }: { posts: Post[] }) {
   const [blogPosts, setBlogPosts] = useState(posts);
@@ -72,8 +71,6 @@ export default function Blog({ posts }: { posts: Post[] }) {
       <SiteHead title={'Blog | Mitchell Hayward'}
         description={'Welcome to my thoughtspace! Here you\'ll find me talking about anything from front-end development, game development, or test automation.'} />
       <main className={styles.blogMain}>
-        <ContactModal />
-
         <FadeIn className={styles.blogHero}>
           <LordIcon 
             primaryColor='#0A0012'

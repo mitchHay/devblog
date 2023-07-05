@@ -7,6 +7,7 @@ $brightness-offset: 12%;
 
 .btn {
   display: block;
+  position: relative;
   padding: rem(8) $padding-x rem(6) $padding-x;
   border-radius: calc($padding-x * 2);
   color: $font-color-primary-light;
@@ -19,8 +20,7 @@ $brightness-offset: 12%;
   max-width: 100%;
 
   &:hover {
-    cursor: pointer;
-    background-color: sass-color.scale($bg-color-cream, $lightness: $brightness-offset);
+    background-color: $bg-color-cream;
     color: $font-color-primary-light;
     border-color: $bg-color-primary;
   }
