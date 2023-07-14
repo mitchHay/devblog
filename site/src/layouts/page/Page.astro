@@ -1,0 +1,35 @@
+---
+import BaseHead from '../../components/base-head/BaseHead.astro';
+import Header from '../../components/header/Header.astro';
+import Footer from '../../components/footer/Footer.astro';
+import './Page.scss';
+
+const { title, description, className } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+  <body>
+    <!-- Site theme -->
+    <script defer is:inline>
+      const currentTheme = window.localStorage.getItem('site-theme');
+      switch (currentTheme) {
+        case 'dark':
+          document.body.classList.add('theme-dark');
+          break;
+        case 'light':
+          document.body.classList.add('theme-light');
+          break;
+      }
+    </script>
+    
+		<Header />
+		<main class={className}>
+      <slot />
+    </main>
+  </body>
+  <Footer />
+</html>

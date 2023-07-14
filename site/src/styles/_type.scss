@@ -1,0 +1,30 @@
+// Variables
+$font-name-heading: 'Lacquer';
+$font-name-body: 'NunitoSans';
+$font-name-code: 'SourceCodePro';
+
+// Functions
+@function format-font-stack($desired-font, $fallback) {
+  @return #{$desired-font + ", " + $fallback};
+} 
+
+// Stacks
+$font-family-heading: format-font-stack($font-name-heading, sans-serif);
+$font-family-body: format-font-stack($font-name-body, sans-serif);
+$font-family-code: format-font-stack($font-name-code, sans-serif);
+
+@font-face {
+  font-family: $font-name-heading;
+  src: url('/fonts/Lacquer.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $font-name-body;
+  src: url('/fonts/NunitoSans.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

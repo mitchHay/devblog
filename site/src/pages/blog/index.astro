@@ -1,0 +1,26 @@
+---
+import Page from '../../layouts/page/Page.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
+
+const title = "Blog | Mitchell Hayward";
+const description = "Welcome to my thoughtspace! Here you'll find me talking about anything from front-end development, game development, or test automation.";
+const posts = (await getCollection('blog')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Page title={title} description={description}>
+  <section>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <FormattedDate date={post.data.pubDate} />
+            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Page>

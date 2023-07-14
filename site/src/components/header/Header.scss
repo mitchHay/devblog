@@ -1,0 +1,46 @@
+@use '../../styles/colors' as *;
+@use '../../styles/functions' as *;
+
+header {
+  position: sticky;
+  padding: rem(16) rem(48);
+  top: 0;
+  z-index: 999;
+  background-color: var(--bg-color);
+
+  .nav-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    ul {
+      display: flex;
+      align-items: center;
+      margin: unset;
+      padding: unset;
+      transition: padding .25s ease-in-out;
+
+      .avatar {
+        display: flex;
+        margin-right: rem(32);
+
+        > img {
+          max-width: rem(26);
+          max-height: rem(26);
+          border-radius: rem(20);
+        }
+      }
+
+      li {
+        display: inline-block;
+        max-width: 100%;
+        list-style: none;
+
+        &:not(:last-child):not(.avatar) {
+          margin-right: rem(16);
+        }
+      }
+    }
+  }
+}

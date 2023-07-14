@@ -1,0 +1,57 @@
+@use './type' as *;
+@use './colors' as *;
+@use './functions' as *;
+
+:root {
+  --bg-color: white;
+  --font-color: #{$color-purple-dark};
+  --icon-filter: invert(0);
+  --max-width: #{rem(900)};
+}
+
+body {
+	font-family: $font-family-body;
+  color: var(--font-color);
+  background-color: var(--bg-color);
+
+  &.theme-dark {
+    --font-color: white;
+    --bg-color: #{$color-purple-dark};
+    --icon-filter: invert(1);
+  }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+}
+
+// Highlight
+* {
+  box-sizing: border-box;
+  
+  &::selection {
+    background-color: $color-highlight;
+    color: $color-purple-dark;
+  }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  body {
+    --font-color: white;
+    --bg-color: #{$color-purple-dark};
+    --icon-filter: invert(1);
+
+    &.theme-light {
+      --font-color: #{$color-purple-dark};
+      --bg-color: white;
+      --icon-filter: invert(0);
+    }
+  }
+}

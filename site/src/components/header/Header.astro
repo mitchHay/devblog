@@ -1,0 +1,61 @@
+---
+import HeaderLink from '../header-link/HeaderLink.astro';
+import ThemeSwitch from '../theme-switch/ThemeSwitch';
+import { Image } from 'astro:assets';
+import avatarImg from '../../assets/images/avatar.png';
+
+import './Header.scss';
+
+const links = [
+  { text: "Home", href: "/" },
+  { text: "Blog", href: "/blog" }
+];
+
+const socials = [
+  { text: "Twitter", href: "https://twitter.com/mitchy_hay", iconSrc: "icon-twitter" },
+  { text: "GitHub", href: "https://github.com/mitchHay", iconSrc: "icon-github" }
+];
+---
+
+<header>
+	<nav class="nav-main">
+    <ul>
+      <li class="avatar">
+        <Image src={avatarImg}
+               format="webp" 
+               alt="avatar" 
+               width={200}
+               height={200}
+               loading="eager" />
+      </li>
+      {
+        links.map(link => (
+          <li>
+            <HeaderLink href={link.href} 
+                        alt={link.text}
+                        showText={true}>
+              { link.text }
+            </HeaderLink>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="nav-socials">
+      <ul>
+        {
+          socials.map(social => (
+            <li>
+              <HeaderLink href={social.href}
+                          iconSrc={`/images/${social.iconSrc}.svg`}
+                          alt={social.text}>
+                { social.text }
+              </HeaderLink>
+            </li>
+          ))
+        }
+        <ThemeSwitch client:visible />
+      </ul>
+    </div>
+	</nav>
+</header>
