@@ -13,6 +13,7 @@ body {
 	font-family: $font-family-body;
   color: var(--font-color);
   background-color: var(--bg-color);
+  margin: 0;
 
   &.theme-dark {
     --font-color: white;

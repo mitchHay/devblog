@@ -14,7 +14,7 @@ const { title, description, className } = Astro.props;
 	</head>
   <body>
     <!-- Site theme -->
-    <script defer is:inline>
+    <script is:inline>
       const currentTheme = window.localStorage.getItem('site-theme');
       switch (currentTheme) {
         case 'dark':

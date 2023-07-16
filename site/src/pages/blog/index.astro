@@ -2,15 +2,14 @@
 import Page from '../../layouts/page/Page.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const title = "Blog | Mitchell Hayward";
-const description = "Welcome to my thoughtspace! Here you'll find me talking about anything from front-end development, game development, or test automation.";
 const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
-<Page title={title} description={description}>
+<Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section>
     <ul>
       {

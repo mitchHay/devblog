@@ -1,6 +1,6 @@
 ---
 import HeaderLink from '../header-link/HeaderLink.astro';
-import ThemeSwitch from '../theme-switch/ThemeSwitch';
+import ThemeSwitch from '../theme-switch/ThemeSwitch.astro';
 import { Image } from 'astro:assets';
 import avatarImg from '../../assets/images/avatar.png';
 
@@ -54,7 +54,7 @@ const socials = [
             </li>
           ))
         }
-        <ThemeSwitch client:visible />
+        <ThemeSwitch />
       </ul>
     </div>
 	</nav>

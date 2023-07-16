@@ -1,9 +1,10 @@
 @use '../../styles/colors' as *;
 @use '../../styles/icons' as *;
+@use '../../styles/functions' as *;
 
 $transition-speed: .25s;
 
- .switch {
+.switch {
   position: relative;
   display: inline-block;
   width: 42px;
@@ -16,14 +17,12 @@ $transition-speed: .25s;
 
     &:checked {
       + .slider {
-        background-color: $color-purple-light;
+        background: $gradient-blue-to-purple;
       }
 
       + .slider:before {
         transform: translateX(18px);
         background-image: $icon-moon;
-        background-repeat: no-repeat;
-        background-position: center;
       }
     }
 
@@ -41,9 +40,9 @@ $transition-speed: .25s;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
-    transition: $transition-speed;
-    border-radius: 34px;
+    background-color: #CCCCCC;
+    transition: $transition-speed ease-in-out;
+    border-radius: rem(34);
 
     &:before {
       position: absolute;
@@ -55,6 +54,10 @@ $transition-speed: .25s;
       background-color: white;
       transition: $transition-speed;
       border-radius: 50%;
+      background-image: $icon-sun;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
     }
   }
 }

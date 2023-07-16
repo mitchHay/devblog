@@ -14,7 +14,7 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a href={href} class:list={[className, { 'active': isActive }, { 'icon-only': !!iconSrc && !showText }]} {...props}>
   {
     !!iconSrc &&
     <img class="icon" width="16" height="16" src={iconSrc} loading="eager" alt={alt} />

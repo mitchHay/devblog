@@ -1,0 +1,40 @@
+---
+import './ThemeSwitch.scss';
+---
+
+<label class="switch">
+  <input type="checkbox" id="switch-input" />
+  <span class='slider' />
+</label>
+
+<script is:inline>
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const checkboxEl = document.getElementById('switch-input');
+
+  const onChange = () => {
+    let theme;
+    
+    if (prefersDarkScheme.matches) {
+      document.body.classList.toggle('theme-light');
+      theme = document.body.classList.contains('theme-light')
+        ? 'light'
+        : 'dark';
+    } else {
+      document.body.classList.toggle('theme-dark');
+      theme = document.body.classList.contains('theme-dark')
+        ? 'dark'
+        : 'light';
+    }
+
+    window.localStorage.setItem('site-theme', theme);
+  };
+
+  checkboxEl.onchange = onChange;
+
+  if (
+    prefersDarkScheme.matches 
+    && window.localStorage.getItem('site-theme') !== 'light'
+  ) {
+    checkboxEl.checked = true;
+  }
+</script>

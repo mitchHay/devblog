@@ -3,6 +3,8 @@
 @use '../../styles/type' as *;
 
 a {
+  $root-element: &;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,6 +13,11 @@ a {
   border-radius: rem(8);
   transition: background-color .125s ease-in-out;
   padding: rem(4) rem(8);
+
+  &.icon-only {
+    padding: rem(4);
+    border-radius: 50%;
+  }
 
   .header-link-content {
     font-size: rem(16);

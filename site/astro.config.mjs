@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
+import { loadEnv } from "vite";
+const { SITE_URL } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: SITE_URL,
   experimental: {
     assets: true
    },

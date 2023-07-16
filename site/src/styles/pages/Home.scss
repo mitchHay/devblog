@@ -1,0 +1,38 @@
+@use '../functions' as *;
+
+@keyframes wave {
+  0% { transform: rotate(0deg) }
+  // Core animation
+  10% { transform: rotate(10deg) }
+  20% { transform: rotate(-4deg) }
+  30% { transform: rotate(10deg) }
+  40% { transform: rotate(-4deg) }
+  50% { transform: rotate(6deg) }
+  // Resets
+  60% { transform: rotate(0deg) }
+  100% { transform: rotate(0deg) }
+}
+
+.page-landing {
+  text-align: center;
+  max-width: rem(500);
+
+  .img-avatar {
+    max-width: rem(150);
+    max-height: rem(150);
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  .h1-landing {
+    display: flex;
+    justify-content: center;
+    font-size: rem(42);
+    gap: rem(8);
+
+    .wave {
+      animation: wave 2.5s infinite;
+      transform-origin: 70% 70%;
+    }
+  }
+}
