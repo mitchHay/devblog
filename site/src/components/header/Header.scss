@@ -1,5 +1,7 @@
 @use '../../styles/colors' as *;
 @use '../../styles/functions' as *;
+@use '../../styles/icons' as *;
+@use '../../styles/breakpoints' as *;
 
 header {
   position: sticky;
@@ -7,6 +9,14 @@ header {
   top: 0;
   z-index: 999;
   background-color: var(--bg-color);
+
+  .mobile-menu {
+    display: none;
+    background-image: $icon-bars;
+    width: rem(16);
+    height: rem(16);
+    filter: var(--icon-filter);
+  }
 
   .nav-main {
     display: flex;
@@ -41,6 +51,46 @@ header {
           margin-right: rem(16);
         }
       }
+
+      &.nav-links {
+        @media screen and (max-width: $breakpoint-xs) {
+          display: none;
+          position: absolute;
+          flex-direction: column;
+          top: rem(56);
+          left: 0;
+          width: 100%;
+          background-color: var(--bg-color);
+          border-bottom: rem(2) solid $color-purple-light;
+          align-items: flex-start;
+          justify-content: center;
+          padding: 0 rem(24) rem(16) rem(24);
+
+          .avatar {
+            display: none;
+          }
+
+          li {
+            width: 100%;
+
+            &:not(:last-child) {
+              margin: 0 0 rem(16) 0;
+            }
+
+            div {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    padding: rem(16) rem(32);
+
+    .mobile-menu {
+      display: inline-block;
     }
   }
 }

@@ -1,9 +1,17 @@
+@use '../../styles/functions' as *;
+
 .blog {
   img {
     max-width: 100%;
+    object-fit: contain;
 
     &.img-hero {
       width: 100%;
     }
+  }
+
+  pre {
+    padding: rem(16);
+    border-radius: rem(4);
   }
 }

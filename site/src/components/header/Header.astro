@@ -19,7 +19,9 @@ const socials = [
 
 <header>
 	<nav class="nav-main">
-    <ul>
+    <span class="mobile-menu" id="mobile-menu" />
+
+    <ul class="nav-links" id="nav-links">
       <li class="avatar">
         <Image src={avatarImg}
                format="webp" 
@@ -59,3 +61,17 @@ const socials = [
     </div>
 	</nav>
 </header>
+
+<script>
+  const navLinks = document.getElementById("nav-links") as HTMLDivElement;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLSpanElement;
+  mobileMenu.onclick = () => {
+    console.log(navLinks.style.display);
+    if (!!navLinks.style.display && navLinks.style.display !== 'none') {
+      navLinks.style.display = 'none';
+      return;
+    }
+
+    navLinks.style.display = 'inline-block';
+  }
+</script>
