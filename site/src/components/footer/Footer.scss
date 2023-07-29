@@ -1,4 +1,7 @@
+@use '../../styles/functions' as *;
+
 footer {
-  padding: 25px;
+  padding: rem(24);
   text-align: center;
+  font-size: rem(14);
 }
