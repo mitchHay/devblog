@@ -6,7 +6,7 @@
 
 First, run the development server via `npm run dev`.
 
-Now you can head to [http://localhost:8080](http://localhost:8080) and with any luck you should see a pretty schmick home page!
+Now you can head to [http://localhost:3000](http://localhost:3000) and with any luck you should see a pretty schmick home page!
 
 ## Creating a production build
 

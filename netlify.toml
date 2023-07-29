@@ -1,4 +1,4 @@
 [build]
-  base = "src/"
+  base = "site/"
   publish = "dist/"
   command = "SITE_URL=$URL npm run build"
