@@ -1,9 +1,17 @@
 ---
-import './Footer.scss';
-
 const today = new Date();
 ---
 
+<!-- Template -->
 <footer>
-  &copy; {today.getFullYear()} Mitchell Hayward
+  &copy; {today.getFullYear()} Mitchell Hayward | <a>Built with Astro</a>
 </footer>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Footer.scss' as *;
+
+  footer {
+    @include footer-styles();
+  }
+</style>

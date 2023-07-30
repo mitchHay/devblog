@@ -4,8 +4,6 @@ import ThemeSwitch from '../theme-switch/ThemeSwitch.astro';
 import { Image } from 'astro:assets';
 import avatarImg from '../../assets/images/avatar.png';
 
-import './Header.scss';
-
 const links = [
   { text: "Home", href: "/" },
   { text: "Blog", href: "/blog" }
@@ -17,6 +15,7 @@ const socials = [
 ];
 ---
 
+<!-- Template -->
 <header>
 	<nav class="nav-main">
     <span class="mobile-menu" id="mobile-menu" />
@@ -62,6 +61,16 @@ const socials = [
 	</nav>
 </header>
 
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Header.scss' as *;
+
+  header {
+    @include header-styles();
+  }
+</style>
+
+<!-- JS -->
 <script>
   const navLinks = document.getElementById("nav-links") as HTMLDivElement;
   const mobileMenu = document.getElementById("mobile-menu") as HTMLSpanElement;

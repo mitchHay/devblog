@@ -1,11 +1,38 @@
 ---
-import './Button.scss';
-
 export interface Props {
 	text: string;
+  style?: 'primary' | 'secondary',
+  type?: 'button' | 'submit',
+  href?: string
 }
 
-const { text } = Astro.props;
+const { text, style = 'primary', href } = Astro.props;
+const classNames = [ 'btn', `btn__${style}` ];
+if (href) {
+  classNames.push('btn__anchor');
+}
 ---
 
-<button class="btn">{text}</button>
+<!-- Template -->
+{
+  href &&
+  <a class={classNames.join(' ')}
+     href={href}
+  >
+    {text}
+  </a>
+}
+
+{
+  !href &&
+  <button class={classNames.join(' ')}>{text}</button>
+}
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Button.scss' as *;
+
+  .btn {
+    @include button-styles();
+  }
+</style>

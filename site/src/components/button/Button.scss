@@ -2,38 +2,49 @@
 @use '../../styles/functions' as *;
 @use 'sass:color' as sass-color;
 
-$padding-x: rem(12);
+// Variables
+$padding-x: rem(16);
 $brightness-offset: 12%;
 
-.btn {
-  padding: rem(8) $padding-x;
-  border-radius: calc($padding-x * 2);
-  color: black;
-  background-color: $color-purple-light;
-  font-size: rem(14);
-  transition: all .125s ease-in-out;
-  border: rem(2) solid $color-purple-light;
-  box-shadow: 0 rem(4) sass-color.scale($color-purple-light, $lightness: -$brightness-offset);
-  width: fit-content;
-  max-width: 100%;
+// Mixins
+@mixin button-apply-hover($bg-color) {
+  background-color: $bg-color;
+  border: rem(2) solid $bg-color;
+  box-shadow: 0 rem(4) sass-color.scale($bg-color, $lightness: -$brightness-offset);
 
   &:hover {
-    border-color: $color-purple-dark;
+    $hover-color: sass-color.scale($bg-color, $lightness: $brightness-offset);
+
+    cursor: pointer;
+    background-color: $hover-color;
+    border-color: $hover-color;
+  }
+}
+
+@mixin button-styles() {
+  color: black;
+  padding: rem(8) $padding-x;
+  border-radius: calc($padding-x * 2);
+  font-size: rem(14);
+  font-weight: bold;
+  transition: all .125s ease-in-out;
+  line-height: 100%;
+
+  &__anchor {
+    display: block;
+    text-decoration: unset;
+    max-width: 100%;
+    width: fit-content;
+    margin: 0 auto;
   }
 
-  // &.secondary {
-  //   background-color: $bg-color-accent;
-  //   color: $font-color-primary-light;
-  //   box-shadow: 0 rem(4) sass-color.scale($bg-color-accent, $lightness: -$brightness-offset);
-  //   border-color: $bg-color-accent;
-    
-  //   &:hover {
-  //     $secondary-hover-color: sass-color.scale($bg-color-accent, $lightness: $brightness-offset);
+  &__primary {
+    @include button-apply-hover($color-purple-light);
+  }
 
-  //     background-color: $secondary-hover-color;
-  //     border-color: $secondary-hover-color;
-  //   }
-  // }
+  &__secondary {
+    @include button-apply-hover($color-cream);
+  }
 
   &:active {
     box-shadow: unset;

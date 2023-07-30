@@ -2,7 +2,7 @@
 @use '../../styles/functions' as *;
 @use '../../styles/type' as *;
 
-a {
+@mixin header-link-styles() {
   $root-element: &;
 
   display: flex;

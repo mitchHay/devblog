@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import './HeaderLink.scss';
 
 type Props = {
   iconSrc?: string,
@@ -23,3 +22,12 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
     { !!showText && <slot /> }
   </div>
 </a>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './HeaderLink.scss' as *;
+
+  a {
+    @include header-link-styles();
+  }
+</style>

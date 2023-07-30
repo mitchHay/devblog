@@ -32,6 +32,13 @@ h6 {
   font-family: $font-family-heading;
 }
 
+// Code
+code {
+  font-family: $font-family-code;
+  font-size: rem(14);
+  line-height: rem(16);
+}
+
 // Highlight
 * {
   box-sizing: border-box;

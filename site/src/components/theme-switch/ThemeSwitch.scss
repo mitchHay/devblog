@@ -4,7 +4,7 @@
 
 $transition-speed: .25s;
 
-.switch {
+@mixin switch-styles() {
   position: relative;
   display: inline-block;
   width: 42px;

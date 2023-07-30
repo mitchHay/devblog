@@ -3,7 +3,7 @@
 @use '../../styles/icons' as *;
 @use '../../styles/breakpoints' as *;
 
-header {
+@mixin header-styles() {
   position: sticky;
   padding: rem(24) rem(64);
   top: 0;

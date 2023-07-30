@@ -1,12 +1,19 @@
----
-import './ThemeSwitch.scss';
----
-
+<!-- Template -->
 <label class="switch">
   <input type="checkbox" id="switch-input" />
   <span class='slider' />
 </label>
 
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './ThemeSwitch.scss' as *;
+
+  .switch {
+    @include switch-styles();
+  }
+</style>
+
+<!-- JS -->
 <script is:inline>
   const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
   const checkboxEl = document.getElementById('switch-input');
