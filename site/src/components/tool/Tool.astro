@@ -8,7 +8,12 @@ const { name, imgSrc } = Astro.props;
 
 <!-- Template -->
 <span class="tool-item">
-  <img src={imgSrc} alt={name} height={28} width={28} />
+  <img src={imgSrc} 
+       alt={name} 
+       height={28} 
+       width={28}
+       decoding="async"
+       loading="lazy" />
   {name}
 </span>
 

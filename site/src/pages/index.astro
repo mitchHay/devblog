@@ -86,7 +86,10 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
     {
       topThreePosts.map(post => (
         <a class="blog-post-container" href={`/blog/${post.slug}`}>
-          <img src={post.data.heroImage} alt={`${post.data.title} banner image`} />
+          <img src={post.data.heroImage} 
+               alt={`${post.data.title} banner image`}
+               loading="lazy"
+               decoding="async" />
           <h4>{post.data.title}</h4>
           <p>{post.data.description}</p>
         </a>
