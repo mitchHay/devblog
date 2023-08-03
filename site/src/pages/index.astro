@@ -1,6 +1,7 @@
 ---
 import Page from '../layouts/page/Page.astro';
 import Button from '../components/button/Button.astro';
+import Card from '../components/card/Card.astro';
 import Highlight from '../components/highlight/Highlight.astro';
 import ToolContainer from '../components/tool-container/ToolContainer.astro';
 import Section from '../components/section/Section.astro';
@@ -9,34 +10,43 @@ import avatar from '../assets/images/avatar.png';
 import type { ToolProps } from '../components/tool/ToolProps';
 import { getCollection } from 'astro:content';
 
+// Images
+import angularLogo from '../assets/images/tools/angular.svg';
+import reactLogo from '../assets/images/tools/react.svg';
+import sassLogo from '../assets/images/tools/sass.png';
+import dotnetLogo from '../assets/images/tools/dotnet.svg';
+import dockerLogo from '../assets/images/tools/docker.png';
+import netlifyLogo from '../assets/images/tools/netlify.svg';
+import azureLogo from '../assets/images/tools/azure.png';
+
 const tools: ToolProps[] = [
   { 
     name: 'Angular',
-    imgSrc: '/images/tools/angular.svg'
+    imgSrc: angularLogo
   },
   {
     name: 'React',
-    imgSrc: '/images/tools/react.svg'
+    imgSrc: reactLogo
   },
   {
     name: 'Sass',
-    imgSrc: '/images/tools/sass.png'
+    imgSrc: sassLogo
   },
   {
     name: 'dotnet',
-    imgSrc: '/images/tools/dotnet.svg'
+    imgSrc: dotnetLogo
   },
   {
     name: 'docker',
-    imgSrc: '/images/tools/docker.png'
+    imgSrc: dockerLogo
   },
   {
     name: 'netlify',
-    imgSrc: '/images/tools/netlify.svg'
+    imgSrc: netlifyLogo
   },
   {
     name: 'Azure DevOps',
-    imgSrc: '/images/tools/azure.png'
+    imgSrc: azureLogo
   }
 ];
 
@@ -69,7 +79,7 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
       I've worked on various teams to help deliver exceptional, performant and accessible customer experiences to thousands of people.
     </p>
 
-    <h3>What's on my toolbelt?</h3>
+    <h3>What's on my tool belt?</h3>
 
     <ToolContainer tools={tools} />
   </Section>
@@ -85,14 +95,11 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
     <div class="blog-posts-container">
     {
       topThreePosts.map(post => (
-        <a class="blog-post-container" href={`/blog/${post.slug}`}>
-          <img src={post.data.heroImage} 
-               alt={`${post.data.title} banner image`}
-               loading="lazy"
-               decoding="async" />
-          <h4>{post.data.title}</h4>
+        <Card imgSrc={post.data.heroImage ?? ''}
+              title={post.data.title}
+              href={`/blog/${post.slug}`}>
           <p>{post.data.description}</p>
-        </a>
+        </Card>
       ))
     }
     </div>

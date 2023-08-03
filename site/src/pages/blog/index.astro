@@ -1,5 +1,6 @@
 ---
 import Page from '../../layouts/page/Page.astro';
+import Card from '../../components/card/Card.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
@@ -10,16 +11,72 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <h1>Welcome to my blog 💭</h1>
+  <p class="blog-blurb">Welcome to my thoughtspace! Feel free to have a snoop! I love to chat about anything really, but you'll mainly find me blabbing about frontend, game development, and test automation.</p>
+
   <section>
-    <ul>
+    <h2>Posts</h2>
+
+    <div class="input">
+      <label for="search-posts">Search</label>
+      <input placeholder="Search blog posts..." id="search-posts" />
+    </div>
+
+    <div class="posts-container">
       {
         posts.map((post) => (
-          <li>
+          <Card imgSrc={post.data.heroImage ?? ''}
+                title={post.data.title}
+                href={`/blog/${post.slug}`}>
             <FormattedDate date={post.data.pubDate} />
-            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-          </li>
+            <p>{post.data.description}</p>
+          </Card>
         ))
       }
-    </ul>
+    </div>
   </section>
 </Page>
+
+<style lang="scss">
+  @use '../../styles/functions' as *;
+  @use '../../styles/colors' as *;
+
+  .posts-container {
+    display: grid;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: rem(24);
+    grid-template-columns: 1fr 1fr;
+    margin: 0 rem(8);
+
+    @media screen and (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .blog-blurb {
+    padding: rem(16);
+    background-color: #F4F4F4;
+    color: $color-purple-dark;
+    border-radius: rem(8);
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    margin: 0 rem(8);
+
+    label {
+      margin-bottom: rem(2);
+    }
+
+    input {
+      color: var(--font-color-inverse);
+      background-color: var(--bg-color-inverse);
+      padding: rem(8) rem(12);
+      border: rem(1) solid black;
+      border-radius: rem(4);
+      margin-bottom: rem(24);
+    }
+  }
+</style>

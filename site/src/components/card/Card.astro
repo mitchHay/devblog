@@ -1,0 +1,28 @@
+---
+type Props = {
+  imgSrc: string,
+  href?: string,
+  title: string
+}
+
+const { imgSrc, href, title } = Astro.props;
+---
+
+<a class="card" href={href}>
+  <img src={imgSrc} 
+       alt={`${title} card image`}
+       loading="lazy"
+       decoding="async"
+       sizes="(max-width: 600px) 480px, 800px" />
+  <h4>{title}</h4>
+  <slot />
+</a>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Card.scss' as *;
+
+  .card {
+    @include card-styles();
+  }
+</style>

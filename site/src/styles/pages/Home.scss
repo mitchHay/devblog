@@ -1,6 +1,5 @@
 @use '../functions' as *;
 @use '../colors' as *;
-@use 'sass:color' as sass-color;
 
 @keyframes wave {
   0% { transform: rotate(0deg) }
@@ -52,26 +51,5 @@
     flex-wrap: wrap;
     max-width: 100%;
     margin-bottom: rem(24);
-
-    .blog-post-container {
-      $brightness-offset: 12%;
-      
-      padding: rem(24);
-      color: var(--font-color-inverse);
-      text-decoration: none;
-      border: rem(2) solid transparent;
-      border-radius: rem(12);
-      background-color: var(--bg-color-inverse);
-      transition: all .125s ease-in-out;
-
-      &:hover {
-        border-color: $color-purple-light;
-      }
-
-      img {
-        object-fit: contain;
-        max-width: 100%;
-      }
-    }
   }
 }

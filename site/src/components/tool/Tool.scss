@@ -5,6 +5,8 @@
   align-items: center;
 
   > img {
+    max-width: rem(24);
+    max-height: rem(24);
     margin-right: rem(8);
     object-fit: contain;
   }
