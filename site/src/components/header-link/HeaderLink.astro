@@ -4,16 +4,20 @@ import type { HTMLAttributes } from 'astro/types';
 type Props = {
   iconSrc?: string,
   alt: string,
-  showText?: boolean
+  showText?: boolean,
+  target?: '_self' | '_blank'
 } & HTMLAttributes<'a'>;
 
-const { href, alt, showText, iconSrc, class: className, ...props } = Astro.props;
+const { href, alt, showText, iconSrc, class: className, target = '_self' } = Astro.props;
 
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 ---
 
-<a href={href} class:list={[className, { 'active': isActive }, { 'icon-only': !!iconSrc && !showText }]} {...props}>
+<a href={href} 
+   class:list={[className, { 'active': isActive }, { 'icon-only': !!iconSrc && !showText }]}
+   target={target}
+>
   {
     !!iconSrc &&
     <img class="icon" width="16" height="16" src={iconSrc} loading="eager" alt={alt} />

@@ -1,10 +1,17 @@
 ---
+import { Image } from "astro:assets";
+import astroLogo from '../../assets/images/astro-icon-dark.svg';
+
 const today = new Date();
 ---
 
 <!-- Template -->
 <footer>
-  &copy; {today.getFullYear()} Mitchell Hayward | <a>Built with Astro</a>
+  <span class="copyright-text">&copy; {today.getFullYear()} Mitchell Hayward</span>
+  <a class="img-link-astro" href="https://astro.build/" target="_blank">
+    <Image src={astroLogo} height={14} width={14} alt="Astro logo" />
+    Built with Astro
+  </a>
 </footer>
 
 <!-- Scoped styles -->

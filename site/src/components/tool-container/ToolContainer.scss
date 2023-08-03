@@ -1,0 +1,8 @@
+@use '../../styles/functions' as *;
+
+@mixin tool-container-styles() {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: rem(16);
+}

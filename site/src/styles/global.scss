@@ -4,7 +4,10 @@
 
 :root {
   --bg-color: white;
+  --bg-color-inverse: #{$color-purple-dark};
   --font-color: #{$color-purple-dark};
+  --font-color-highlight: #{$color-purple-dark};
+  --font-color-inverse: #{$color-cream};
   --icon-filter: invert(0);
   --max-width: #{rem(900)};
 }
@@ -17,7 +20,9 @@ body {
 
   &.theme-dark {
     --font-color: white;
+    --font-color-inverse: #{$color-purple-dark};
     --bg-color: #{$color-purple-dark};
+    --bg-color-inverse: #{$color-cream};
     --icon-filter: invert(1);
   }
 }
@@ -45,20 +50,24 @@ code {
   
   &::selection {
     background-color: $color-highlight;
-    color: $color-purple-dark;
+    color: var(--font-color-highlight);
   }
 }
 
 // Dark mode
 @media (prefers-color-scheme: dark) {
   body {
-    --font-color: white;
+    --font-color: #{$color-cream};
+    --font-color-inverse: #{$color-purple-dark};
     --bg-color: #{$color-purple-dark};
+    --bg-color-inverse: #{$color-cream};
     --icon-filter: invert(1);
 
     &.theme-light {
       --font-color: #{$color-purple-dark};
+      --font-color-inverse: #{$color-cream};
       --bg-color: white;
+      --bg-color-inverse: #{$color-purple-dark};
       --icon-filter: invert(0);
     }
   }

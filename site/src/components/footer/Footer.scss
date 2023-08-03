@@ -1,7 +1,30 @@
 @use '../../styles/functions' as *;
 
 @mixin footer-styles() {
+  display: flex;
+  justify-content: center;
   padding: rem(24);
   text-align: center;
   font-size: rem(14);
+
+  .copyright-text {
+    &::after {
+      content: '|';
+      margin-left: rem(4);
+    }
+  }
+
+  .img-link-astro {
+    display: flex;
+    align-items: center;
+    color: var(--font-color);
+    text-decoration: none;
+    margin-left: rem(4);
+
+    img {
+      filter: var(--icon-filter);
+      margin-right: rem(4);
+      margin-top: rem(2);
+    }
+  }
 }

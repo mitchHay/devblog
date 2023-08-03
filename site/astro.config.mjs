@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, sharpImageService } from 'astro/config';
 import { loadEnv } from "vite";
 const { SITE_URL } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 import mdx from '@astrojs/mdx';
@@ -10,6 +10,9 @@ export default defineConfig({
   site: SITE_URL,
   experimental: {
     assets: true
-   },
+  },
+  image: {
+    service: sharpImageService(),
+  },
   integrations: [mdx(), sitemap(), react()]
 });

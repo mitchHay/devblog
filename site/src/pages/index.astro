@@ -1,10 +1,50 @@
 ---
 import Page from '../layouts/page/Page.astro';
 import Button from '../components/button/Button.astro';
+import Highlight from '../components/highlight/Highlight.astro';
+import ToolContainer from '../components/tool-container/ToolContainer.astro';
+import Section from '../components/section/Section.astro';
 import { Image } from 'astro:assets';
 import avatar from '../assets/images/avatar.png';
+import type { ToolProps } from '../components/tool/ToolProps';
+import { getCollection } from 'astro:content';
 
-import '../styles/pages/Home.scss';
+const tools: ToolProps[] = [
+  { 
+    name: 'Angular',
+    imgSrc: '/images/tools/angular.svg'
+  },
+  {
+    name: 'React',
+    imgSrc: '/images/tools/react.svg'
+  },
+  {
+    name: 'Sass',
+    imgSrc: '/images/tools/sass.png'
+  },
+  {
+    name: 'dotnet',
+    imgSrc: '/images/tools/dotnet.svg'
+  },
+  {
+    name: 'docker',
+    imgSrc: '/images/tools/docker.png'
+  },
+  {
+    name: 'netlify',
+    imgSrc: '/images/tools/netlify.svg'
+  },
+  {
+    name: 'Azure DevOps',
+    imgSrc: '/images/tools/azure.png'
+  }
+];
+
+const topThreePosts = (await getCollection('blog'))
+  .sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+  )
+  .slice(0, 3);
 
 const title = "Home | Mitchell Hayward";
 const description = "Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!";
@@ -19,24 +59,50 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
   <h1 class="h1-landing">
     Hey, I'm Mitch <span class="wave">👋</span>
   </h1>
-  <!-- TODO: Move to component -->
-  <h2>A little about me?</h2>
-  <p>
-    I've been in the software engineering industry for five years!
-    I love test automation, video games, and at the risk of sounding a bit vague 
-    the full vertical slice of development (although I do have a deep love for front-end 
-    developement in particular)!
+  <p class="landing-blurb">
+    A full-stack software engineer with over <Highlight text="five years" /> experience!
   </p>
 
-  <h2>Keen to see what I've done?</h2>
-  <Button text='See my work' href="/blog" />
+  <Section class='tools-section'
+           title="I've shipped 5+ apps for the web and mobile 🚀">
+    <p>
+      I've worked on various teams to help deliver exceptional, performant and accessible customer experiences to thousands of people.
+    </p>
 
-  <h2>Want to know an absolutely shocking fact?</h2>
-  <p>I actually got into programming through video games. The first thing I ever tinkered with was creating Minecraft mods and servers with Java. I quickly leaped into Unity - where I well and truly got bitten by the software dev (and game dev) bug.</p>
+    <h3>What's on my toolbelt?</h3>
 
-  <h2>I'm all about knowledge sharing</h2>
-  <Button text='Read my blog' href="/blog" />
+    <ToolContainer tools={tools} />
+  </Section>
 
-  <h2>What gets me up in the morning?</h2>
-  <p>I love making applications, games, and libraries that deliver awesome user/developer experiences. I'm 110% all about bringing amazing features and experiences to anyone who uses a product I’ve had the pleasure of working on. I’m also a huge lover of knowledge sharing, mentoring, and supporting people’s growth and development journeys in anyway I possibly can.</p>
+  <Section title='I love to learn and share knowledge!'>
+    <p>
+      I'm a tinkerer at heart, I'm extremely passionate about experimenting and learning from anything new or existing.
+    </p>
+
+    <h3>Latest blog posts</h3>
+    
+    <!-- Preview of blog -->
+    <div class="blog-posts-container">
+    {
+      topThreePosts.map(post => (
+        <a class="blog-post-container" href={`/blog/${post.slug}`}>
+          <img src={post.data.heroImage} alt={`${post.data.title} banner image`} />
+          <h4>{post.data.title}</h4>
+          <p>{post.data.description}</p>
+        </a>
+      ))
+    }
+    </div>
+
+    <Button text='View all' href="/blog" />
+  </Section>
 </Page>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use '../styles/pages/Home.scss' as *;
+
+  .page-landing {
+    @include home-page-styles();
+  }
+</style>

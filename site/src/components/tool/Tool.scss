@@ -1,0 +1,11 @@
+@use '../../styles/functions' as *;
+
+@mixin tool-styles() {
+  display: flex;
+  align-items: center;
+
+  > img {
+    margin-right: rem(8);
+    object-fit: contain;
+  }
+}

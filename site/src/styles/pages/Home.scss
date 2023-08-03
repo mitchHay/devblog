@@ -1,4 +1,6 @@
 @use '../functions' as *;
+@use '../colors' as *;
+@use 'sass:color' as sass-color;
 
 @keyframes wave {
   0% { transform: rotate(0deg) }
@@ -13,7 +15,7 @@
   100% { transform: rotate(0deg) }
 }
 
-.page-landing {
+@mixin home-page-styles() {
   text-align: center;
   max-width: rem(500);
 
@@ -29,10 +31,47 @@
     justify-content: center;
     font-size: rem(42);
     gap: rem(8);
+    margin-bottom: rem(8);
 
     .wave {
       animation: wave 2.5s infinite;
       transform-origin: 70% 70%;
+    }
+  }
+
+  .landing-blurb {
+    margin-bottom: rem(32);
+  }
+
+  .tools-section {
+    margin: rem(32) 0;
+  }
+
+  .blog-posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: rem(24);
+
+    .blog-post-container {
+      $brightness-offset: 12%;
+      
+      padding: rem(24);
+      color: var(--font-color-inverse);
+      text-decoration: none;
+      border: rem(2) solid transparent;
+      border-radius: rem(12);
+      background-color: var(--bg-color-inverse);
+      transition: all .125s ease-in-out;
+
+      &:hover {
+        border-color: $color-purple-light;
+      }
+
+      img {
+        object-fit: contain;
+        max-width: 100%;
+      }
     }
   }
 }
