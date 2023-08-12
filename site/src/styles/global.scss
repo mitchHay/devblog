@@ -5,6 +5,7 @@
 :root {
   --bg-color: white;
   --bg-color-inverse: #{$color-purple-dark};
+  --bg-color-post: #{$color-grey-f4};
   --font-color: #{$color-purple-dark};
   --font-color-highlight: #{$color-purple-dark};
   --font-color-inverse: #{$color-cream};
@@ -23,6 +24,7 @@ body {
     --font-color-inverse: #{$color-purple-dark};
     --bg-color: #{$color-purple-dark};
     --bg-color-inverse: #{$color-cream};
+    --bg-color-post: #{$color-purple-fair};
     --icon-filter: invert(1);
   }
 }
@@ -61,6 +63,7 @@ code {
     --font-color-inverse: #{$color-purple-dark};
     --bg-color: #{$color-purple-dark};
     --bg-color-inverse: #{$color-cream};
+    --bg-color-post: #{$color-purple-fair};
     --icon-filter: invert(1);
 
     &.theme-light {
@@ -68,6 +71,7 @@ code {
       --font-color-inverse: #{$color-cream};
       --bg-color: white;
       --bg-color-inverse: #{$color-purple-dark};
+      --bg-color-post: #{$color-grey-f4};
       --icon-filter: invert(0);
     }
   }

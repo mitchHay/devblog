@@ -1,13 +1,19 @@
 ---
-export interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = {
 	text: string;
   style?: 'primary' | 'secondary',
   type?: 'button' | 'submit',
   href?: string
+} & HTMLAttributes<'button'>;
+
+const { text, style = 'primary', href, class: className, id } = Astro.props;
+const classNames = [ 'btn', `btn__${style}` ];
+if (className) {
+  classNames.push(className);
 }
 
-const { text, style = 'primary', href } = Astro.props;
-const classNames = [ 'btn', `btn__${style}` ];
 if (href) {
   classNames.push('btn__anchor');
 }
@@ -25,7 +31,7 @@ if (href) {
 
 {
   !href &&
-  <button class={classNames.join(' ')}>{text}</button>
+  <button class={classNames.join(' ')} id={id}>{text}</button>
 }
 
 <!-- Scoped styles -->

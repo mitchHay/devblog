@@ -42,8 +42,14 @@
     margin-bottom: rem(32);
   }
 
-  .tools-section {
-    margin: rem(32) 0;
+  section {
+    &:not(:last-child) {
+      margin: rem(32) 0;
+    }
+
+    h3 {
+      margin: rem(20) 0;
+    }
   }
 
   .blog-posts-container {

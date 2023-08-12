@@ -1,9 +1,10 @@
 @use '../../styles/functions' as *;
+@use '../../styles/breakpoints' as *;
 
 @mixin footer-styles() {
   display: flex;
   justify-content: center;
-  padding: rem(24);
+  padding: rem(32) rem(24);
   text-align: center;
   font-size: rem(14);
 
@@ -25,6 +26,19 @@
       filter: var(--icon-filter);
       margin-right: rem(4);
       margin-top: rem(2);
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+    align-items: center;
+    gap: rem(8);
+    padding: rem(24);
+
+    .copyright-text {
+      &::after {
+        display: none;
+      }
     }
   }
 }

@@ -4,79 +4,58 @@ import Card from '../../components/card/Card.astro';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { Image } from 'astro:assets';
+import searchIcon from '../../assets/icons/search.svg';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
-<Page title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <h1>Welcome to my blog 💭</h1>
-  <p class="blog-blurb">Welcome to my thoughtspace! Feel free to have a snoop! I love to chat about anything really, but you'll mainly find me blabbing about frontend, game development, and test automation.</p>
-
-  <section>
-    <h2>Posts</h2>
-
+<Page className="blog-page" title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <div class="blog-title">
+    <h1>Posts</h1>
     <div class="input">
-      <label for="search-posts">Search</label>
-      <input placeholder="Search blog posts..." id="search-posts" />
+      <Image src={searchIcon} width={14} height={14} alt="Search icon" id="input-search" />
+      <input placeholder="Search posts..." id="input-element" />
     </div>
+  </div>
 
-    <div class="posts-container">
-      {
-        posts.map((post) => (
-          <Card imgSrc={post.data.heroImage ?? ''}
-                title={post.data.title}
-                href={`/blog/${post.slug}`}>
-            <FormattedDate date={post.data.pubDate} />
-            <p>{post.data.description}</p>
-          </Card>
-        ))
-      }
-    </div>
-  </section>
+  <div class="posts-container">
+    {
+      posts.map((post) => (
+        <Card imgSrc={post.data.heroImage ?? ''}
+              title={post.data.title}
+              href={`/blog/${post.slug}`}>
+          <FormattedDate date={post.data.pubDate} />
+          <p>{post.data.description}</p>
+        </Card>
+      ))
+    }
+  </div>
 </Page>
 
 <style lang="scss">
-  @use '../../styles/functions' as *;
-  @use '../../styles/colors' as *;
+  @use '../../styles/pages/Blog.scss' as *;
 
-  .posts-container {
-    display: grid;
-    flex-wrap: wrap;
-    max-width: 100%;
-    margin-bottom: rem(24);
-    grid-template-columns: 1fr 1fr;
-    margin: 0 rem(8);
-
-    @media screen and (max-width: 576px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .blog-blurb {
-    padding: rem(16);
-    background-color: #F4F4F4;
-    color: $color-purple-dark;
-    border-radius: rem(8);
-  }
-
-  .input {
-    display: flex;
-    flex-direction: column;
-    margin: 0 rem(8);
-
-    label {
-      margin-bottom: rem(2);
-    }
-
-    input {
-      color: var(--font-color-inverse);
-      background-color: var(--bg-color-inverse);
-      padding: rem(8) rem(12);
-      border: rem(1) solid black;
-      border-radius: rem(4);
-      margin-bottom: rem(24);
-    }
+  .blog-page {
+    @include blog-page-styles();
   }
 </style>
+
+<script>
+  const inputEl = document.getElementById("input-element") as HTMLInputElement;
+  const inputSearchEl = document.getElementById("input-search") as HTMLImageElement;
+
+  inputSearchEl.onclick = () => {
+    inputEl.focus();
+  }
+
+  inputEl.onfocus = () => {
+    inputEl.parentElement!.classList.add('focused');
+  }
+
+  inputEl.onblur = () => {
+    inputEl.parentElement!.classList.remove('focused');
+  }
+</script>

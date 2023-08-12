@@ -1,21 +1,18 @@
 @use '../../styles/functions' as *;
 @use '../../styles/colors' as *;
+@use 'sass:color' as sass-color;
 
 @mixin card-styles() {
   padding: rem(24);
-  color: var(--font-color-inverse);
+  color: $color-purple-dark;
   text-decoration: none;
   border: rem(2) solid transparent;
   border-radius: rem(12);
-  background-color: var(--bg-color-inverse);
-  transition: all .125s ease-in-out;
-
-  &:hover {
-    border-color: $color-purple-light;
-  }
+  background-color: var(--bg-color-post);
 
   img {
     object-fit: contain;
     max-width: 100%;
+    border-radius: rem(2);
   }
 }

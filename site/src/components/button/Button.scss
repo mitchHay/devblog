@@ -1,5 +1,6 @@
 @use '../../styles/colors' as *;
 @use '../../styles/functions' as *;
+@use '../../styles/type' as *;
 @use 'sass:color' as sass-color;
 
 // Variables
@@ -8,6 +9,7 @@ $brightness-offset: 12%;
 
 // Mixins
 @mixin button-apply-hover($bg-color) {
+  font-family: $font-family-body;
   background-color: $bg-color;
   border: rem(2) solid $bg-color;
   box-shadow: 0 rem(4) sass-color.scale($bg-color, $lightness: -$brightness-offset);
