@@ -1,0 +1,41 @@
+@use '../../styles/colors' as *;
+@use '../../styles/functions' as *;
+
+@mixin input-styles() {
+  display: flex;
+  align-items: center;
+  padding: rem(4) rem(12);
+  border: rem(2) solid transparent;
+  border-radius: rem(24);
+
+  &.focused {
+    border-color: $color-purple-light;
+  }
+
+  img {
+    filter: var(--icon-filter);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    background-color: transparent;
+    color: var(--font-color);
+    border: unset;
+    font-size: rem(14);
+    margin-left: rem(8);
+    transition: width .125s ease-in-out;
+    caret-color: $color-purple-light;
+    min-height: 28px;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: var(--font-color);
+    }
+  }
+}

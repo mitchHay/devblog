@@ -14,5 +14,8 @@ export default defineConfig({
   image: {
     service: sharpImageService(),
   },
+  markdown: {
+    shikiConfig: { theme: 'dracula' },
+  },
   integrations: [mdx(), sitemap(), react()]
 });

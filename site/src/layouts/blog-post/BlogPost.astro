@@ -12,6 +12,7 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
 
 <!-- Template -->
 <Page className="blog" title={title} description={description}>
+  <progress class="progress-indicator" id="progress-indicator" value="0" />
   <article>
     { 
       heroImage && 
@@ -35,3 +36,15 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
     <slot />
   </article>
 </Page>
+
+<script>
+  const progressEl = document.getElementById('progress-indicator') as HTMLProgressElement;
+
+  window.onscroll = () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progessValue = winScroll / height;
+
+    progressEl.value = progessValue;
+  }
+</script>
