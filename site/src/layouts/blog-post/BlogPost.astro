@@ -1,0 +1,51 @@
+---
+import './BlogPost.scss';
+import type { CollectionEntry } from 'astro:content';
+import Page from '../page/Page.astro';
+import Progress from '../../components/progress/Progress.astro';
+import { Image } from 'astro:assets'; 
+import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, author } = Astro.props;
+---
+
+<!-- Template -->
+<Page className="blog" title={title} description={description}>
+  <Progress id="progress-indicator" value="0" />
+  <article>
+    { 
+      heroImage && 
+      <Image
+        class="img-hero"
+        src={heroImage}
+        width={720}
+        height={360}
+        alt="" />
+    }
+    <h1 class="title">{title}</h1>
+    <FormattedDate date={pubDate} />
+    {
+      updatedDate && (
+        <div class="last-updated-on">
+          Last updated on <FormattedDate date={updatedDate} />
+        </div>
+      )
+    }
+    <hr />
+    <slot />
+  </article>
+</Page>
+
+<script>
+  const progressEl = document.getElementById('progress-indicator') as HTMLProgressElement;
+
+  window.onscroll = () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progessValue = winScroll / height;
+
+    progressEl.value = progessValue;
+  }
+</script>

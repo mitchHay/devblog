@@ -1,0 +1,86 @@
+---
+import HeaderLink from '../header-link/HeaderLink.astro';
+import ThemeSwitch from '../theme-switch/ThemeSwitch.astro';
+import { Image } from 'astro:assets';
+import avatarImg from '../../assets/images/avatar.png';
+
+const links = [
+  { text: "Home", href: "/" },
+  { text: "Blog", href: "/blog" }
+];
+
+const socials = [
+  { text: "Twitter", href: "https://twitter.com/mitchy_hay", iconSrc: "icon-twitter" },
+  { text: "GitHub", href: "https://github.com/mitchHay", iconSrc: "icon-github" }
+];
+---
+
+<!-- Template -->
+<header>
+	<nav class="nav-main">
+    <span class="mobile-menu" id="mobile-menu" />
+
+    <ul class="nav-links" id="nav-links">
+      <li class="avatar">
+        <Image src={avatarImg}
+               format="webp" 
+               alt="avatar" 
+               width={200}
+               height={200}
+               loading="eager" />
+      </li>
+      {
+        links.map(link => (
+          <li>
+            <HeaderLink href={link.href} 
+                        alt={link.text}
+                        showText={true}>
+              { link.text }
+            </HeaderLink>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="nav-socials">
+      <ul>
+        {
+          socials.map(social => (
+            <li>
+              <HeaderLink href={social.href}
+                          iconSrc={`/images/${social.iconSrc}.svg`}
+                          alt={social.text}
+                          target='_blank'>
+                { social.text }
+              </HeaderLink>
+            </li>
+          ))
+        }
+        <ThemeSwitch />
+      </ul>
+    </div>
+	</nav>
+</header>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Header.scss' as *;
+
+  header {
+    @include header-styles();
+  }
+</style>
+
+<!-- JS -->
+<script>
+  const navLinks = document.getElementById("nav-links") as HTMLDivElement;
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLSpanElement;
+  mobileMenu.onclick = () => {
+    if (!!navLinks.style.display && navLinks.style.display !== 'none') {
+      navLinks.style.display = 'none';
+      return;
+    }
+
+    navLinks.style.display = 'inline-block';
+  }
+</script>

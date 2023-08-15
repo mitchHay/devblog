@@ -1,0 +1,44 @@
+@use '../functions' as *;
+@use '../colors' as *;
+@use '../breakpoints' as *;
+
+@mixin blog-page-styles() {
+  .blog-title {
+    display: flex;
+    margin: rem(24) 0;
+    justify-content: space-between;
+
+    h1 {
+      margin: 0;
+    }
+
+    @media screen and (max-width: $breakpoint-xs) {
+      flex-direction: column;
+
+      .input {
+        width: 100%;
+        margin-top: rem(16);
+      }
+    }
+  }
+
+  .posts-container {
+    display: grid;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: rem(24);
+    grid-template-columns: 1fr 1fr;
+    margin: 0 rem(8);
+
+    @media screen and (max-width: $breakpoint-xs) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .blog-blurb {
+    padding: rem(16);
+    background-color: #F4F4F4;
+    color: $color-purple-dark;
+    border-radius: rem(8);
+  }
+}

@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import type { ToolProps } from "./ToolProps";
+
+type Props = {} & ToolProps;
+
+const { name, imgSrc } = Astro.props;
+---
+
+<!-- Template -->
+<span class="tool-item">
+  <Image src={imgSrc}
+         alt={name}
+         height={72} 
+         width={72} />
+  {name}
+</span>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Tool.scss' as *;
+
+  .tool-item {
+    @include tool-styles();
+  }
+</style>

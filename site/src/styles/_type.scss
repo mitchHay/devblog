@@ -1,0 +1,36 @@
+// Variables
+$font-name-heading: 'Lacquer';
+$font-name-body: 'NunitoSans';
+$font-name-code: 'Inconsolata';
+
+// Functions
+@function format-font-stack($desired-font, $fallback) {
+  @return #{$desired-font + ", " + $fallback};
+}
+
+// Mixins
+@mixin apply-font-face($font-name, $font-file-path) {
+  font-family: $font-name;
+  src: url($font-file-path) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Stacks
+$font-family-heading: format-font-stack($font-name-heading, sans-serif);
+$font-family-body: format-font-stack($font-name-body, sans-serif);
+$font-family-code: format-font-stack($font-name-code, monospace);
+
+// Font faces
+@font-face {
+  @include apply-font-face($font-name-heading, '/fonts/Lacquer.woff2');
+}
+
+@font-face {
+  @include apply-font-face($font-name-body, '/fonts/NunitoSans.woff2');
+}
+
+@font-face {
+  @include apply-font-face($font-name-code, '/fonts/Inconsolata.woff2')
+}

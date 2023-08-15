@@ -1,0 +1,19 @@
+---
+type Props = {
+  text: string
+};
+
+const { text } = Astro.props;
+---
+
+<!-- Template -->
+<span class="highlight">{ text }</span>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Highlight.scss' as *;
+
+  .highlight {
+    @include highlight-styles();
+  }
+</style>

@@ -1,3 +1,3 @@
-[*.{html,scss,css,ts,tsx,js,xml}]
+[*.{html,scss,css,ts,tsx,js,xml,astro}]
 indent_style = space
 indent_size = 2

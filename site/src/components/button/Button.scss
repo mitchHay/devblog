@@ -1,0 +1,55 @@
+@use '../../styles/colors' as *;
+@use '../../styles/functions' as *;
+@use '../../styles/type' as *;
+@use 'sass:color' as sass-color;
+
+// Variables
+$padding-x: rem(16);
+$brightness-offset: 12%;
+
+// Mixins
+@mixin button-apply-hover($bg-color) {
+  font-family: $font-family-body;
+  background-color: $bg-color;
+  border: rem(2) solid $bg-color;
+  box-shadow: 0 rem(4) sass-color.scale($bg-color, $lightness: -$brightness-offset);
+
+  &:hover {
+    $hover-color: sass-color.scale($bg-color, $lightness: $brightness-offset);
+
+    cursor: pointer;
+    background-color: $hover-color;
+    border-color: $hover-color;
+  }
+}
+
+@mixin button-styles() {
+  color: black;
+  padding: rem(8) $padding-x;
+  border-radius: calc($padding-x * 2);
+  font-size: rem(14);
+  font-weight: bold;
+  transition: all .125s ease-in-out;
+  line-height: 100%;
+
+  &__anchor {
+    display: block;
+    text-decoration: unset;
+    max-width: 100%;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  &__primary {
+    @include button-apply-hover($color-purple-light);
+  }
+
+  &__secondary {
+    @include button-apply-hover($color-cream);
+  }
+
+  &:active {
+    box-shadow: unset;
+    transform: translateY(rem(4));
+  }
+}

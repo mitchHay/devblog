@@ -1,0 +1,63 @@
+@use '../../styles/functions' as *;
+@use '../../styles/breakpoints' as *;
+
+@mixin footer-styles() {
+  display: flex;
+  justify-content: center;
+  padding: rem(32) rem(24);
+  text-align: center;
+  font-size: rem(14);
+
+  .copyright-text {
+    &::after {
+      content: '|';
+      margin-left: rem(4);
+    }
+  }
+
+  .img-link-astro {
+    display: flex;
+    align-items: center;
+    color: var(--font-color);
+    text-decoration: none;
+    margin-left: rem(4);
+
+    svg {
+      width: rem(14);
+      height: rem(14);
+      margin-right: rem(4);
+      margin-top: rem(2);
+
+      > path {
+        fill: var(--bg-color-inverse);
+      }
+
+      g {
+        path {
+          fill: var(--bg-color-inverse);
+        }
+      }
+    }
+
+    &:hover {
+      svg {
+        > path {
+          fill: url(#a);
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+    align-items: center;
+    gap: rem(8);
+    padding: rem(24);
+
+    .copyright-text {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

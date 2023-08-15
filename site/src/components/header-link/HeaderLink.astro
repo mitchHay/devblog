@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = {
+  iconSrc?: string,
+  alt: string,
+  showText?: boolean,
+  target?: '_self' | '_blank'
+} & HTMLAttributes<'a'>;
+
+const { href, alt, showText, iconSrc, class: className, target = '_self' } = Astro.props;
+
+const { pathname } = Astro.url;
+const isActive = href === pathname || href === pathname.replace(/\/$/, '');
+---
+
+<a href={href} 
+   class:list={[className, { 'active': isActive }, { 'icon-only': !!iconSrc && !showText }]}
+   target={target}
+>
+  {
+    !!iconSrc &&
+    <img class="icon" width="16" height="16" src={iconSrc} loading="eager" alt={alt} />
+  }
+  <div class="header-link-content">
+    { !!showText && <slot /> }
+  </div>
+</a>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './HeaderLink.scss' as *;
+
+  a {
+    @include header-link-styles();
+  }
+</style>

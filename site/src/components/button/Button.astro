@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = {
+	text: string;
+  style?: 'primary' | 'secondary',
+  type?: 'button' | 'submit',
+  href?: string
+} & HTMLAttributes<'button'>;
+
+const { text, style = 'primary', href, class: className, id } = Astro.props;
+const classNames = [ 'btn', `btn__${style}` ];
+if (className) {
+  classNames.push(className);
+}
+
+if (href) {
+  classNames.push('btn__anchor');
+}
+---
+
+<!-- Template -->
+{
+  href &&
+  <a class={classNames.join(' ')}
+     href={href}
+  >
+    {text}
+  </a>
+}
+
+{
+  !href &&
+  <button class={classNames.join(' ')} id={id}>{text}</button>
+}
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './Button.scss' as *;
+
+  .btn {
+    @include button-styles();
+  }
+</style>

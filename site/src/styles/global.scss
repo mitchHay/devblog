@@ -1,0 +1,78 @@
+@use './type' as *;
+@use './colors' as *;
+@use './functions' as *;
+
+:root {
+  --bg-color: white;
+  --bg-color-inverse: #{$color-purple-dark};
+  --bg-color-post: #{$color-grey-f4};
+  --font-color: #{$color-purple-dark};
+  --font-color-highlight: #{$color-purple-dark};
+  --font-color-inverse: #{$color-cream};
+  --icon-filter: invert(0);
+  --max-width: #{rem(900)};
+}
+
+body {
+	font-family: $font-family-body;
+  color: var(--font-color);
+  background-color: var(--bg-color);
+  margin: 0;
+
+  &.theme-dark {
+    --font-color: white;
+    --font-color-inverse: #{$color-purple-dark};
+    --bg-color: #{$color-purple-dark};
+    --bg-color-inverse: #{$color-cream};
+    --bg-color-post: #{$color-purple-fair};
+    --icon-filter: invert(1);
+  }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+}
+
+// Code
+code {
+  font-family: $font-family-code;
+  font-size: rem(14);
+  line-height: rem(16);
+}
+
+// Highlight
+* {
+  box-sizing: border-box;
+  
+  &::selection {
+    background-color: $color-highlight;
+    color: var(--font-color-highlight);
+  }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  body {
+    --font-color: #{$color-cream};
+    --font-color-inverse: #{$color-purple-dark};
+    --bg-color: #{$color-purple-dark};
+    --bg-color-inverse: #{$color-cream};
+    --bg-color-post: #{$color-purple-fair};
+    --icon-filter: invert(1);
+
+    &.theme-light {
+      --font-color: #{$color-purple-dark};
+      --font-color-inverse: #{$color-cream};
+      --bg-color: white;
+      --bg-color-inverse: #{$color-purple-dark};
+      --bg-color-post: #{$color-grey-f4};
+      --icon-filter: invert(0);
+    }
+  }
+}

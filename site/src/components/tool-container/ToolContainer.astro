@@ -1,0 +1,28 @@
+---
+import Tool from "../tool/Tool.astro";
+import type { ToolProps } from "../tool/ToolProps";
+
+type Props = {
+  tools: ToolProps[]
+}
+
+const { tools } = Astro.props;
+---
+
+<!-- Template -->
+<div class="tools-container">
+  {
+    tools.map(tool => (
+      <Tool name={tool.name} imgSrc={tool.imgSrc} />
+    ))
+  }
+</div>
+
+<!-- Scoped styles -->
+<style lang="scss">
+  @use './ToolContainer.scss' as *;
+
+  .tools-container {
+    @include tool-container-styles();
+  }
+</style>

@@ -1,4 +1,4 @@
 [build]
-  base = "src/"
+  base = "site/"
   publish = "dist/"
-  command = "npm run lint && SITE_URL=$URL npm run build"
+  command = "SITE_URL=$URL npm run build"

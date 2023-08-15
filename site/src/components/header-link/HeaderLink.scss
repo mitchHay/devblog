@@ -1,0 +1,57 @@
+@use '../../styles/colors' as *;
+@use '../../styles/functions' as *;
+@use '../../styles/type' as *;
+
+@mixin header-link-styles() {
+  $root-element: &;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: rem(8);
+  transition: background-color .125s ease-in-out;
+  padding: rem(4) rem(8);
+
+  &.icon-only {
+    padding: rem(4);
+    border-radius: 50%;
+  }
+
+  .header-link-content {
+    font-size: rem(16);
+    font-family: $font-family-heading;
+    color: var(--font-color);
+  }
+
+  .icon {
+    filter: var(--icon-filter);
+    object-fit: contain;
+    object-position: center;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &.active {    
+    .icon {
+      filter: invert(0);
+    }
+
+    .header-link-content {
+      color: $color-purple-light;
+    }
+  }
+
+  &:hover {
+    background-color: $color-highlight;
+
+    .icon {
+      filter: invert(0);
+    }
+
+    .header-link-content {
+      color: $color-purple-dark;
+    }
+  }
+}
