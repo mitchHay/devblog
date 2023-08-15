@@ -54,22 +54,9 @@
   }
 
   .progress-indicator {
-    display: block;
-    width: 100vw;
-    height: rem(5);
     position: fixed;
     top: rem(75);
     left: 0;
-    background-color: var(--bg-color);
-    color: $color-purple-light;
-    border: unset;
-
-    // Chrome/Safari
-    &::-webkit-progress-value,
-    // Firefox
-    &::-moz-progress-bar {
-      background-color: $color-purple-light;
-    }
 
     @media screen and (max-width: $breakpoint-xs) {
       top: rem(56);

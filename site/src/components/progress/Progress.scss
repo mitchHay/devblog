@@ -1,0 +1,30 @@
+@use '../../styles/functions' as *;
+@use '../../styles/colors' as *;
+@use '../../styles/breakpoints' as *;
+
+@mixin progress-styles() {
+  display: block;
+  width: 100%;
+  height: rem(5);
+  background-color: var(--bg-color);
+  color: $color-purple-light;
+  border: unset;
+
+  // Chrome
+  &::-webkit-progress-value,
+  // Firefox
+  &::-moz-progress-bar {
+    background-color: $color-purple-light;
+  }
+}
+
+@mixin progress-safari-styles() {
+  &::-webkit-progress-bar {
+    appearance: none;
+    background-color: var(--bg-color);
+  }
+
+  &::-webkit-progress-value {
+    background-color: $color-purple-light;
+  }
+}

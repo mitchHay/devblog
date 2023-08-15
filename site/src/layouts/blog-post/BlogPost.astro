@@ -2,6 +2,7 @@
 import './BlogPost.scss';
 import type { CollectionEntry } from 'astro:content';
 import Page from '../page/Page.astro';
+import Progress from '../../components/progress/Progress.astro';
 import { Image } from 'astro:assets'; 
 import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
 
@@ -12,7 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
 
 <!-- Template -->
 <Page className="blog" title={title} description={description}>
-  <progress class="progress-indicator" id="progress-indicator" value="0" />
+  <Progress id="progress-indicator" value="0" />
   <article>
     { 
       heroImage && 

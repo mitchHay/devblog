@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = {} & HTMLAttributes<'progress'>;
+
+const { class: className, id, value } = Astro.props;
+const classes = [ 'progress-indicator' ];
+if (className) {
+  classes.push(className);
+}
+---
+
+<progress class={ classes.join(' ') } id={ id } value={ value } />
+
+<style lang="scss">
+  @use './Progress.scss' as *;
+
+  .progress-indicator {
+    @include progress-styles();
+  }
+
+  .progress-indicator[value] {
+    @include progress-safari-styles();
+  }
+</style>
