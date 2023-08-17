@@ -2,6 +2,10 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/dc63bfa2-b8b9-402e-8b86-1bf0ee1a2207/deploy-status)](https://app.netlify.com/sites/mitchyh/deploys)
 
+## License
+
+All rights are reserved. All material is copyrighted to Mitchell Hayward.
+
 ## Getting Started
 
 First, run the development server via `npm run dev`.
