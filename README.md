@@ -14,4 +14,4 @@ Now you can head to [http://localhost:3000](http://localhost:3000) and with any 
 
 ## Creating a production build
 
-In order to create a production build of the site run `npm run export`. This will export the site as static content, as well as run `next-optimize-images`.
+In order to create a production build of the site run `npm run build`.
