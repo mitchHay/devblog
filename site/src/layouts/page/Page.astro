@@ -4,6 +4,8 @@ import Header from '../../components/header/Header.astro';
 import Footer from '../../components/footer/Footer.astro';
 import './Page.scss';
 
+const googleAnalyticsId = import.meta.env.PUBLIC_GA_ID;
+const today = new Date();
 const { title, description, className } = Astro.props;
 ---
 
@@ -13,6 +15,26 @@ const { title, description, className } = Astro.props;
 		<BaseHead title={title} description={description} />
 	</head>
   <body>
+    <!-- Analytics -->
+    <script type='text/partytown'
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+    />
+
+    <script type='text/partytown'
+            define:vars={{
+              googleAnalyticsId: googleAnalyticsId,
+              today: today
+            }}>
+      window.dataLayer = window.dataLayer || [];
+      
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag('js', today);
+      gtag('config', googleAnalyticsId);
+    </script>
+
     <!-- Site theme -->
     <script is:inline>
       const currentTheme = window.localStorage.getItem('site-theme');

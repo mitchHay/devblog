@@ -1,9 +1,13 @@
 import { defineConfig, sharpImageService } from 'astro/config';
-import { loadEnv } from "vite";
-const { SITE_URL } = loadEnv(import.meta.env.MODE, process.cwd(), "");
+import { loadEnv } from 'vite';
+const {
+  SITE_URL
+} = loadEnv(import.meta.env.MODE, process.cwd(), '');
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import react from "@astrojs/react";
+import react from '@astrojs/react';
+
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,10 +16,21 @@ export default defineConfig({
     assets: true
   },
   image: {
-    service: sharpImageService(),
+    service: sharpImageService()
   },
   markdown: {
-    shikiConfig: { theme: 'dracula' },
+    shikiConfig: {
+      theme: 'dracula'
+    }
   },
-  integrations: [mdx(), sitemap(), react()]
+  integrations: [
+    mdx(),
+    sitemap(),
+    react(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push']
+      }
+    })
+  ]
 });
