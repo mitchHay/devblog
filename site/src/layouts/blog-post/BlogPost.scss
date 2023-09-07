@@ -53,6 +53,14 @@
     }
   }
 
+  ul {
+    li {
+      &:not(:last-child) {
+        margin-bottom: rem(6);
+      }
+    }
+  }
+
   .progress-indicator {
     position: fixed;
     top: rem(75);
