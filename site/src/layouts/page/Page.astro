@@ -5,7 +5,6 @@ import Footer from '../../components/footer/Footer.astro';
 import './Page.scss';
 
 const googleAnalyticsId = import.meta.env.PUBLIC_GA_ID;
-const today = new Date();
 const { title, description, class: className } = Astro.props;
 ---
 
@@ -13,28 +12,25 @@ const { title, description, class: className } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-	</head>
-  <body>
-    <!-- Analytics -->
-    <script type='text/partytown'
-            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-    />
 
-    <script type='text/partytown'
+    <!-- Google tag (gtag.js) -->
+    <script async
+            type="text/partytown"
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`} />
+    <script type="text/partytown"
             define:vars={{
-              googleAnalyticsId: googleAnalyticsId,
-              today: today
-            }}>
+              googleAnalyticsId: googleAnalyticsId
+            }}
+    >
       window.dataLayer = window.dataLayer || [];
-      
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      gtag('js', today);
       gtag('config', googleAnalyticsId);
     </script>
 
+	</head>
+  <body>
     <!-- Site theme -->
     <script is:inline>
       const currentTheme = window.localStorage.getItem('site-theme');
