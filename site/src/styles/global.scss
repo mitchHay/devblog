@@ -13,6 +13,10 @@
   --max-width: #{rem(900)};
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
 	font-family: $font-family-body;
   color: var(--font-color);
