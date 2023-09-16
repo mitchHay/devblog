@@ -9,6 +9,8 @@ const getDateName = (n: number, str: string): string => {
   let dateName = str;
   if (n > 1) {
     dateName = dateName + 's';
+  } else if (n === 0) {
+    return 'Today';
   }
 
   return `${n} ${dateName} ago`;

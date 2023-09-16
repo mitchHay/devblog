@@ -3,7 +3,12 @@
 @use '../../styles/breakpoints' as *;
 
 .blog {
+  .author {
+    margin-bottom: rem(4);
+  }
+
   img {
+    height: auto;
     max-width: 100%;
     object-fit: contain;
 

@@ -94,13 +94,15 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
     <!-- Preview of blog -->
     <div class="blog-posts-container">
     {
-      topThreePosts.map(post => (
-        <Card imgSrc={post.data.heroImage ?? ''}
-              title={post.data.title}
-              href={`/blog/${post.slug}`}>
-          <p>{post.data.description}</p>
-        </Card>
-      ))
+      topThreePosts
+        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+        .map(post => (
+          <Card imgSrc={post.data.heroImage ?? ''}
+                title={post.data.title}
+                href={`/blog/${post.slug}`}>
+            <p>{post.data.description}</p>
+          </Card>
+        ))
     }
     </div>
 

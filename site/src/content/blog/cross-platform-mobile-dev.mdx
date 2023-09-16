@@ -1,0 +1,86 @@
+---
+title: "Choosing the right cross-platform app framework"
+description: "So you want to build an app, or perhaps looking to migrate from something like Xamarin. Lets run through some of the cross-platform mobile app frameworks avaiable today, and what one best suits your needs."
+author: "Mitchell Hayward"
+category: "mobile"
+pubDate: "2023-09-16"
+heroImage: "/images/posts/cross-platform-mobile-dev.png"
+published: true
+tags:
+    - react-native
+    - maui
+    - ionic
+    - flutter
+    - ios
+    - android
+    - mobile-dev
+---
+
+If you're reading this, you're probably thinking about building an app. No? Perhaps you're looking at migrating from a framework like Xamarin, which will pretty much reach its end-of-life/support period once iOS 17 is released on the 19th of September (18th for those in the US).
+
+## Key considerations
+
+There are numerous blog posts out there telling you things like "Top five cross-platform app frameworks", but I feel like that kind of misses the point. Instead, a better question to ask yourself is "What am I building?". That may seem like a captain obvious kinda thing to say, but hey, there's beauty in simplicity. Once you understand what you are building, that gives you the power to assess all of these different cross-platform mobile app frameworks.
+
+Theo (t3.gg) posted a [video](https://www.youtube.com/watch?v=tTGWfXPKxf4) a couple of weeks back specifically talking about Flutter and where it's application sits in the sea of mobile app frameworks. TLDR; it's a bit niche. I wanted to take some of the points Theo was making, and extrapolate them so the choice for selecting a cross-platform mobile app framework is a lot clearer, and hopefully easier.
+
+### What are you building?
+
+An absolute key factor to consider when building a mobile app is understanding exactly **what** you are building. By that I mean:
+    - What native features does it need access to?
+    - How much animation does it use?
+
+Expanding on a diagram Theo shared in his Flutter video, I've plotted out those two **key** questions and aligned them with technological approaches.
+
+#### The cross-platform guide
+
+![Cross-platform mobile app guide](/images/posts/cross-platform-guide.png)
+
+##### Framework alignment
+
+See some examples below of where I think current frameworks fit in relation to the cross-platform guide:
+
+export const frameworks = [
+    { borderColor: '#1971C2', bgColor: '#A5D8FF', description: 'Unity | Unreal Engine | Godot' },
+    { borderColor: '#9C36B5', bgColor: '#D0BFFF', description: 'Flutter' },
+    { borderColor: '#F08C00', bgColor: '#FFD8A8', description: 'Android (Kotlin / Java) | iOS (Swift)' },
+    { borderColor: '#2F9E44', bgColor: '#B2F2BB', description: 'dotnet MAUI | React Native' },
+    { borderColor: '#000000', bgColor: '#E9ECEF', description: 'Ionic' },
+    { borderColor: '#E03131', bgColor: '#FFC9C9', description: 'React | Vue | Svelte | Angular' },
+];
+
+{
+    frameworks.map(framework => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span style={{ backgroundColor: framework.bgColor, width: '16px', height: '16px', border: `solid 2px ${framework.borderColor}`, borderRadius: '2px' }} />
+        <span>{ framework.description }</span>
+      </div>
+    ))
+}
+
+#### Native features
+
+What are native features? Native features are things that your app requests a mobile device to do, for example:
+    - Taking a picture
+    - Uploading a picture from a photo library (camera roll)
+    - Using the GPS for foreground and background location data
+    - Using any form of biometrics
+    - Using the microphone
+
+Hopefully that starts to paint a clear picture of what a native "feature" is. The more of these you rack up, the more you shift right on the cross-platform guide.
+
+#### Native controls
+
+We spoke about native features, what on earth is a native control? A native control is essentially a platforms version of a UI element. For example, in dotnet MAUI or React Native if I were to create a button in XAML or JSX it'd map directly to it's platform counter-part (an Android or iOS button), meaning I'd get that platforms native control features out of the box (e.g. gestures).
+
+##### Rendering
+
+Flutter actually uses Skia (or Impeller) to draw components onto a canvas (as opposed to mapping directly to a platforms UI element implementation). Why? Well one thing that does offer is a lot of flexibility over how the UI **looks**, to someone unfamiliar with app development it may feel easier to create and design the look of a Flutter component (widget). The main drawback here is that you lose the native functionality that comes with the UI element you're building. It's also important to note, because Flutter uses it's own renderer, things like OS level UI (e.g. a permission dialog) are not rendered by the OS, but are instead "faked" in Skia/Impeller.
+
+## What do I choose?
+
+Ultimately the choice is yours, a framework is just a tool on our developer toolbelts used to achieve a set of user requirements. What **is** important is to ensure you choose the **right** tool. If you aren't using a lot of animation, but want some native features it doesn't really make sense to choose something like Flutter. Similarly if you need a lot of animation, it doesn't make a whole bunch of sense to try and achieve that with something that doesn't have it's own rendering engine. If in doubt, refer to the cross-platform guide and work from there. Remember, with great power comes great responsibility.
+
+## References
+
+-  [My Final Flutter Video | Theo - t3.gg](https://www.youtube.com/watch?v=tTGWfXPKxf4)

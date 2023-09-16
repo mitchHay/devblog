@@ -25,6 +25,7 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
         alt="" />
     }
     <h1 class="title">{title}</h1>
+    <p class="author">{author}</p>
     <FormattedDate date={pubDate} />
     {
       updatedDate && (

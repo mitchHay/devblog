@@ -28,7 +28,7 @@
     max-width: 100%;
     margin-bottom: rem(24);
     grid-template-columns: 1fr 1fr;
-    margin: 0 rem(8);
+    gap: rem(24);
 
     @media screen and (max-width: $breakpoint-xs) {
       grid-template-columns: 1fr;
