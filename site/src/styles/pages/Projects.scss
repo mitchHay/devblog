@@ -1,0 +1,8 @@
+@use '../breakpoints' as *;
+@use '../functions' as *;
+
+@mixin projects-styles {
+  h1 {
+    margin: rem(24) 0;
+  }
+}

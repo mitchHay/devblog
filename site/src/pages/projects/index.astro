@@ -1,0 +1,50 @@
+---
+import Page from '../../layouts/page/Page.astro';
+import Card from '../../components/card/Card.astro';
+import { marked } from 'marked';
+
+const title = "Projects | Mitchell Hayward";
+const description = "Mitchell Hayward's projects, including test automation framework StageZero.";
+const projects: { name: string, link: string, description: string, imgSrc: string }[] = [
+  {
+    name: 'StageZero',
+    link: 'https://mitchhay.github.io/StageZero/',
+    description: marked.parse(
+      '#### What is StageZero?' + "\n\n" +
+      'StageZero is an automated UI testing library for the web that allows you to use whatever underlying WebDriver you wish (e.g. Selenium, or Playwright) to steer the browser.' + '\n\n' +
+      '#### Why?' + "\n\n" +
+      'StageZero allows you to truly focus on what\'s important. Your tests! Spend less time writing and maintaining methods that interact with browsers, and more time dialing in your automated UI tests 💯.'
+    ),
+    imgSrc: '/images/projects/stagezero.png'
+  }
+];
+---
+
+<Page title={title} description={description} class="projects-page">
+  <h1>Projects</h1>
+
+  <div class="projects-container">
+    {
+      projects.map(project => (
+        <Card imgSrc={project.imgSrc}
+              title={project.name}
+              href={project.link}
+              layout="horizontal"
+              imgSize={{
+                maxWidth: '10rem'
+              }}
+        >
+          <span set:html={ project.description }/>
+        </Card>
+      ))
+    }
+  </div>
+</Page>
+
+<style lang="scss">
+  @use '../../styles/pages/Projects.scss' as *;
+
+  .projects-page {
+    @include projects-styles();
+  }
+</style>

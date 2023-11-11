@@ -9,8 +9,6 @@ const getDateName = (n: number, str: string): string => {
   let dateName = str;
   if (n > 1) {
     dateName = dateName + 's';
-  } else if (n === 0) {
-    return 'Today';
   }
 
   return `${n} ${dateName} ago`;
@@ -22,6 +20,10 @@ const generatePostedDate = (date: Date) => {
   const day = 1000 * 60 * 60 * 24;
 
   const days = Math.floor(diff / day);
+  if (days < 1) {
+    return 'Today';
+  }
+
   if (days < 7) {
     return getDateName(days, 'day');
   }

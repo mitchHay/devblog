@@ -10,19 +10,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.0.0",
-    "@astrojs/partytown": "^2.0.0",
-    "@astrojs/react": "^3.0.0",
+    "@astrojs/mdx": "^1.1.4",
+    "@astrojs/partytown": "^2.0.2",
+    "@astrojs/react": "^3.0.4",
     "@astrojs/rss": "^3.0.0",
-    "@astrojs/sitemap": "^3.0.0",
-    "astro": "^3.0.8",
+    "@astrojs/sitemap": "^3.0.3",
+    "astro": "^3.5.2",
+    "marked": "^9.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.17",
-    "@types/react-dom": "^18.2.7",
-    "sass": "^1.66.1",
-    "sharp": "^0.32.5"
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "sass": "^1.69.5",
+    "sharp": "^0.32.6"
   }
 }

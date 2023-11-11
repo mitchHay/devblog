@@ -2,20 +2,28 @@
 type Props = {
   imgSrc: string,
   href?: string,
-  title: string
+  title: string,
+  layout?: 'horizontal' | 'vertical'
+  imgSize?: { maxWidth: string, maxHeight: string }
 }
 
-const { imgSrc, href, title } = Astro.props;
+const { imgSrc, href, title, layout, imgSize } = Astro.props;
 ---
 
-<a class="card" href={href}>
+<a class={`card card-${layout ?? 'vertical'}`} href={href}>
   <img src={imgSrc} 
        alt={`${title} card image`}
        loading="lazy"
        decoding="async"
-       sizes="(max-width: 600px) 480px, 800px" />
-  <h4>{title}</h4>
-  <slot />
+       sizes="(max-width: 600px) 480px, 800px"
+       style={{
+        maxWidth: imgSize?.maxWidth ?? 'auto',
+        maxHeight: imgSize?.maxHeight ?? 'auto'
+       }} />
+  <div class="card-content">
+    <h4>{title}</h4>
+    <slot />
+  </div>
 </a>
 
 <!-- Scoped styles -->
