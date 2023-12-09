@@ -4,6 +4,7 @@ description: "So you want to build an app, or perhaps looking to migrate from so
 author: "Mitchell Hayward"
 category: "mobile"
 pubDate: "2023-09-16"
+updatedDate: "2023-12-09"
 heroImage: "/images/posts/cross-platform-mobile-dev.png"
 published: true
 tags:
@@ -75,11 +76,26 @@ We spoke about native features, what on earth is a native control? A native cont
 
 ##### Rendering
 
-Flutter actually uses Skia (or Impeller) to draw components onto a canvas (as opposed to mapping directly to a platforms UI element implementation). Why? Well one thing that does offer is a lot of flexibility over how the UI **looks**, to someone unfamiliar with app development it may feel easier to create and design the look of a Flutter component (widget). The main drawback here is that you lose the native functionality that comes with the UI element you're building. It's also important to note, because Flutter uses it's own renderer, things like OS level UI (e.g. a permission dialog) are not rendered by the OS, but are instead "faked" in Skia/Impeller.
+Flutter actually uses Skia (or Impeller) to draw components onto a canvas (as opposed to mapping directly to a platforms UI element implementation). Why? Well one thing that does offer is a lot of flexibility over how the UI **looks**, to someone unfamiliar with app development it may feel easier to create and design the look of a Flutter component (widget). The main drawback here is that you lose the native functionality that comes with the UI element you're building. This makes it important to consider things like accessibility and gesture support when building widgets.
+~~It's also important to note, because Flutter uses it's own renderer, things like OS level UI (e.g. a permission dialog) are not rendered by the OS, but are instead "faked" in Skia/Impeller.~~ 
+
+> **📝 Note**
+>
+> I stand corrected here, Flutter has full support to show OS level dialogs and prompts.
+> I also find it important to clarify, that I actually enjoy working in Flutter and as of updating this post am actively learning it.
+> The purpose of this article was to highlight **when and why** you might want to use certain cross-platform frameworks.
+> That's not to say that I'm 100% correct, after all these are just my thoughts on a page.
+> If you want to use Flutter for **any** purpose, you are absolutely free to do so.
+> In my honest opion, its developer experience is unparalleled and something I completely missed as part of writing this post!
+> Some may call it overkill, but that's actually okay - as long as you can deliver a good user experience with the tool that you have (and also have an enjoyable developer experience).
+> After all, consumers rarely care about the tech products are built on, only that it meets their needs (and of course is performant).
+> What is important for us developers is that what we build is maintainable, and intuitive/easy to work with.
+>
+> **Reference:** [Flutter permission_handler](https://pub.dev/packages/permission_handler)
 
 ## What do I choose?
 
-Ultimately the choice is yours, a framework is just a tool on our developer toolbelts used to achieve a set of user requirements. What **is** important is to ensure you choose the **right** tool. If you aren't using a lot of animation, but want some native features it doesn't really make sense to choose something like Flutter. Similarly if you need a lot of animation, it doesn't make a whole bunch of sense to try and achieve that with something that doesn't have it's own rendering engine. If in doubt, refer to the [cross-platform guide](#the-cross-platform-guide) and work from there. Remember, with great power comes great responsibility.
+Ultimately the choice is yours, a framework is just a tool on our developer toolbelts used to achieve a set of user requirements. What **is** important is to ensure you choose the **right** tool. If you aren't using a lot of animation, but want some native features it ~~doesn't really~~ **might** not make sense to choose something like Flutter. Similarly if you need a lot of animation, it ~~doesn't~~ **might** not make a whole bunch of sense to try and achieve that with something that doesn't have it's own rendering engine. If in doubt, refer to the [cross-platform guide](#the-cross-platform-guide) and work from there. Remember, with great power comes great responsibility.
 
 ## References
 

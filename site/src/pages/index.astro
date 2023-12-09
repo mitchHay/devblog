@@ -11,13 +11,16 @@ import type { ToolProps } from '../components/tool/ToolProps';
 import { getCollection } from 'astro:content';
 
 // Images
-import angularLogo from '../assets/images/tools/angular_gradient.png';
+import angularLogo from '../assets/images/tools/angular.png';
 import reactLogo from '../assets/images/tools/react.svg';
 import sassLogo from '../assets/images/tools/sass.png';
 import dotnetLogo from '../assets/images/tools/dotnet.svg';
 import dockerLogo from '../assets/images/tools/docker.png';
 import netlifyLogo from '../assets/images/tools/netlify.svg';
 import azureLogo from '../assets/images/tools/azure.png';
+import flutterLogo from '../assets/images/tools/flutter.svg';
+import supabaseLogo from '../assets/images/tools/supabase.svg';
+import firebaseLogo from '../assets/images/tools/firebase.svg';
 
 const tools: ToolProps[] = [
   { 
@@ -49,6 +52,21 @@ const tools: ToolProps[] = [
     imgSrc: azureLogo
   }
 ];
+
+const learningTools: ToolProps[] = [
+  {
+    name: 'Flutter',
+    imgSrc: flutterLogo
+  },
+  {
+    name: 'Firebase',
+    imgSrc: firebaseLogo
+  },
+  {
+    name: 'Supabase',
+    imgSrc: supabaseLogo
+  }
+]
 
 const topThreePosts = (await getCollection('blog'))
   .sort(
@@ -89,8 +107,12 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
       I'm a tinkerer at heart; I'm extremely passionate about learning, experimenting, and trying something new.
     </p>
 
-    <h3>Latest blog posts</h3>
-    
+    <h3>What am I currently learning?</h3>
+
+    <ToolContainer tools={learningTools} />
+
+    <h3 class="blog-title">Latest blog posts</h3>
+
     <!-- Preview of blog -->
     <div class="blog-posts-container">
     {

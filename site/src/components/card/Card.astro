@@ -12,7 +12,7 @@ const { imgSrc, href, title, layout, imgSize } = Astro.props;
 
 <a class={`card card-${layout ?? 'vertical'}`} href={href}>
   <img src={imgSrc} 
-       alt={`${title} card image`}
+       alt={`${title} card`}
        loading="lazy"
        decoding="async"
        sizes="(max-width: 600px) 480px, 800px"

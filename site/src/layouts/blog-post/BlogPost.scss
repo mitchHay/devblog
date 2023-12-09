@@ -75,4 +75,23 @@
       top: rem(56);
     }
   }
+
+  blockquote {
+    margin: 0;
+    padding: rem(12) rem(32);
+    background-color: var(--bg-color-post);
+    border-radius: rem(12);
+
+    > * {
+      color: $color-purple-dark;
+
+      a {
+        color: $color-purple-dark;
+
+        &::after {
+          background-color: $color-purple-dark;
+        }
+      }
+    }
+  }
 }

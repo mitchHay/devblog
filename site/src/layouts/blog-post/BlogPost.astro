@@ -26,11 +26,11 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
     }
     <h1 class="title">{title}</h1>
     <p class="author">{author}</p>
-    <FormattedDate date={pubDate} />
+    Published: <FormattedDate date={pubDate} />
     {
       updatedDate && (
         <div class="last-updated-on">
-          Last updated on <FormattedDate date={updatedDate} />
+          Last updated: <FormattedDate date={updatedDate} />
         </div>
       )
     }
