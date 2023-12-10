@@ -17,7 +17,7 @@ const socials = [
 ---
 
 <!-- Template -->
-<header>
+<header id="header">
 	<nav class="nav-main">
     <span class="mobile-menu" id="mobile-menu" />
 
@@ -76,14 +76,17 @@ const socials = [
 
 <!-- JS -->
 <script>
+  const header = document.getElementById("header") as HTMLDivElement;
   const navLinks = document.getElementById("nav-links") as HTMLDivElement;
   const mobileMenu = document.getElementById("mobile-menu") as HTMLSpanElement;
-  mobileMenu.onclick = () => {
+  mobileMenu.onclick = () => {    
     if (!!navLinks.style.display && navLinks.style.display !== 'none') {
+      header.style.backgroundColor = 'var(--bg-header-color)';
       navLinks.style.display = 'none';
       return;
     }
 
+    header.style.backgroundColor = 'var(--bg-color)';
     navLinks.style.display = 'inline-block';
   }
 </script>

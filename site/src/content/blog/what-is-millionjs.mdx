@@ -4,6 +4,7 @@ description: "You may have heard of MillionJS being thrown around when talking a
 author: "Mitchell Hayward"
 category: "frontend"
 pubDate: "2023-06-17"
+updatedDate: "2023-12-10"
 heroImage: "/images/posts/millionjs.png"
 published: true
 tags:
@@ -43,17 +44,17 @@ Lets say we have a component that looks like this:
 
 ```tsx
 export default function Counter(): React.ReactElement {
-    let [count, setCount] = useState<number>(0);
+    let [ count, setCount ] = useState<number>(0);
 
     function setCounter = () => {
-        const newValue = count += 1;
+        const newValue = count + 1;
         setCount(newValue);
     }
 
     return (
         <div>
-            <span>Count: {count}</span>
-            <button onClick={setCounter}>Set count</button>
+            <span>Count: { count }</span>
+            <button onClick={ setCounter }>Set count</button>
         </div>
     )
 }
@@ -122,9 +123,9 @@ I like to setup my component with a private (non-exported) function named `Compo
 // Make sure you import block from million/react and NOT million here
 import { block } from 'million/react';
 
-function ButtonFn({text, type, onClick}: ButtonProps): React.ReactElement {
+function ButtonFn({ text, type, onClick }: ButtonProps): React.ReactElement {
     return (
-        <button className={`btn ${type}`} onClick={onClick}>{text}</button>
+        <button className={`btn ${ type }`} onClick={ onClick }>{ text }</button>
     )
 }
 

@@ -68,11 +68,12 @@
 
   .progress-indicator {
     position: fixed;
-    top: rem(75);
+    top: rem(70);
     left: 0;
+    z-index: 999;
 
     @media screen and (max-width: $breakpoint-xs) {
-      top: rem(56);
+      top: rem(54);
     }
   }
 

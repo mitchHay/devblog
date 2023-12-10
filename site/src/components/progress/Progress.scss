@@ -2,11 +2,16 @@
 @use '../../styles/colors' as *;
 @use '../../styles/breakpoints' as *;
 
+@mixin progress-bg() {
+  background: transparent;
+}
+
 @mixin progress-styles() {
+  @include progress-bg();
+
   display: block;
   width: 100%;
-  height: rem(5);
-  background-color: var(--bg-color);
+  height: rem(4);
   color: $color-purple-light;
   border: unset;
 
@@ -20,8 +25,9 @@
 
 @mixin progress-safari-styles() {
   &::-webkit-progress-bar {
+    @include progress-bg();
+    
     appearance: none;
-    background-color: var(--bg-color);
   }
 
   &::-webkit-progress-value {

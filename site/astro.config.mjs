@@ -10,14 +10,15 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE_URL,
+  site: SITE_URL ?? 'http://localhost:4321',
   scopedStyleStrategy: 'where',
   image: {
     service: sharpImageService()
   },
   markdown: {
     shikiConfig: {
-      theme: 'dracula'
+      theme: 'dracula',
+      wrap: false,
     }
   },
   integrations: [

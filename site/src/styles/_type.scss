@@ -1,7 +1,7 @@
 // Variables
 $font-name-heading: 'Lacquer';
 $font-name-body: 'NunitoSans';
-$font-name-code: 'Inconsolata';
+$font-name-code: 'Monaspace Argon';
 
 // Functions
 @function format-font-stack($desired-font, $fallback) {
@@ -32,5 +32,5 @@ $font-family-code: format-font-stack($font-name-code, monospace);
 }
 
 @font-face {
-  @include apply-font-face($font-name-code, '/fonts/Inconsolata.woff2')
+  @include apply-font-face($font-name-code, '/fonts/MonaspaceArgon-Regular.woff')
 }

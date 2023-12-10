@@ -11,6 +11,7 @@
   --font-color-inverse: #{$color-cream};
   --icon-filter: invert(0);
   --max-width: #{rem(900)};
+  --bg-header-color: rgba(255, 255, 255, #{$header-transparency});
 }
 
 html {
@@ -30,6 +31,7 @@ body {
     --bg-color-inverse: #{$color-cream};
     --bg-color-post: #{$color-purple-fair};
     --icon-filter: invert(1);
+    --bg-header-color: rgba(10, 0, 18, #{$header-transparency});
   }
 }
 
@@ -69,6 +71,7 @@ code {
     --bg-color-inverse: #{$color-cream};
     --bg-color-post: #{$color-purple-fair};
     --icon-filter: invert(1);
+    --bg-header-color: rgba(10, 0, 18, #{$header-transparency});
 
     &.theme-light {
       --font-color: #{$color-purple-dark};
@@ -77,6 +80,7 @@ code {
       --bg-color-inverse: #{$color-purple-dark};
       --bg-color-post: #{$color-grey-f4};
       --icon-filter: invert(0);
+      --bg-header-color: rgba(255, 255, 255, #{$header-transparency});
     }
   }
 }
