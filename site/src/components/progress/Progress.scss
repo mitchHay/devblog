@@ -3,7 +3,7 @@
 @use '../../styles/breakpoints' as *;
 
 @mixin progress-bg() {
-  background: transparent;
+  background-color: transparent;
 }
 
 @mixin progress-styles() {
