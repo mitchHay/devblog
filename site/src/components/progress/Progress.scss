@@ -3,8 +3,7 @@
 @use '../../styles/breakpoints' as *;
 
 @mixin progress-bg() {
-  background: none;
-  background-color: #00000000;
+  background: #00000000;
 }
 
 @mixin progress-styles() {
@@ -25,10 +24,10 @@
 }
 
 @mixin progress-safari-styles() {
+  appearance: none;
+  
   &::-webkit-progress-bar {
     @include progress-bg();
-    
-    appearance: none;
   }
 
   &::-webkit-progress-value {
