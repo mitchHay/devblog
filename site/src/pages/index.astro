@@ -23,7 +23,7 @@ import supabaseLogo from '../assets/images/tools/supabase.svg';
 import firebaseLogo from '../assets/images/tools/firebase.svg';
 
 const tools: ToolProps[] = [
-  { 
+  {
     name: 'Angular',
     imgSrc: angularLogo
   },
@@ -76,6 +76,7 @@ const topThreePosts = (await getCollection('blog'))
 
 const title = "Home | Mitchell Hayward";
 const description = "Hey I'm Mitch! I'm a software developer with a passion for front-end development, game development, and test automation! Here you'll find my blog and developer portfolio, feel free to have a lil' nosey - I don't bite!";
+const yearsExperience = `${new Date().getFullYear() - 2018} years`;
 ---
 
 <Page class="page-landing" title={title} description={description}>
@@ -88,7 +89,7 @@ const description = "Hey I'm Mitch! I'm a software developer with a passion for 
     Hey, I'm Mitch <span class="wave">👋</span>
   </h1>
   <p class="landing-blurb">
-    A full-stack software engineer with over <Highlight text="five years" /> experience!
+    A full-stack software engineer with over <Highlight text={yearsExperience} /> experience!
   </p>
 
   <Section class='tools-section'
