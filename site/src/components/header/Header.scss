@@ -4,13 +4,9 @@
 @use '../../styles/breakpoints' as *;
 
 @mixin glass-look() {
-  backdrop-filter: blur(
-    rem(12)
-  );
-
-  -webkit-backdrop-filter: blur(
-    rem(12)
-  );
+  backdrop-filter: blur(rem(12));
+  border-bottom: rem(1) solid var(--bg-color);
+  -webkit-backdrop-filter: blur(rem(12));
 }
 
 @mixin header-styles() {
@@ -48,10 +44,15 @@
         display: flex;
         margin-right: rem(32);
 
-        > img {
+        >a {
           max-width: rem(24);
           max-height: rem(24);
-          border-radius: rem(12);
+
+          >img {
+            width: 100%;
+            height: 100%;
+            border-radius: rem(12);
+          }
         }
       }
 

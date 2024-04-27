@@ -31,7 +31,7 @@
     color: var(--font-color);
     position: relative;
     z-index: 1;
-    
+
     &::after {
       content: '';
       display: block;
@@ -68,7 +68,7 @@
 
   .progress-indicator {
     position: fixed;
-    top: rem(70);
+    top: rem(72);
     left: 0;
     z-index: 999;
 
@@ -83,7 +83,7 @@
     background-color: var(--bg-color-post);
     border-radius: rem(12);
 
-    > * {
+    >* {
       color: $color-purple-dark;
 
       a {
