@@ -1,15 +1,21 @@
-@use '../../styles/functions' as *;
-@use '../../styles/colors' as *;
-@use '../../styles/breakpoints' as *;
-@use 'sass:color' as sass-color;
+@use "../../styles/functions" as *;
+@use "../../styles/colors" as *;
+@use "../../styles/breakpoints" as *;
+@use "sass:color" as sass-color;
 
 @mixin card-styles() {
   padding: rem(24);
   color: $color-purple-dark;
   text-decoration: none;
   border: rem(2) solid transparent;
-  border-radius: rem(12);
+  border-radius: rem(16);
   background-color: var(--bg-color-post);
+
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    border-radius: rem(12);
+  }
 
   &.card-horizontal {
     display: flex;
@@ -33,11 +39,5 @@
         max-width: 100% !important; // Trump the inline style set from our props
       }
     }
-  }
-
-  img {
-    object-fit: contain;
-    max-width: 100%;
-    border-radius: rem(2);
   }
 }

@@ -1,0 +1,42 @@
+---
+title: "I was wrong about Flutter: From skeptic to advocate."
+description: "A brief overview of my experience learning the Flutter cross-platform framework. We'll cover why I was initally wrong about it, and address some of the key value points I picked up."
+author: "Mitchell Hayward"
+category: "mobile"
+pubDate: "2024-06-02"
+heroImage: "/images/posts/i-was-wrong-about-flutter-banner.png"
+published: true
+tags:
+  - flutter
+  - ios
+  - android
+  - mobile-dev
+---
+
+A couple of months ago I wrote a [blog post](/blog/cross-platform-mobile-dev) about choosing the "right" cross-platform framework for mobile app development. I'm back again talking about Flutter, but this time it's a little different. Let me explain...
+
+**What changed?**
+
+Well, I've been learning Flutter ever since I wrote that initial blog post. In fact, I've even shipped an app using it. This has opened my eyes up to the true benefits of what Flutter has to offer. Full disclaimer, this is **not** another "choosing the right x" post, it's purely about my journey learning the framework.
+
+## UI/UX Confidence
+
+One of the absolutely core benefits of Flutter is that you can build your UI completely on an iOS simulator, boot up an Android emulator and have confidence in your UI looking the same. This alone is an absolute game changer, especially if you're building an app on a small team, or by yourself. It saves you so much time as you're not having to write specific logic to make things like buttons look the same across platforms. This isn't the case for absolutely everything, for example, you may have to write platform specific logic if you wish to customise web view behaviours (e.g. presenting a loading spinner).
+
+## Performance
+
+I'll preface this by saying it's true, you have to be mindful about introducing "jank" into your Flutter application (for example, using the [blur effect in Impeller](https://github.com/flutter/flutter/issues/132735); which has since been improved in Flutter v3.22.0). **But**, that doesn't mean it's slow by any means, in fact it offers [near native performance](https://miro.medium.com/v2/resize:fit:1400/1*wHGAVXahLFWFPRrzmYN6fw.jpeg).
+
+## Native Interfacing
+
+Flutters package ecosystem is actually super impressive, and becomes really handy whenever you need to do some platformy stuff. For example, requesting permissions is as simple as pulling in the [permission_handler](https://pub.dev/packages/permission_handler) package. If you really need to do some platform stuff that isn't supported by a package, you have complete access to your applications platform folders (e.g. `/ios` and `/android`), which contain the native project. Dust off your Swift / Kotlin and away you go. Alternatively, if you want to have a type-safe way to call a native API from the dart layer you can leverage a package called [pigeon](https://pub.dev/packages/pigeon) created by the Flutter team.
+
+## Developer Experience
+
+That last point I really want to make is on developer experience. Developer experience alone is really difficult to measure, and is often warped by prior experiences (e.g. if something feels familiar, you're more likely to enjoy it). Regardless, in my opinion the framework feels refreshing and comes with 1st class developer tooling that works great. Hot-reloading "just works™", which coming from Xamarin was a really big pain point for me. You can basically write all of your logic while your app is running and see it reflected in your simulator/device, ultimately saving you a bunch of time you would've otherwise spent waiting for your app to re-build.
+
+## Closing Off
+
+TLDR; I was wrong about Flutter in my [initial post](/blog/cross-platform-mobile-dev). I've really come full circle from being a skeptic to thoroughly enjoying the framework. It really is hard to knock and allows you to spend time writing business logic, rather than battle native platforms to get your controls looking and feeling consistent. If it's worth anything, Flutter has become my main framework of choice when building mobile applications. I'm acknowledging here that I've done a complete 180, but I think that speaks volumes to the value of the Flutter framework.
+
+If you made it this far, thanks for reading 🫶.
