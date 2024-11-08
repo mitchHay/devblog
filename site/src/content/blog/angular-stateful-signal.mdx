@@ -1,0 +1,194 @@
+---
+title: "Converting Observables to Stateful Signals in Angular"
+description: "Angular has exposed the concept of signals for a while now, lets investigate converting an API call using observables to what I've coined a 'stateful signal'."
+author: "Mitchell Hayward"
+category: "mobile"
+pubDate: "2024-11-9"
+heroImage: "/images/posts/angular-signals.png"
+published: false
+tags:
+    - angular
+    - javascript
+    - typescript
+    - web
+---
+
+Angular has exposed the concept of signals for some time now, and with the release of Angular 19 soon amoung us I figured it'd be appropriate to share a new technique I've been
+using to convert my rxjs `Observable`'s to what I've coined a "stateful signal".
+
+## rxjs interop
+
+If you've dealt with `rxjs` and observables, you may have heard of `toSignal`. No? Well the crux of it is, `toSignal` automatically subscribes to your observable 
+and stores the latest value returned from it. Because `toSignal` automatically subscribes to your observable, note that any side-effects *may* be triggered 
+(e.g. `tap`, `switchMap`, `map`, `finalize`).
+
+[Learn more about the rxjs interop](https://angular.dev/guide/signals/rxjs-interop)
+
+### Using toSignal
+
+Find below basic usage of the `toSignal` method.
+
+```ts
+const myObservable = of('Returned value').pipe(
+  take(1),
+);
+
+const mySignal = toSignal(someObservable);
+
+console.log(mySignal()); // emits 'Returned value'
+```
+
+## Error handling and effectful services
+
+So all this `toSignal` stuff seems cool, and you've started using it in your applications but there are a couple of things you should be mindful of.
+
+### Error handling
+
+> *"If an Observable used in toSignal produces an error, that error is thrown when the signal is read."*
+>
+> **Source:** [angular.dev](https://angular.dev/guide/signals/rxjs-interop#error-and-completion)
+
+Given the above usage note from Angular, how should I react to errors when an observable call fails? Do I wrap my signal reads in try/catch blocks? One approach I've been using
+is to create an rxjs pipeline that catches the error and saves it to your signals state allowing you to react to it safely wherever you choose.
+
+### "Effectful" services
+
+What's an "effectful" service? To me an effectful service is anything that runs some kind of DOM mutation (e.g. showing a loading spinner, or displaying a dialog).
+
+Say for example, you had the following service to show a loading spinner:
+
+```ts
+class LoadingService {
+  private readonly _isVisible = signal(false);
+
+  readonly isVisible = _isVisible.asReadonly();
+
+  toggle(isVisible: boolean): void {
+    this._isVisible.set(isVisible);
+  }
+}
+```
+
+It's perfectly reasonable to want to show a loading spinner when some kind of API call is made. Given our current usage of `toSignal` we'd have to create some kind of separate 
+state to track things like loading statuses. This can get quite cumbersome in the event we want to track loading state **per** observable.
+
+Thinking what I'm thinking? Similar to my previous point around errors, we can also tap into our observable pipeline to track an observables loading state too!
+
+## The Stateful Signal
+
+Alright, that's enough chit-chat / background. You want me to cut to the chase and show you the codey code right? Lets combine the concepts around error handling and effectful services
+above and create a utility class that creates a nice observable pipeline for us that tracks:
+
+- The observables result
+- Any errors that occur during the observables operation
+- The observables loading state
+
+Alright, I don't know about you but those three dot points are starting to sound like some kind of type we can return...
+
+```ts
+export type StatefulValue<T> = {
+  result: T | null,
+  error: unknown | null,
+  isLoading: Signal<boolean>,
+};
+```
+
+> **📝 Note**
+> 
+> It's important that `isLoading` is a signal itself here, since it needs to be reactive.
+
+Now we have a return type, lets create the `stateful-signal.ts` utility class.
+
+```ts
+export class StatefulSignal<TInput> {
+  // The $signalSubject is used here in the event we want to re-trigger the provided observable.
+  private readonly $signalSubject: Subject<TInput | void>;
+  private readonly isLoading = signal(false);
+
+  constructor(subject?: Subject<TInput | void>) {
+    // Allow for custom subjects, in the event we want to push some data to the observable.
+    this.$signalSubject = subject ?? new Subject<void>();
+  }
+
+  create<TOutput>(createObservable: (input?: TInput) => Observable<TOutput>): Signal<StatefulValue<TInput>> {
+    // First determine the inner observable, allowing us to accurately call rxjs operators.
+    // Without this, your side effects may not trigger properly.
+    const determineInnerObservable = (inputValue) => {
+      return inputValue 
+        ? createObservable(inputValue)
+        : createObservable();
+    };
+
+    return toSignal(
+      this.$signalSubject.pipe(
+        tap(() => this.isLoading.set(true)),
+        switchMap(inputValue => {
+          determineInnerObservable(inputValue).pipe(
+            take(1),
+            map(outputValue => ({
+              result: outputValue as T,
+              error: null,
+              isLoading: this.isLoading.asReadonly(),
+            })),
+            catchError(error => of({
+              result: null,
+              error: error,
+              isLoading: this.isLoading.asReadonly(),
+            })),
+            finalize(() => this.isLoading.set(false)),
+          )
+        }),
+      ),
+      {
+        initialValue: {
+          result: null,
+          error: null,
+          isLoading: this.isLoading.asReadonly(),
+        },
+      },
+    );
+  }
+
+  update(value?: TInput): void {
+    this.$signalSubject.next(value);
+  }
+}
+```
+
+As you can see from the above code snippet, we're mapping our observables value out to `StatefulValue` so we can track things like errors and loading state. This allows us
+to create reactivity later on in our application, as well as keep errors and loading state scoped **per** observable. Now it's time to stitch it all together!
+
+### Example usage
+
+```ts
+class HomePageComponent {
+  readonly state: Signal<StatefulValue<string>>;
+  readonly showError = computed(() => !!this.state().error);
+
+  constructor(private loadingService: LoadingService) {
+    const getWelcomeMessage = of('Welcome!').pipe(
+      delay(2500),
+    );
+
+    const welcomeMessage = new StatefulSignal();
+    this.state = welcomeMessage.create(getWelcomeMessage);
+
+    effect(() => {
+      const isLoading = this.state().isLoading();
+
+      untracked(() => {
+        this.loadingService.toggle(isLoading);
+      });
+    });
+  }
+}
+```
+
+And just like that, we've captured the output of our observable into state AND tracked any errors / loading statuses automatically (go us)!
+
+> **👀 Where's the source code?**
+>
+> [Take a look]()
+
+
+That's all folks, if you made it this far I appreciate you taking the time out of your day to read my word vomit 🫶.
