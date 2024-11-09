@@ -2,10 +2,10 @@
 title: "Converting Observables to Stateful Signals in Angular"
 description: "Angular has exposed the concept of signals for a while now, lets investigate converting an API call using observables to what I've coined a 'stateful signal'."
 author: "Mitchell Hayward"
-category: "mobile"
+category: "web"
 pubDate: "2024-11-9"
 heroImage: "/images/posts/angular-signals.png"
-published: false
+published: true
 tags:
     - angular
     - javascript
@@ -107,26 +107,26 @@ export class StatefulSignal<TInput> {
 
   constructor(subject?: Subject<TInput | void>) {
     // Allow for custom subjects, in the event we want to push some data to the observable.
-    this.$signalSubject = subject ?? new Subject<void>();
+    this.$signalSubject = subject ?? new Subject<TInput | void>();
   }
 
-  create<TOutput>(createObservable: (input?: TInput) => Observable<TOutput>): Signal<StatefulValue<TInput>> {
+  create<TOutput>(createObservable: (input?: TInput) => Observable<TOutput>): Signal<StatefulValue<TOutput>> {
     // First determine the inner observable, allowing us to accurately call rxjs operators.
     // Without this, your side effects may not trigger properly.
-    const determineInnerObservable = (inputValue) => {
-      return inputValue 
+    const determineInnerObservable = (inputValue: TInput | null | void) => {
+      return inputValue
         ? createObservable(inputValue)
         : createObservable();
     };
 
     return toSignal(
       this.$signalSubject.pipe(
+        startWith(null),
         tap(() => this.isLoading.set(true)),
-        switchMap(inputValue => {
-          determineInnerObservable(inputValue).pipe(
+        switchMap(inputValue => determineInnerObservable(inputValue).pipe(
             take(1),
             map(outputValue => ({
-              result: outputValue as T,
+              result: outputValue as TOutput,
               error: null,
               isLoading: this.isLoading.asReadonly(),
             })),
@@ -137,7 +137,7 @@ export class StatefulSignal<TInput> {
             })),
             finalize(() => this.isLoading.set(false)),
           )
-        }),
+        ),
       ),
       {
         initialValue: {
@@ -188,7 +188,7 @@ And just like that, we've captured the output of our observable into state AND t
 
 > **👀 Where's the source code?**
 >
-> [Take a look]()
+> [Take a look](https://github.com/mitchHay/stateful-signals-example)
 
 
 That's all folks, if you made it this far I appreciate you taking the time out of your day to read my word vomit 🫶.
