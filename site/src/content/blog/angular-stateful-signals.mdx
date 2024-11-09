@@ -166,12 +166,12 @@ class HomePageComponent {
   readonly showError = computed(() => !!this.state().error);
 
   constructor(private loadingService: LoadingService) {
-    const getWelcomeMessage = of('Welcome!').pipe(
+    const getWelcomeMessage = of('Welcome to my app!').pipe(
       delay(2500),
     );
 
     const welcomeMessage = new StatefulSignal();
-    this.state = welcomeMessage.create(getWelcomeMessage);
+    this.state = welcomeMessage.create(() => getWelcomeMessage);
 
     effect(() => {
       const isLoading = this.state().isLoading();
