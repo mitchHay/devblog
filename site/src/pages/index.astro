@@ -1,26 +1,26 @@
 ---
-import Page from "../layouts/page/Page.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import avatar from "../assets/images/avatar.png";
 import Button from "../components/button/Button.astro";
 import Card from "../components/card/Card.astro";
 import Highlight from "../components/highlight/Highlight.astro";
-import ToolContainer from "../components/tool-container/ToolContainer.astro";
 import Section from "../components/section/Section.astro";
-import { Image } from "astro:assets";
-import avatar from "../assets/images/avatar.png";
+import ToolContainer from "../components/tool-container/ToolContainer.astro";
 import type { ToolProps } from "../components/tool/ToolProps";
-import { getCollection } from "astro:content";
+import Page from "../layouts/page/Page.astro";
 
 // Images
 import angularLogo from "../assets/images/tools/angular.png";
+import azureLogo from "../assets/images/tools/azure.png";
+import dockerLogo from "../assets/images/tools/docker.png";
+import dotnetLogo from "../assets/images/tools/dotnet.svg";
+import firebaseLogo from "../assets/images/tools/firebase.svg";
+import flutterLogo from "../assets/images/tools/flutter.svg";
+import netlifyLogo from "../assets/images/tools/netlify.svg";
 import reactLogo from "../assets/images/tools/react.svg";
 import sassLogo from "../assets/images/tools/sass.png";
-import dotnetLogo from "../assets/images/tools/dotnet.svg";
-import dockerLogo from "../assets/images/tools/docker.png";
-import netlifyLogo from "../assets/images/tools/netlify.svg";
-import azureLogo from "../assets/images/tools/azure.png";
-import flutterLogo from "../assets/images/tools/flutter.svg";
 import supabaseLogo from "../assets/images/tools/supabase.svg";
-import firebaseLogo from "../assets/images/tools/firebase.svg";
 
 const tools: ToolProps[] = [
   {
@@ -69,7 +69,7 @@ const learningTools: ToolProps[] = [
 ];
 
 const topThreePosts = (await getCollection("blog"))
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 const title = "Home | Mitchell Hayward";
