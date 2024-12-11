@@ -1,11 +1,11 @@
 ---
-import Page from "../../layouts/page/Page.astro";
-import Card from "../../components/card/Card.astro";
-import Input from "../../components/input/Input.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/formatted-date/FormattedDate.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import searchIcon from "../../assets/icons/search.svg";
+import Card from "../../components/card/Card.astro";
+import FormattedDate from "../../components/formatted-date/FormattedDate.astro";
+import Input from "../../components/input/Input.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import Page from "../../layouts/page/Page.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
@@ -35,7 +35,7 @@ const posts = (await getCollection("blog")).sort(
           <Card
             imgSrc={post.data.heroImage ?? ""}
             title={post.data.title}
-            href={`/blog/${post.slug}`}
+            href={`/blog/${post.id}`}
           >
             <FormattedDate date={post.data.pubDate} />
             <p>{post.data.description}</p>

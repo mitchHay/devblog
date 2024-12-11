@@ -113,7 +113,7 @@ const yearsExperience = `${new Date().getFullYear() - 2018} years`;
         topThreePosts
           .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
           .map((post) => (
-            <Card imgSrc={post.data.heroImage ?? ""} title={post.data.title} href={`/blog/${post.slug}`}>
+            <Card imgSrc={post.data.heroImage ?? ""} title={post.data.title} href={`/blog/${post.id}`}>
               <p>{post.data.description}</p>
             </Card>
           ))

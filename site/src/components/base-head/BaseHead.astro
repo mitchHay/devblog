@@ -48,7 +48,7 @@ const blogPosts = await getCollection('blog');
   <>
     {
       blogPosts
-        .filter(post => Astro.url.pathname.includes(post.slug))
+        .filter(post => Astro.url.pathname.includes(post.id))
         .map(post => (
           <meta property="og:image" content={new URL(post.data.heroImage!, Astro.url)} />
           <meta property="twitter:image" content={new URL(post.data.heroImage!, Astro.url)} />
