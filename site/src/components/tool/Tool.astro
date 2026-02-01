@@ -4,15 +4,24 @@ import type { ToolProps } from "./ToolProps";
 
 type Props = {} & ToolProps;
 
-const { name, imgSrc } = Astro.props;
+const { name, imgSrc, backgroundColor } = Astro.props;
 ---
 
 <!-- Template -->
 <span class="tool-item">
-  <Image src={imgSrc}
-         alt={name}
-         height={72} 
-         width={72} />
+  <Image 
+    src={imgSrc}
+    alt={name}
+    height={72} 
+    width={72}
+    style={{ 
+      backgroundColor: backgroundColor,
+      padding: backgroundColor ? '0.25rem' : undefined,
+      maxWidth: backgroundColor ? '2rem' : undefined,
+      maxHeight: backgroundColor ? '2rem' : undefined,
+      borderRadius: backgroundColor ? '100%' : undefined,
+    }}
+  />
   {name}
 </span>
 

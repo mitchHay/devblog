@@ -13,7 +13,7 @@ const { tools } = Astro.props;
 <div class="tools-container">
   {
     tools.map(tool => (
-      <Tool name={tool.name} imgSrc={tool.imgSrc} />
+      <Tool name={tool.name} imgSrc={tool.imgSrc} backgroundColor={tool.backgroundColor} />
     ))
   }
 </div>
