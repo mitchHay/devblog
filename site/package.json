@@ -10,15 +10,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.2",
-    "@astrojs/partytown": "^2.1.2",
-    "@astrojs/rss": "^4.0.10",
-    "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.0.4",
-    "marked": "^15.0.3"
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.17.1",
+    "marked": "^17.0.1"
   },
   "devDependencies": {
-    "sass": "^1.82.0",
-    "sharp": "^0.33.5"
+    "sass": "^1.97.3",
+    "sharp": "^0.34.5"
+  },
+  "volta": {
+    "node": "24.13.0"
   }
 }
