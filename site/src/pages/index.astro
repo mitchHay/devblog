@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import avatar from "../assets/images/avatar.png";
 import Button from "../components/button/Button.astro";
-import Card from "../components/card/Card.astro";
+import { Card } from "../components/card/Card";
 import Highlight from "../components/highlight/Highlight.astro";
 import Section from "../components/section/Section.astro";
 import ToolContainer from "../components/tool-container/ToolContainer.astro";
@@ -70,7 +70,7 @@ const learningTools: ToolProps[] = [
   {
     name: "Web Components",
     imgSrc: webComponentsLogo,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
 ];
 
@@ -85,18 +85,29 @@ const yearsExperience = `${new Date().getFullYear() - 2018} years`;
 ---
 
 <Page class="page-landing" title={title} description={description}>
-  <Image src={avatar} class="img-avatar" width="400" height="400" alt="Avatar" />
+  <Image
+    src={avatar}
+    class="img-avatar"
+    width="400"
+    height="400"
+    alt="Avatar"
+  />
   <h1 class="h1-landing">
     Hey, I'm Mitch <span class="wave">👋</span>
   </h1>
   <p class="landing-blurb">
-    A full-stack software engineer with over <Highlight text={yearsExperience} /> experience!
+    A full-stack software engineer with over <Highlight
+      text={yearsExperience}
+    /> experience!
   </p>
 
-  <Section class="tools-section" title="I've shipped 5+ apps for the web and mobile 🚀">
+  <Section
+    class="tools-section"
+    title="I've shipped 5+ apps for the web and mobile 🚀"
+  >
     <p>
-      I've worked on various teams to help deliver exceptional, performant and accessible experiences to thousands of
-      people.
+      I've worked on various teams to help deliver exceptional, performant and
+      accessible experiences to thousands of people.
     </p>
 
     <h3>What's on my tool belt?</h3>
@@ -105,7 +116,10 @@ const yearsExperience = `${new Date().getFullYear() - 2018} years`;
   </Section>
 
   <Section title="I love to learn and share 💡">
-    <p>I'm a tinkerer at heart; I'm extremely passionate about learning, experimenting, and trying something new.</p>
+    <p>
+      I'm a tinkerer at heart; I'm extremely passionate about learning,
+      experimenting, and trying something new.
+    </p>
 
     <h3>What am I currently learning?</h3>
 
@@ -119,7 +133,12 @@ const yearsExperience = `${new Date().getFullYear() - 2018} years`;
         topThreePosts
           .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
           .map((post) => (
-            <Card imgSrc={post.data.heroImage ?? ""} title={post.data.title} href={`/blog/${post.id}`}>
+            <Card
+              client:load
+              imgSrc={post.data.heroImage ?? ""}
+              title={post.data.title}
+              href={`/blog/${post.id}`}
+            >
               <p>{post.data.description}</p>
             </Card>
           ))

@@ -1,23 +1,20 @@
 @use '../../styles/colors' as *;
 @use '../../styles/functions' as *;
 
-@mixin input-styles() {
+.input {
   display: flex;
   align-items: center;
   padding: rem(4) rem(12);
   border: rem(2) solid transparent;
   border-radius: rem(24);
+  transition: border-color linear .125s;
 
-  &.focused {
+  &:has(input:focus-visible) {
     border-color: $color-purple-light;
   }
 
   img {
     filter: var(--icon-filter);
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   input {
@@ -30,7 +27,7 @@
     caret-color: $color-purple-light;
     min-height: 28px;
 
-    &:focus {
+    &:focus-visible {
       outline: 0;
     }
 

@@ -1,27 +1,20 @@
----
-import { generateRandomId } from '../../utils/string-utils';
+import { useMemo } from 'react';
 
-export interface Props {
+interface Props {
   date: Date;
 }
 
-const { date } = Astro.props;
-const id = generateRandomId();
----
+const getDateName = (n: number, str: string) => {
+  let dateName = str;
+  if (n > 1) {
+    dateName = dateName + "s";
+  }
 
-<time id={id} datetime={date.toISOString()}></time>
+  return `${n} ${dateName} ago`;
+};
 
-<script define:vars={{ id, date }}>
-  const getDateName = (n, str) => {
-    let dateName = str;
-    if (n > 1) {
-      dateName = dateName + "s";
-    }
-
-    return `${n} ${dateName} ago`;
-  };
-
-  const generatePostedDate = (date) => {
+export const FormattedDate = ({ date }: Props): React.ReactNode => {
+  const postedDate = useMemo(() => {
     const now = new Date();
     const diff = Math.floor(now.getTime() - date.getTime());
     const day = 1000 * 60 * 60 * 24;
@@ -47,10 +40,11 @@ const id = generateRandomId();
 
     const years = Math.floor(months / 12);
     return getDateName(years, "year");
-  };
+  }, [date]);
 
-  const timeEl = document.getElementById(id);
-  if (timeEl) {
-    timeEl.innerText = generatePostedDate(new Date(date));
-  }
-</script>
+  return (
+    <time dateTime={date.toISOString()}>
+      {postedDate}
+    </time>
+  );
+}

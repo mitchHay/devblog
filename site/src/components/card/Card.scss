@@ -3,7 +3,7 @@
 @use "../../styles/breakpoints" as *;
 @use "sass:color" as sass-color;
 
-@mixin card-styles() {
+.card {
   padding: rem(24);
   color: $color-purple-dark;
   text-decoration: none;

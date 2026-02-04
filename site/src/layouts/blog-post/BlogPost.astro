@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import Page from '../page/Page.astro';
 import Progress from '../../components/progress/Progress.astro';
 import { Image } from 'astro:assets'; 
-import FormattedDate from '../../components/formatted-date/FormattedDate.astro';
+import { FormattedDate } from '../../components/formatted-date/FormattedDate';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -26,11 +26,11 @@ const { title, description, pubDate, updatedDate, heroImage, author } = Astro.pr
     }
     <h1 class="title">{title}</h1>
     <p class="author">{author}</p>
-    Published: <FormattedDate date={pubDate} />
+    Published: <FormattedDate client:load date={pubDate} />
     {
       updatedDate && (
         <div class="last-updated-on">
-          Last updated: <FormattedDate date={updatedDate} />
+          Last updated: <FormattedDate client:load date={updatedDate} />
         </div>
       )
     }

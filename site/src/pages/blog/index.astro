@@ -1,11 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import searchIcon from "../../assets/icons/search.svg";
-import Card from "../../components/card/Card.astro";
-import FormattedDate from "../../components/formatted-date/FormattedDate.astro";
-import Input from "../../components/input/Input.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import Page from "../../layouts/page/Page.astro";
+import { BlogContent } from '../../components/blog-content/BlogContent';
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
@@ -13,42 +10,6 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <Page class="blog-page" title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <div class="blog-title">
-    <h1>Posts</h1>
-    <Input
-      placeholder="Search posts..."
-      label="Search posts"
-      id="search-posts"
-      image={{
-        src: searchIcon,
-        altText: "Search icon",
-        id: "input-search",
-      }}
-    />
-  </div>
-
-  <div class="posts-container">
-    {
-      posts
-        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-        .map((post) => (
-          <Card
-            imgSrc={post.data.heroImage ?? ""}
-            title={post.data.title}
-            href={`/blog/${post.id}`}
-          >
-            <FormattedDate date={post.data.pubDate} />
-            <p>{post.data.description}</p>
-          </Card>
-        ))
-    }
-  </div>
+  <BlogContent client:load posts={posts} />
 </Page>
 
-<style lang="scss">
-  @use "../../styles/pages/Blog.scss" as *;
-
-  .blog-page {
-    @include blog-page-styles();
-  }
-</style>
